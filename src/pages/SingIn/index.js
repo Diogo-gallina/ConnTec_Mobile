@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native'; //importando componentes
+import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
+import { Input } from 'react-native-elements'; //importando componentes
 
 export default function Login({navigation}) { 
     const Entrar = () => {
@@ -15,47 +16,34 @@ export default function Login({navigation}) {
             routes: [{name: "SingUp"}]
         })
     }
-  const [Users, setUser] = useState({
-    name: '',
-    email: '',
-    password: ''
-  });
+  //Declarando variaveis
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
 
-  const [status, setStatus] = useState ({
-    type: '',
-    mensagem: ''
-  });
+  const [errorName, setErrorName] = useState(null);
+  const [errorPassword, setErrorPassword] = useState(null);
 
-  const valueInput = e => setUser({ ...Users, [e.target.name]: e.target.value})
+  //Fazendo as constante para validação de campos.
+  const validar = () =>{
+    let error;
+    setUser(null)
+    setPassword(null)
 
-  const addUser = async e => {
-    e.preventDefault();
+    if(email == null){
+      setErrorPassword("• Email não pode ficar vázio.")
+    }
+    if(password == null){
+      setErrorPassword("• Senha não pode ficar vázio.")
+    }
+  } 
 
-    if(!validate()) return;
-
-    const saveDataForm = true;
-
-    if (saveDataForm) {
-      setStatus({
-        type: 'sucess',
-        mensagem: 'Usuário ccadastrado om sucesso!'
-      });
-      setUser ({
-        name: '',
-        email: '',
-        password: ''
-      })
-    } else {
-      setStatus({
-        type: 'error',
-        mensagem: "Erro: Usuário não cadastrado!"
-      })
+  //Chamada para verificação das validações
+  const salvar = () => {
+    if (validar()){
+      console.log("Salvou")
     }
   }
 
-  function validate(){
-    if(!Users.name) return setStatus({type: 'error', mensagem: 'Necessario cadastrar o campo Nome'})
-  }
   return (
     
     
@@ -79,19 +67,20 @@ export default function Login({navigation}) {
 
               
             <View style={styles.containerInput}>
-              <TextInput 
+              <Input 
                 style={styles.input} 
                 placeholder="E-mail" 
                 autocorrect={false} 
-                name='name'
-                onChangeText={()=>{}}/>
+                name='email'
+                onChangeText={value => setEmail(value)}/>
 
-              <TextInput 
+              <Input 
                 style={styles.input} 
                 placeholder="Password" 
                 autocorrect={false} 
-                onChangeText={()=>{} } 
-                secureTextEntry={true}/>
+                onChangeText={value => setPassword(value) } 
+                secureTextEntry={true}
+                />
                   
             </View>
               

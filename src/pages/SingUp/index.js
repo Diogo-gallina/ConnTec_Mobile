@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native'; //importando componentes
-import { Button, CheckBox, Input } from 'react-native-elements';
+import {Input} from 'react-native-elements';
 import Constants from 'expo-constants';
 
 export default function Cadastro({navigation}) { //funcao login
@@ -15,10 +15,11 @@ export default function Cadastro({navigation}) { //funcao login
     const [name, setName] = useState(null)
     const [password, setPassword] = useState()
     const [confirmPassword, setConfirmPassword] = useState(null)
+
+
     const [isSelected, setSelected] = useState(false)
     const [errorEmail, setErrorEmail] = useState(null)
     const [errorName, setErrorName] = useState(null)
-    const [errorCpf, setErrorCpf] = useState(null)
     const [errorPassword, setErrorPassword] = useState(null)
     const [errorConfirmPassword, setErrorConfirmPassword] = useState(null)
     const [isLoading, setLoading] = useState(false)
@@ -48,12 +49,14 @@ export default function Cadastro({navigation}) { //funcao login
       setErrorPassword("• Senha não pode ficar vázio.")
       error = true
     }
-    if(password !== confirmPassword) {
-      setErrorConfirmPassword("• As senhas não pode ser diferentes.")
-      error = true
+    if (password.length < 8) {
+      setErrorPassword('• Senha não pode ser menor que 8 caracteres.')
+      error = true  
     }else{
-      setErrorConfirmPassword(null)
-      error = false
+      if(password !== confirmPassword) {
+        setErrorConfirmPassword("• As senhas não pode ser diferentes.")
+        error = true
+      }
     }
     
     return !error
@@ -93,6 +96,7 @@ export default function Cadastro({navigation}) { //funcao login
               style={styles.input} 
               placeholder="Username" 
               autocorrect={false} 
+              maxLenght="50"
               onChangeText={value => setName(value) }
               errorMessage={errorName}
             />
@@ -100,6 +104,7 @@ export default function Cadastro({navigation}) { //funcao login
             <Input 
               style={styles.input} 
               placeholder="E-mail" 
+              maxLenght="100"
               autocorrect={false} 
               keyboardType="email-address"
               onChangeText={value => setEmail(value) }
@@ -109,7 +114,8 @@ export default function Cadastro({navigation}) { //funcao login
             <Input 
               style={styles.input} 
               placeholder="Password" 
-              autocorrect={false} 
+              autocorrect={false}
+              maxLenght="30" 
               onChangeText={value => setPassword(value) } 
               secureTextEntry={true}
               errorMessage={errorPassword}
@@ -120,7 +126,8 @@ export default function Cadastro({navigation}) { //funcao login
               placeholder="Confirm Password" 
               autocorrect={false} 
               name='password2'
-              onChangeText={()=>{} } 
+              maxLenght="30"
+              onChangeText={value => setConfirmPassword(value) }  
               secureTextEntry={true}
               errorMessage={errorConfirmPassword}
             />
