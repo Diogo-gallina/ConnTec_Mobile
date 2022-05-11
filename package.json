@@ -18,12 +18,15 @@
     "expo-constants": "~13.0.1",
     "expo-image-picker": "~12.0.1",
     "expo-status-bar": "~1.2.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
     "react-native-elements": "^3.4.2",
     "react-native-vector-icons": "^9.1.0",
     "react-native-web": "0.17.1",
+    "sequelize": "^6.19.0",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
