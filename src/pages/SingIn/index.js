@@ -26,9 +26,14 @@ export default function Login({navigation}) {
   //Fazendo as constante para validação de campos.
   const validar = () =>{
     let error;
-    setUser(null)
+    setEmail(null)
     setPassword(null)
 
+    const re = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i
+    if (!re.test(String(email).toLowerCase())){
+      setErrorEmail("Preencha seu E-mail corretamente")
+      error = true
+    }
     if(email == null){
       setErrorPassword("• Email não pode ficar vázio.")
     }

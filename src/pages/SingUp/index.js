@@ -36,22 +36,23 @@ export default function Cadastro({navigation}) { //funcao login
     setErrorPassword(null)
     setErrorConfirmPassword(null)
 
-
-    if(email == null) {
-      setErrorEmail("• Coloque o Email corretamente.")
+    
+    const re = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i
+    if (!re.test(String(email).toLowerCase())){
+      setErrorEmail("Preencha seu E-mail corretamente")
       error = true
     }
-    if(name == null) {
-      setErrorName("• Usuario não pode ficar vázio.")
+    if (name == null){
+      setErrorEmail("Preencha o nome de Usuario")
       error = true
     }
-    if(password == null) {
-      setErrorPassword("• Senha não pode ficar vázio.")
+    if (email == null){
+      setErrorPassword("Preencha o E-mail")
       error = true
     }
-    if (password.length < 8) {
-      setErrorPassword('• Senha não pode ser menor que 8 caracteres.')
-      error = true  
+    if (password == null){
+      setErrorPassword("Preencha a senha")
+      error = true
     }else{
       if(password !== confirmPassword) {
         setErrorConfirmPassword("• As senhas não pode ser diferentes.")
