@@ -1,8 +1,7 @@
-const sequelize = require('sequelize');
 const { Sequelize } = require('sequelize');
 const database = require('../components/db');
  
-const Usuario = database.define('usuario', {
+const User = database.define('user', {
     id: {
         type: Sequelize.TINYINT,
         autoIncrement: true,
@@ -11,7 +10,7 @@ const Usuario = database.define('usuario', {
     },
     Usuario: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     email: {
         type: Sequelize.STRING
@@ -27,7 +26,6 @@ const Usuario = database.define('usuario', {
     tipoUsuario: {
         type: Sequelize.CHAR,
         allowNull: false,
-        defaultValue: 'U'
     },  
     status: {
         type: Sequelize.TEXT,
@@ -36,8 +34,7 @@ const Usuario = database.define('usuario', {
     visto: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: CURRENT_TIMESTAMP
-    },
+    }
 })
 
-module.exports = Amigos;
+module.exports = User;

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
 import { Input } from 'react-native-elements'; //importando componentes
+import {Ionicons} from '@expo/vector-icons';
 
 export default function Login({navigation}) { 
     const Entrar = () => {
@@ -22,6 +23,8 @@ export default function Login({navigation}) {
 
   const [errorName, setErrorName] = useState(null);
   const [errorPassword, setErrorPassword] = useState(null);
+
+  const [hidePass, setHidePass] = useState(true)
 
   //Fazendo as constante para validação de campos.
   const validar = () =>{
@@ -74,29 +77,37 @@ export default function Login({navigation}) {
             <View style={styles.containerInput}>
               <Input 
                 style={styles.input} 
-                placeholder="E-mail" 
+                placeholder="Digite seu e-mail" 
                 autocorrect={false} 
                 name='email'
                 onChangeText={value => setEmail(value)}/>
 
               <Input 
                 style={styles.input} 
-                placeholder="Password" 
+                placeholder="Digite sua senha" 
                 autocorrect={false} 
                 onChangeText={value => setPassword(value) } 
-                secureTextEntry={true}
+                secureTextEntry={hidePass}
                 />
+
+            <TouchableOpacity style={styles.eye} onPress={ () => setHidePass(!hidePass) }>
+              { hidePass ?
+               <Ionicons name="eye" color="black" size={25} />
+               :
+               <Ionicons name="eye-off" color="black" size={25} /> 
+              }
+            </TouchableOpacity>
                   
             </View>
               
-            <Text style={styles.txtForgot}>Forgot Password?</Text>
+            <Text style={styles.txtForgot}>Esqueceu a senha?</Text>
 
               <TouchableOpacity style={styles.submitContainer} onPress={()=>Entrar()}>
                 
                   <Text style={{fontFamily:'Avenir Next', 
                                 color:'#fff', 
                                 fontWeight:'600', 
-                                fontSize: 16}}>Login</Text>
+                                fontSize: 16}}>Entrar</Text>
                                
                 
               </TouchableOpacity>
@@ -107,8 +118,8 @@ export default function Login({navigation}) {
                             textAlign:'center', 
                             marginTop: 24}}>
                                 
-                                Dont have an account? <TouchableOpacity style={{flex:1}} onPress={()=>goCadastro()}>
-                            <Text style={styles.txtForgot}>Register Now</Text>
+                                Não tem uma conta? <TouchableOpacity style={{flex:1}} onPress={()=>goCadastro()}>
+                            <Text style={styles.txtForgot}>Registre-se agora!</Text>
                         </TouchableOpacity>
                         </Text>
 
@@ -189,4 +200,9 @@ const styles = StyleSheet.create({
       width:'90%',
           
     },
+    eye:{
+      position: 'absolute',
+      right: '2%',
+      top: '60%'
+    }
 });

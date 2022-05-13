@@ -32,6 +32,7 @@ export default function Cadastro({navigation}) { //funcao login
     const [mensagem, setMensagem] = useState(null)
     const [tipo, setTipo] = useState(null)
     const [hidePass, setHidePass] = useState(true)
+    const [hidePass2, setHidePass2] = useState(true)
 
     
   const validar = () => {
@@ -105,7 +106,7 @@ export default function Cadastro({navigation}) { //funcao login
               
             <Input 
               style={styles.input} 
-              placeholder="Username" 
+              placeholder="Digite seu usuario" 
               autocorrect={false}
               maxLength={30}
               onChangeText={value => setUser(value) }
@@ -114,7 +115,7 @@ export default function Cadastro({navigation}) { //funcao login
             
             <Input 
               style={styles.input} 
-              placeholder="E-mail" 
+              placeholder="Digite seu e-mail" 
               maxLength={100}
               autocorrect={false} 
               keyboardType="email-address"
@@ -124,7 +125,7 @@ export default function Cadastro({navigation}) { //funcao login
 
             <Input 
               style={styles.input} 
-              placeholder="Nome" 
+              placeholder="Digite seu nome" 
               maxLength={10}
               autocorrect={false}
               onChangeText={value => setName(value) }
@@ -133,7 +134,7 @@ export default function Cadastro({navigation}) { //funcao login
 
             <Input 
               style={styles.input} 
-              placeholder="Password" 
+              placeholder="Digite sua senha" 
               autocorrect={false}
               maxLength={30} 
               onChangeText={value => setPassword(value)} 
@@ -142,20 +143,35 @@ export default function Cadastro({navigation}) { //funcao login
               
             />
 
-            
+            <TouchableOpacity style={styles.eye} onPress={ () => setHidePass(!hidePass) }>
+              { hidePass ?
+               <Ionicons name="eye" color="black" size={25} />
+               :
+               <Ionicons name="eye-off" color="black" size={25} /> 
+              }
+            </TouchableOpacity>
+
 
             <Input 
               style={styles.input} 
-              placeholder="Confirm Password" 
+              placeholder="Confirme sua senha" 
               autocorrect={false} 
               type='password'
               maxLength={30}
               onChangeText={value => setConfirmPassword(value) }  
-              secureTextEntry={true}
+              secureTextEntry={hidePass2}
             
               
               errorMessage={errorConfirmPassword}
             />
+
+            <TouchableOpacity style={styles.eye2} onPress={ () => setHidePass2(!hidePass2) }>
+              { hidePass2 ?
+               <Ionicons name="eye" color="black" size={25} />
+               :
+               <Ionicons name="eye-off" color="black" size={25} /> 
+              }
+            </TouchableOpacity>
               
           </View>
               
@@ -165,7 +181,7 @@ export default function Cadastro({navigation}) { //funcao login
                   <Text style={{fontFamily:'Avenir Next', 
                                 color:'#fff', 
                                 fontWeight:'600', 
-                                fontSize: 16}}>Register Now
+                                fontSize: 16}}>Registrar-se 
                   </Text>
                 </View>
             </TouchableOpacity>
@@ -173,8 +189,8 @@ export default function Cadastro({navigation}) { //funcao login
               <Text style={{fontFamily:'Avenir Next', 
                             fontsize: 14, color: '#ABB4BD', 
                             textAlign:'center', 
-                            marginTop: 24}}>Have an account? <TouchableOpacity style={{flex:1}} onPress={()=>goLogin()}>
-                            <Text style={styles.txtForgot}>Go to Login</Text>
+                            marginTop: 24}}>Tem uma conta? <TouchableOpacity style={{flex:1}} onPress={()=>goLogin()}>
+                            <Text style={styles.txtForgot}>Vá para o login</Text>
                         </TouchableOpacity>
               </Text>
 
@@ -265,5 +281,10 @@ const styles = StyleSheet.create({
       position: 'absolute',
       right: '2%',
       top: '64%'
+    },
+    eye2: {
+      position: 'absolute',
+      right: '2%',
+      top: '85%'
     }
 });

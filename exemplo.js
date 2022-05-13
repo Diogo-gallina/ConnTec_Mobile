@@ -1,15 +1,19 @@
 //index.js
 (async () => {
     const database = require('./src/components/db');
-    const Amigos = require('./src/models/exemplo');
+    const User = require('./src/models/exemplo');
 
     try {
         const resultado = await database.sync();
 
-        const amigos = await Amigos.create({
-            nome: 'Pedro',
-            preco: 0,
-            descricao: 'Pedro'
+        const user = await User.create({
+            idUsuario: '1',
+            usuario: 'Diogodiis',
+            email: 'diogo@gmail.com',
+            nome: 'Diogo Correia Campos',
+            senha: 'diogo123',
+            tipoUsuario: 'U',
+            status: 'Eu sou lindo',
         })
         
     
