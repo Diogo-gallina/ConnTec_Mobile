@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native'; //importando componentes
-import {Input} from 'react-native-elements';
+import {View, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native'; //importando componentes
+import {Input, Text} from 'react-native-elements';
 import Constants from 'expo-constants';
+import {Ionicons} from '@expo/vector-icons';
 
 export default function Cadastro({navigation}) { //funcao login
 
@@ -13,13 +14,15 @@ export default function Cadastro({navigation}) { //funcao login
     }
     const [email, setEmail] = useState(null)
     const [name, setName] = useState(null)
-    const [password, setPassword] = useState()
+    const [user, setUser] = useState(null)
+    const [password, setPassword] = useState(null)
     const [confirmPassword, setConfirmPassword] = useState(null)
 
 
     const [isSelected, setSelected] = useState(false)
     const [errorEmail, setErrorEmail] = useState(null)
-    const [errorName, setErrorName] = useState(null)
+    const [errorName, setErrorName] =useState(null)
+    const [errorUser, setErrorUser] = useState(null)
     const [errorPassword, setErrorPassword] = useState(null)
     const [errorConfirmPassword, setErrorConfirmPassword] = useState(null)
     const [isLoading, setLoading] = useState(false)
@@ -28,11 +31,14 @@ export default function Cadastro({navigation}) { //funcao login
     const [titulo, setTitulo] = useState(null)
     const [mensagem, setMensagem] = useState(null)
     const [tipo, setTipo] = useState(null)
+    const [hidePass, setHidePass] = useState(true)
+
     
   const validar = () => {
     let error = false;
-    setErrorName(null)
+    setErrorUser(null)
     setErrorEmail(null)
+    setErrorName(null)
     setErrorPassword(null)
     setErrorConfirmPassword(null)
 
@@ -42,9 +48,13 @@ export default function Cadastro({navigation}) { //funcao login
       setErrorEmail("Preencha seu E-mail corretamente")
       error = true
     }
-    if (name == null){
-      setErrorEmail("Preencha o nome de Usuario")
+    const re1 = /^([a-z]){1,}([A-Z]){1,}([A-Z]){1,}([a-z])$/i
+    if (user == null){
+      setErrorUser("Preencha o nome de Usuario")
       error = true
+    }
+    if (!re1.test(String(user).toLowerCase())){
+      setErrorUser("Apenas caracteres comuns e sem acentuações.")
     }
     if (email == null){
       setErrorPassword("Preencha o E-mail")
@@ -54,7 +64,7 @@ export default function Cadastro({navigation}) { //funcao login
       setErrorPassword("Preencha a senha")
       error = true
     }else{
-      if(password !== confirmPassword) {
+       if(password !== confirmPassword) {
         setErrorConfirmPassword("• As senhas não pode ser diferentes.")
         error = true
       }
@@ -96,16 +106,16 @@ export default function Cadastro({navigation}) { //funcao login
             <Input 
               style={styles.input} 
               placeholder="Username" 
-              autocorrect={false} 
-              maxLenght="50"
-              onChangeText={value => setName(value) }
-              errorMessage={errorName}
+              autocorrect={false}
+              maxLength={30}
+              onChangeText={value => setUser(value) }
+              errorMessage={errorUser}
             />
             
             <Input 
               style={styles.input} 
               placeholder="E-mail" 
-              maxLenght="100"
+              maxLength={100}
               autocorrect={false} 
               keyboardType="email-address"
               onChangeText={value => setEmail(value) }
@@ -114,22 +124,36 @@ export default function Cadastro({navigation}) { //funcao login
 
             <Input 
               style={styles.input} 
+              placeholder="Nome" 
+              maxLength={10}
+              autocorrect={false}
+              onChangeText={value => setName(value) }
+              errorMessage={errorName}
+            />
+
+            <Input 
+              style={styles.input} 
               placeholder="Password" 
               autocorrect={false}
-              maxLenght="30" 
-              onChangeText={value => setPassword(value) } 
-              secureTextEntry={true}
+              maxLength={30} 
+              onChangeText={value => setPassword(value)} 
+              secureTextEntry={hidePass}
               errorMessage={errorPassword}
+              
             />
+
+            
 
             <Input 
               style={styles.input} 
               placeholder="Confirm Password" 
               autocorrect={false} 
-              name='password2'
-              maxLenght="30"
+              type='password'
+              maxLength={30}
               onChangeText={value => setConfirmPassword(value) }  
               secureTextEntry={true}
+            
+              
               errorMessage={errorConfirmPassword}
             />
               
@@ -236,5 +260,10 @@ const styles = StyleSheet.create({
     },
     error: {
       color:"red"
+    },
+    eye: {
+      position: 'absolute',
+      right: '2%',
+      top: '64%'
     }
 });
