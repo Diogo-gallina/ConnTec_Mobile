@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     },
     eye:{
       position: 'absolute',
-      right: '2%',
+      right: '3%',
       top: '60%'
     }
 });

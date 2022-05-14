@@ -1,7 +1,7 @@
-const { Sequelize } = require('sequelize');
+const Sequelize  = require('sequelize');
 const database = require('../components/db');
  
-const User = database.define('user', {
+const User = database.define('usuarios', {
     id: {
         type: Sequelize.TINYINT,
         autoIncrement: true,

@@ -21,7 +21,7 @@ export default function Cadastro({navigation}) { //funcao login
 
     const [isSelected, setSelected] = useState(false)
     const [errorEmail, setErrorEmail] = useState(null)
-    const [errorName, setErrorName] =useState(null)
+    const [errorName, setErrorName] = useState(null)
     const [errorUser, setErrorUser] = useState(null)
     const [errorPassword, setErrorPassword] = useState(null)
     const [errorConfirmPassword, setErrorConfirmPassword] = useState(null)
@@ -51,18 +51,22 @@ export default function Cadastro({navigation}) { //funcao login
     }
     const re1 = /^([a-z]){1,}([A-Z]){1,}([A-Z]){1,}([a-z])$/i
     if (user == null){
-      setErrorUser("Preencha o nome de Usuario")
+      setErrorUser("Preencha o nome de Usuario.")
       error = true
     }
     if (!re1.test(String(user).toLowerCase())){
       setErrorUser("Apenas caracteres comuns e sem acentuações.")
     }
     if (email == null){
-      setErrorPassword("Preencha o E-mail")
+      setErrorPassword("Preencha o E-mail.")
+      error = true
+    }
+    if (name == null){
+      setErrorName("Preencha o Nome.")
       error = true
     }
     if (password == null){
-      setErrorPassword("Preencha a senha")
+      setErrorPassword("Preencha a senha.")
       error = true
     }else{
        if(password !== confirmPassword) {
@@ -279,12 +283,12 @@ const styles = StyleSheet.create({
     },
     eye: {
       position: 'absolute',
-      right: '2%',
+      right: '3%',
       top: '64%'
     },
     eye2: {
       position: 'absolute',
-      right: '2%',
+      right: '3%',
       top: '85%'
     }
 });

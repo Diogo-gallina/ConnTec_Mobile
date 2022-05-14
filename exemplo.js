@@ -1,3 +1,5 @@
+
+
 //index.js
 (async () => {
     const database = require('./src/components/db');
@@ -7,13 +9,12 @@
         const resultado = await database.sync();
 
         const user = await User.create({
-            idUsuario: '1',
-            usuario: 'Diogodiis',
-            email: 'diogo@gmail.com',
-            nome: 'Diogo Correia Campos',
-            senha: 'diogo123',
+            Usuario: 'cesar1123',
+            email: 'cesar@gmail.com',
+            nome: 'César Adriano',
+            senha: '1235',
             tipoUsuario: 'U',
-            status: 'Eu sou lindo',
+            status: 'Sei la Meu',
         })
         
     
