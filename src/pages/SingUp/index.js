@@ -18,19 +18,12 @@ export default function Cadastro({navigation}) { //funcao login
     const [password, setPassword] = useState(null)
     const [confirmPassword, setConfirmPassword] = useState(null)
 
-
-    const [isSelected, setSelected] = useState(false)
     const [errorEmail, setErrorEmail] = useState(null)
     const [errorName, setErrorName] = useState(null)
     const [errorUser, setErrorUser] = useState(null)
     const [errorPassword, setErrorPassword] = useState(null)
     const [errorConfirmPassword, setErrorConfirmPassword] = useState(null)
-    const [isLoading, setLoading] = useState(false)
   
-    const [visibleDialog, setVisibleDialog] = useState(false);
-    const [titulo, setTitulo] = useState(null)
-    const [mensagem, setMensagem] = useState(null)
-    const [tipo, setTipo] = useState(null)
     const [hidePass, setHidePass] = useState(true)
     const [hidePass2, setHidePass2] = useState(true)
 

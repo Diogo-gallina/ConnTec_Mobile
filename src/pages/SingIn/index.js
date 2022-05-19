@@ -3,20 +3,8 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput 
 import { Input } from 'react-native-elements'; //importando componentes
 import {Ionicons} from '@expo/vector-icons';
 
-export default function Login({navigation}) { 
-    const Entrar = () => {
-        navigation.reset({
-            index: 0,
-            routes: [{name: "AppRoutes"}]
-        })
-    }
-
-    const goCadastro = () => {
-        navigation.reset({
-            index: 0,
-            routes: [{name: "SingUp"}]
-        })
-    }
+export default function Login() 
+{ 
   //Declarando variaveis
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -37,9 +25,6 @@ export default function Login({navigation}) {
       setErrorEmail("Preencha seu E-mail corretamente")
       error = true
     }
-    if(email == null){
-      setErrorPassword("• Email não pode ficar vázio.")
-    }
     if(password == null){
       setErrorPassword("• Senha não pode ficar vázio.")
     }
@@ -51,10 +36,7 @@ export default function Login({navigation}) {
       console.log("Salvou")
     }
   }
-
   return (
-    
-    
     <ScrollView style={styles.container}>
         <View style={{ marginTop:30, 
                        alignItems:'center', 

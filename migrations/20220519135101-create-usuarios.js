@@ -1,14 +1,14 @@
-const Sequelize  = require('sequelize');
-const database = require('../components/db');
- 
-const User = database.define('usuarios', {
-    id: {
+'use strict';
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('Usuarios', {
+      id: {
         type: Sequelize.TINYINT,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    Usuario: {
+    usuario: {
         type: Sequelize.STRING,
         allowNull: true
     },
@@ -24,7 +24,7 @@ const User = database.define('usuarios', {
         allowNull: false
     }, 
     tipoUsuario: {
-        type: Sequelize.CHAR,
+        type: Sequelize.TINYINT(1),
         allowNull: false,
     },  
     status: {
@@ -35,6 +35,9 @@ const User = database.define('usuarios', {
         type: Sequelize.DATE,
         allowNull: true,
     }
-})
-
-module.exports = User;
+});
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Usuarios');
+  }
+};
