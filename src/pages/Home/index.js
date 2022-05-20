@@ -1,14 +1,15 @@
 //importando React e componentes
 
-import React from 'react';
-import { StyleSheet, SafeAreaView, View, Image, TouchableHighlight } from 'react-native';
+import React, {useState,useEffect} from 'react';
+import { StyleSheet, SafeAreaView, View, Image, TouchableHighlight, Text } from 'react-native';
 
 import {  Feather } from '@expo/vector-icons';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //Início função Home
 
 
 export function Home({navigation}) {
-
 
   const Profile = () => {
     navigation.reset({
@@ -16,6 +17,18 @@ export function Home({navigation}) {
         routes: [{name: "Profile"}]
     })
 }
+
+const [usuario,setUsuario]=useState(null);
+
+    useEffect(()=>{
+        async function getUsuario()
+        {
+            let response=await AsyncStorage.getItem('userData');
+            let json=JSON.parse(response);
+            setUsuario(json.usuario);
+        }
+        getUsuario();
+    },[]);
 
   return (
     <SafeAreaView>
@@ -35,8 +48,8 @@ export function Home({navigation}) {
           </TouchableHighlight>
       </View>
       
-      <View style={{flex:1, backgroundColor: 'blue'}}>
-
+      <View style={{flex:1, backgroundColor: 'white'}}>
+      <Text>Seja bem vindo, {usuario}</Text> 
       </View>
 
     </SafeAreaView>

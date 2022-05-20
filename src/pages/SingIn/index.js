@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
+import React, {useState,useEffect} from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput, Alert } from 'react-native';
 import { Input } from 'react-native-elements'; //importando componentes
 import {Ionicons} from '@expo/vector-icons';
-import Constants from 'expo-constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as LocalAuthentication from 'expo-local-authentication';
 
 export default function Login({navigation}) 
 { 
@@ -15,18 +16,62 @@ export default function Login({navigation})
   //Declarando variaveis
 
   const [errorEmail, setErrorEmail] = useState(null)
-  const [errorPassword, setErrorPassword] = useState(null)
+  const [errorSenha, setErrorSenha] = useState(null)
 
   const [hidePass, setHidePass] = useState(true)
 
-  const [display, setDisplay]=useState('none')
   const [email, setEmail] = useState(null)
-  const [password, setPassword]=useState(null)
-  const [login, setLogin]=useState(null)
+  const [senha, setSenha]=useState(null)
+  const [login, setLogin]=useState(null);
 
+
+//verificar se o login é verdadeiro e chamar a biometria
+  useEffect(()=>{
+    verifyLogin();
+},[]);
+useEffect(()=>{
+    if(login === true){
+        biometric();
+    }
+},[login]);
+  
+  //função para verificar se o login é verdadeiro
+  async function verifyLogin()
+{
+    let response=await AsyncStorage.getItem('userData');
+    let json=await JSON.parse(response);
+    if(json !== null){
+        setEmail(json.email);
+        setSenha(json.senha);
+        setLogin(true);
+    }
+}
+
+
+//Função para chamar a biometria
+async function biometric()
+{
+    let compatible= await LocalAuthentication.hasHardwareAsync();
+    if(compatible){
+        let biometricRecords = await LocalAuthentication.isEnrolledAsync();
+        if(!biometricRecords){
+            alert('Biometria não cadastrada. Logue com seu email e senha');
+        }else{
+            let result=await  LocalAuthentication.authenticateAsync();
+            if(result.success){
+                sendForm();
+            }else{
+                setEmail(null);
+                setSenha(null);
+            }
+        }
+    }
+}
+  
+  //função para enviar o formulario para o controller
   async function sendForm()
     {
-        let response=await fetch('http://localhost:19006/login',{
+        let response=await fetch('http://192.168.1.74:3000/login',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -34,45 +79,49 @@ export default function Login({navigation})
             },
             body: JSON.stringify({
                 email: email,
-                password: password
+                senha: senha
             })
         });
         let json=await response.json();
         if(json === 'error'){
-            setDisplay('flex');
-            setTimeout(()=>{
-                setDisplay('none');
-            },5000);
-        }
+            setErrorEmail("Email ou Senha errados!")
+            setErrorSenha("Email ou Senha errados!")
+            await AsyncStorage.clear();
+      }else{
+          await AsyncStorage.setItem('userData', JSON.stringify(json));
+          navigation.navigate('Home');
+          } 
     }
 
   //Fazendo as constante para validação de campos.
   const validar = () =>{
     let error = false;
     setErrorEmail(null)
-    setErrorPassword(null)
+    setErrorSenha(null)
 
     const re = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i
     if (!re.test(String(email).toLowerCase())){
       setErrorEmail("Preencha seu E-mail corretamente!")
       error = true
     }
-    if(password == null){
-      setErrorPassword("Senha não pode ficar vázia.")
+    if(senha == null){
+      setErrorSenha("Senha não pode ficar vázia.")
       error = true
     }
-
+    if(senha.length < 4){
+      setErrorSenha("Senha não pode ser menor que 4 caracteres.")
+      error = true
+    }
     return !error
-
   } 
-
 
   //Chamada para verificação das validações
   const salvar = () => {
     if (validar()){
-      sendForm();
+      sendForm()
     }
   }
+
   return (
     <ScrollView style={styles.container}>
         <View style={{ marginTop:30, 
@@ -106,9 +155,9 @@ export default function Login({navigation})
                 style={styles.input} 
                 placeholder="Digite sua senha" 
                 autocorrect={false} 
-                onChangeText={value => setPassword(value)} 
+                onChangeText={value => setSenha(value)} 
                 secureTextEntry={hidePass}
-                errorMessage={errorPassword}
+                errorMessage={errorSenha}
                 />
 
             <TouchableOpacity style={styles.eye} onPress={ () => setHidePass(!hidePass) }>
@@ -123,7 +172,7 @@ export default function Login({navigation})
               
             <Text style={styles.txtForgot}>Esqueceu a senha?</Text>
 
-              <TouchableOpacity style={styles.submitContainer} onPress={()=>sendForm()}>
+              <TouchableOpacity style={styles.submitContainer} onPress={()=>salvar()}>
                 
                   <Text style={{fontFamily:'Avenir Next', 
                                 color:'#fff', 
