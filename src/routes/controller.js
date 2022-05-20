@@ -6,40 +6,18 @@ const models=require('../../models');
 const app=express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 let usuario=models.usuario;
 
-app.get('/create',async (req,res)=>{
-    let create=await usuario.create({
-        name: "joao",
-        password: "abc",
-        createdAt: new Date(),
-        updatedAt: new Date()
+app.post('/login',async (req,res)=>{
+    let response=await user.findOne({
+        where:{email:req.body.email, senha: req.body.senha}
     });
-    res.send('Usuário criado com sucesso!');
-});
-
-app.get('/read', async (req,res)=>{
-    let read=await usuario.findAll({
-        raw:true,
-    });
-    console.log(read);
-    res.send(read)
-});
-
-app.get('/update', async (req,res)=> {
-    let update=await usuario.findByPk(2,
-        {include:[{all:true}]}
-        ).then((response)=>{
-            response.Trackings[0].local='Nova Cidade';
-            response.Trackings[0].save();
-    });
-});
-
-app.get('/delete', async (req,res)=> {
-    usuario.destroy({
-        where: {idUsuario:119}
-    });
-    res.send('Usuario deleteado com sucesso');
+    if(response === null){
+        res.send(JSON.stringify('error'));
+    }else{
+        res.send(response);
+    }
 });
 
 let port=process.env.PORT || 3000;

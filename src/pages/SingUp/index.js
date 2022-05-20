@@ -28,7 +28,7 @@ export default function Cadastro({navigation}) { //funcao login
     const [hidePass2, setHidePass2] = useState(true)
 
     
-  const validar = () => {
+  const validar = () =>{
     let error = false;
     setErrorUser(null)
     setErrorEmail(null)
@@ -49,6 +49,10 @@ export default function Cadastro({navigation}) { //funcao login
     }
     if (!re1.test(String(user).toLowerCase())){
       setErrorUser("Apenas caracteres comuns e sem acentuações.")
+    }
+    if (user.length < 4){
+      setErrorUser("Nome tem que ser maior que 3 caracteres")
+      error = true
     }
     if (email == null){
       setErrorPassword("Preencha o E-mail.")

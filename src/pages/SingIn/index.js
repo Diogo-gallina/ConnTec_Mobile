@@ -2,38 +2,75 @@ import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
 import { Input } from 'react-native-elements'; //importando componentes
 import {Ionicons} from '@expo/vector-icons';
+import Constants from 'expo-constants';
 
-export default function Login() 
+export default function Login({navigation}) 
 { 
+    const goCadastro = () => {
+    navigation.reset({
+        index: 0,
+        routes: [{name: "SingUp"}]
+    });
+}
   //Declarando variaveis
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
 
-  const [errorName, setErrorName] = useState(null);
-  const [errorPassword, setErrorPassword] = useState(null);
+  const [errorEmail, setErrorEmail] = useState(null)
+  const [errorPassword, setErrorPassword] = useState(null)
 
   const [hidePass, setHidePass] = useState(true)
 
+  const [display, setDisplay]=useState('none')
+  const [email, setEmail] = useState(null)
+  const [password, setPassword]=useState(null)
+  const [login, setLogin]=useState(null)
+
+  async function sendForm()
+    {
+        let response=await fetch('http://localhost:19006/login',{
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
+        let json=await response.json();
+        if(json === 'error'){
+            setDisplay('flex');
+            setTimeout(()=>{
+                setDisplay('none');
+            },5000);
+        }
+    }
+
   //Fazendo as constante para validação de campos.
   const validar = () =>{
-    let error;
-    setEmail(null)
-    setPassword(null)
+    let error = false;
+    setErrorEmail(null)
+    setErrorPassword(null)
 
     const re = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i
     if (!re.test(String(email).toLowerCase())){
-      setErrorEmail("Preencha seu E-mail corretamente")
+      setErrorEmail("Preencha seu E-mail corretamente!")
       error = true
     }
     if(password == null){
-      setErrorPassword("• Senha não pode ficar vázio.")
+      setErrorPassword("Senha não pode ficar vázia.")
+      error = true
     }
+
+    return !error
+
   } 
+
 
   //Chamada para verificação das validações
   const salvar = () => {
     if (validar()){
-      console.log("Salvou")
+      sendForm();
     }
   }
   return (
@@ -61,15 +98,17 @@ export default function Login()
                 style={styles.input} 
                 placeholder="Digite seu e-mail" 
                 autocorrect={false} 
-                name='email'
-                onChangeText={value => setEmail(value)}/>
+                onChangeText={value => setEmail(value)}
+                errorMessage={errorEmail}
+                />
 
               <Input 
                 style={styles.input} 
                 placeholder="Digite sua senha" 
                 autocorrect={false} 
-                onChangeText={value => setPassword(value) } 
+                onChangeText={value => setPassword(value)} 
                 secureTextEntry={hidePass}
+                errorMessage={errorPassword}
                 />
 
             <TouchableOpacity style={styles.eye} onPress={ () => setHidePass(!hidePass) }>
@@ -84,7 +123,7 @@ export default function Login()
               
             <Text style={styles.txtForgot}>Esqueceu a senha?</Text>
 
-              <TouchableOpacity style={styles.submitContainer} onPress={()=>Entrar()}>
+              <TouchableOpacity style={styles.submitContainer} onPress={()=>sendForm()}>
                 
                   <Text style={{fontFamily:'Avenir Next', 
                                 color:'#fff', 
@@ -184,7 +223,7 @@ const styles = StyleSheet.create({
     },
     eye:{
       position: 'absolute',
-      right: '3%',
+      right: '1.5%',
       top: '60%'
     }
 });
