@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput, Alert } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView} from 'react-native';
 import { Input } from 'react-native-elements'; //importando componentes
 import {Ionicons} from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -106,6 +106,10 @@ async function biometric()
     }
     if(senha == null){
       setErrorSenha("Senha não pode ficar vázia.")
+      error = true
+    }
+    if(email == null){
+      setErrorSenha("Email não pode ficar vázio.")
       error = true
     }
     if(senha.length < 4){

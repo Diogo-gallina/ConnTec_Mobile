@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native'; //importando componentes
+import {View, Alert, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native'; //importando componentes
 import {Input, Text} from 'react-native-elements';
-import Constants from 'expo-constants';
 import {Ionicons} from '@expo/vector-icons';
 
 export default function Cadastro({navigation}) { //funcao login
@@ -14,60 +13,105 @@ export default function Cadastro({navigation}) { //funcao login
     }
     const [email, setEmail] = useState(null)
     const [name, setName] = useState(null)
-    const [user, setUser] = useState(null)
-    const [password, setPassword] = useState(null)
-    const [confirmPassword, setConfirmPassword] = useState(null)
+    const [usuario, setUsuario] = useState(null)
+    const [senha, setSenha] = useState(null)
+    const [confirmSenha, setConfirmSenha] = useState(null)
 
     const [errorEmail, setErrorEmail] = useState(null)
     const [errorName, setErrorName] = useState(null)
-    const [errorUser, setErrorUser] = useState(null)
-    const [errorPassword, setErrorPassword] = useState(null)
-    const [errorConfirmPassword, setErrorConfirmPassword] = useState(null)
+    const [errorUsuario, setErrorUsuario] = useState(null)
+    const [errorSenha, setErrorSenha] = useState(null)
+    const [errorConfirmSenha, setErrorConfirmSenha] = useState(null)
   
     const [hidePass, setHidePass] = useState(true)
     const [hidePass2, setHidePass2] = useState(true)
 
     
-  const validar = () =>{
+    async function sendForm()
+    {
+        let response=await fetch('http://192.168.1.74:3000/cadastro',{
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                usuario: usuario,
+                email: email,
+                name: name,
+                senha: senha,
+                 
+            })
+        });
+        let json=await response.json();
+        if(json === 'error'){
+            setErrorEmail("Email ou Senha errados!")
+            setErrorSenha("Email ou Senha errados!")
+            }else{
+              Alert.alert(
+                'Seu usuario foi cadastrado com sucesso!',
+                'Logue com ele agora! ;D',
+                [
+                  { text: 'Ir para o login', onPress: () => navigation.navigate('SingIn') },
+                ],
+                { cancelable: false }
+                );
+            }
+    }
+  
+    const validar = () =>{
     let error = false;
-    setErrorUser(null)
+    setErrorUsuario(null)
     setErrorEmail(null)
     setErrorName(null)
-    setErrorPassword(null)
-    setErrorConfirmPassword(null)
+    setErrorSenha(null)
+    setErrorConfirmSenha(null)
 
     
     const re = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i
     if (!re.test(String(email).toLowerCase())){
-      setErrorEmail("Preencha seu E-mail corretamente")
+      setErrorEmail("Preencha seu E-mail corretamente.")
       error = true
     }
     const re1 = /^([a-z]){1,}([A-Z]){1,}([A-Z]){1,}([a-z])$/i
-    if (user == null){
-      setErrorUser("Preencha o nome de Usuario.")
+    if (usuario == null){
+      setErrorUsuario("Preencha o nome de Usuario corretamente.")
       error = true
     }
-    if (!re1.test(String(user).toLowerCase())){
-      setErrorUser("Apenas caracteres comuns e sem acentuações.")
+    if (!re1.test(String(usuario).toLowerCase())){
+      setErrorUsuario("Apenas caracteres comuns e sem acentuações.")
     }
-    if (user.length < 4){
-      setErrorUser("Nome tem que ser maior que 3 caracteres")
+    if (usuario.length < 4){
+      setErrorUsuario("Nome tem que ser maior que 3 caracteres")
+      error = true
+    }
+    if(senha.length < 4){
+      setErrorSenha("Senha não pode ser menor que 4 caracteres.")
       error = true
     }
     if (email == null){
-      setErrorPassword("Preencha o E-mail.")
+      setErrorSenha("Preencha o E-mail.")
       error = true
     }
     if (name == null){
       setErrorName("Preencha o Nome.")
       error = true
     }
-    if (password == null){
-      setErrorPassword("Preencha a senha.")
+    if (usuario.length < 4){
+      setErrorUsuario("Nome tem que ser maior que 3 caracteres")
       error = true
-    }else{
-       if(password !== confirmPassword) {
-        setErrorConfirmPassword("• As senhas não pode ser diferentes.")
+    }
+    if (senha == null){
+      setErrorSenha("Preencha a senha.")
+      error = true
+    }
+    if (confirmSenha == null){
+      setErrorConfirmSenha("Confirme sua senha.")
+      error = true
+    }
+    else{
+       if(senha !== confirmSenha) {
+        setErrorConfirmSenha("• As senhas não pode ser diferentes.")
         error = true
       }
     }
@@ -78,7 +122,7 @@ export default function Cadastro({navigation}) { //funcao login
   
   const salvar = () => {
     if (validar()){
-      console.log("Salvou")
+      sendForm()
     }
   }
     
@@ -110,8 +154,8 @@ export default function Cadastro({navigation}) { //funcao login
               placeholder="Digite seu usuario" 
               autocorrect={false}
               maxLength={30}
-              onChangeText={value => setUser(value) }
-              errorMessage={errorUser}
+              onChangeText={value => setUsuario(value) }
+              errorMessage={errorUsuario}
             />
             
             <Input 
@@ -138,9 +182,9 @@ export default function Cadastro({navigation}) { //funcao login
               placeholder="Digite sua senha" 
               autocorrect={false}
               maxLength={30} 
-              onChangeText={value => setPassword(value)} 
+              onChangeText={value => setSenha(value)} 
               secureTextEntry={hidePass}
-              errorMessage={errorPassword}
+              errorMessage={errorSenha}
               
             />
 
@@ -157,13 +201,13 @@ export default function Cadastro({navigation}) { //funcao login
               style={styles.input} 
               placeholder="Confirme sua senha" 
               autocorrect={false} 
-              type='password'
+              type='senha'
               maxLength={30}
-              onChangeText={value => setConfirmPassword(value) }  
+              onChangeText={value => setConfirmSenha(value) }  
               secureTextEntry={hidePass2}
             
               
-              errorMessage={errorConfirmPassword}
+              errorMessage={errorConfirmSenha}
             />
 
             <TouchableOpacity style={styles.eye2} onPress={ () => setHidePass2(!hidePass2) }>
