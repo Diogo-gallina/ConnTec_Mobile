@@ -9,6 +9,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 let usuarios=models.usuarios;
+let token=models.token;
 
 app.post('/login',async (req,res)=>{
     let response=await usuarios.findOne({
@@ -24,7 +25,6 @@ app.post('/login',async (req,res)=>{
 
 app.post('/cadastro',async (req,res)=>{
     let response = await usuarios.create({
-            usuario:req.body.usuario,
             email: req.body.email,
             nome: req.body.name,
             senha: req.body.senha,
@@ -36,6 +36,20 @@ app.post('/cadastro',async (req,res)=>{
     }else{
         res.send(response);
         console.log(response)
+    }
+});
+
+//Grava o token no banco
+app.post('/token',async(req,res)=>{
+    let response=await token.findOne({
+        where:{token:req.body.token}
+    });
+    if(response == null){
+        token.create({
+            token: req.body.token,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        });
     }
 });
 

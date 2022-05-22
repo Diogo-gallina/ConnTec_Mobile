@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Alert, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native'; //importando componentes
+import {View, Alert, StyleSheet, Image, TouchableOpacity, ScrollView, BackHandler } from 'react-native'; //importando componentes
 import {Input, Text} from 'react-native-elements';
 import {Ionicons} from '@expo/vector-icons';
 
@@ -13,18 +13,21 @@ export default function Cadastro({navigation}) { //funcao login
     }
     const [email, setEmail] = useState(null)
     const [name, setName] = useState(null)
-    const [usuario, setUsuario] = useState(null)
     const [senha, setSenha] = useState(null)
     const [confirmSenha, setConfirmSenha] = useState(null)
-
     const [errorEmail, setErrorEmail] = useState(null)
     const [errorName, setErrorName] = useState(null)
-    const [errorUsuario, setErrorUsuario] = useState(null)
     const [errorSenha, setErrorSenha] = useState(null)
     const [errorConfirmSenha, setErrorConfirmSenha] = useState(null)
-  
     const [hidePass, setHidePass] = useState(true)
     const [hidePass2, setHidePass2] = useState(true)
+
+    const validar = () =>{
+      let error = false;
+      setErrorEmail(null)
+      setErrorName(null)
+      setErrorSenha(null)
+      setErrorConfirmSenha(null)
 
     
     async function sendForm()
@@ -36,7 +39,6 @@ export default function Cadastro({navigation}) { //funcao login
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                usuario: usuario,
                 email: email,
                 name: name,
                 senha: senha,
@@ -45,8 +47,7 @@ export default function Cadastro({navigation}) { //funcao login
         });
         let json=await response.json();
         if(json === 'error'){
-            setErrorEmail("Email ou Senha errados!")
-            setErrorSenha("Email ou Senha errados!")
+            setErrorEmail("Email já cadastrado!!")
             }else{
               Alert.alert(
                 'Seu usuario foi cadastrado com sucesso!',
@@ -58,31 +59,41 @@ export default function Cadastro({navigation}) { //funcao login
                 );
             }
     }
-  
-    const validar = () =>{
-    let error = false;
-    setErrorUsuario(null)
-    setErrorEmail(null)
-    setErrorName(null)
-    setErrorSenha(null)
-    setErrorConfirmSenha(null)
 
+    //Função para o botão de voltar
+    useEffect(() => {
+      const backAction = () => {
+          Alert.alert("Alerta!", "Deseja voltar para a tela de login?", [
+              {
+                  text: "Não",
+                  onPress: () => null,
+                  style: "cancel"
+              },
+              { text: "Sim", onPress: () => {
+                navigation.navigate('SingIn');
+                  }
+              }
+          ]);
+          return true;
+      };
+  
+      const backHandler = BackHandler.addEventListener(
+          "hardwareBackPress",
+          backAction
+      );
+  
+      return () => backHandler.remove();
+  }, []);
     
     const re = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i
+    const re2 = /^[A-ZÀ-Ÿ][A-zÀ-ÿ']+\s([A-zÀ-ÿ']\s?)*[A-ZÀ-Ÿ][A-zÀ-ÿ']+$/i
+
     if (!re.test(String(email).toLowerCase())){
       setErrorEmail("Preencha seu E-mail corretamente.")
       error = true
     }
-    const re1 = /^([a-z]){1,}([A-Z]){1,}([A-Z]){1,}([a-z])$/i
-    if (usuario == null){
-      setErrorUsuario("Preencha o nome de Usuario corretamente.")
-      error = true
-    }
-    if (!re1.test(String(usuario).toLowerCase())){
-      setErrorUsuario("Apenas caracteres comuns e sem acentuações.")
-    }
-    if (usuario.length < 4){
-      setErrorUsuario("Nome tem que ser maior que 3 caracteres")
+    if (!re2.test(String(name).toLocaleLowerCase())){
+      setErrorName("Preencha o nome completo corretamente!")
       error = true
     }
     if(senha.length < 4){
@@ -97,10 +108,6 @@ export default function Cadastro({navigation}) { //funcao login
       setErrorName("Preencha o Nome.")
       error = true
     }
-    if (usuario.length < 4){
-      setErrorUsuario("Nome tem que ser maior que 3 caracteres")
-      error = true
-    }
     if (senha == null){
       setErrorSenha("Preencha a senha.")
       error = true
@@ -111,7 +118,7 @@ export default function Cadastro({navigation}) { //funcao login
     }
     else{
        if(senha !== confirmSenha) {
-        setErrorConfirmSenha("• As senhas não pode ser diferentes.")
+        setErrorConfirmSenha("As senhas não pode ser diferentes.")
         error = true
       }
     }
@@ -125,8 +132,6 @@ export default function Cadastro({navigation}) { //funcao login
       sendForm()
     }
   }
-    
-  
     
   return (
     <ScrollView style={styles.container}>
@@ -148,15 +153,6 @@ export default function Cadastro({navigation}) { //funcao login
 
                     
           <View style={styles.containerInput}>
-              
-            <Input 
-              style={styles.input} 
-              placeholder="Digite seu usuario" 
-              autocorrect={false}
-              maxLength={30}
-              onChangeText={value => setUsuario(value) }
-              errorMessage={errorUsuario}
-            />
             
             <Input 
               style={styles.input} 
@@ -170,8 +166,8 @@ export default function Cadastro({navigation}) { //funcao login
 
             <Input 
               style={styles.input} 
-              placeholder="Digite seu nome" 
-              maxLength={10}
+              placeholder="Digite seu nome completo" 
+              maxLength={30}
               autocorrect={false}
               onChangeText={value => setName(value) }
               errorMessage={errorName}
@@ -223,16 +219,17 @@ export default function Cadastro({navigation}) { //funcao login
 
             <TouchableOpacity style={styles.submitContainer}  onPress={() => salvar()} >
                 <View>
-                  <Text style={{fontFamily:'Avenir Next', 
+                  <Text style={{fontFamily:'Roboto', 
                                 color:'#fff', 
                                 fontWeight:'600', 
-                                fontSize: 16}}>Registrar-se 
+                                fontSize: 16
+                                }}>Registrar-se 
                   </Text>
                 </View>
             </TouchableOpacity>
               
-              <Text style={{fontFamily:'Avenir Next', 
-                            fontsize: 14, color: '#ABB4BD', 
+              <Text style={{fontFamily:'Roboto', 
+                            fontSize: 14, color: '#ABB4BD', 
                             textAlign:'center', 
                             marginTop: 24}}>Tem uma conta? <TouchableOpacity style={{flex:1}} onPress={()=>goLogin()}>
                             <Text style={styles.txtForgot}>Vá para o login</Text>
@@ -271,26 +268,26 @@ const styles = StyleSheet.create({
 
     },
     textR:{ //predefinicao pronta para textos
-      fontFamily:'Avenir Next',
+      fontFamily:'Roboto',
       color:'black',
       marginTop: 7
     },
     txtOr:{ // texto 'or'
       color: '#ABB4BD',
-      fontsize: 25,
+      fontSize: 25,
       textAlign:'center',
       marginVertical: 20
     },
     txtForgot:{ //esqueceu sua senha?
-      fontFamily:'Avenir Next',
+      fontFamily:'Roboto',
       color: '#FF1654',
-      fontsize: 14,
+      fontSize: 14,
       fontWeight:'500',
       marginTop: 30
     },
     submitContainer:{ //button de registrar
       backgroundColor:'#B20000',
-      fontsize: 16,
+      fontSize: 16,
       borderRadius: 4,
       paddingVertical: 12,
       marginTop: 32,
@@ -307,7 +304,7 @@ const styles = StyleSheet.create({
       color: '#FF1654',
       fontSize: 20,
       padding:10,
-      fontFamily:'Avenir Next',
+      fontFamily:'Roboto',
       borderBottomColor:'#D8D8D8',
       borderBottomWidth:1
     },
@@ -325,11 +322,11 @@ const styles = StyleSheet.create({
     eye: {
       position: 'absolute',
       right: '3%',
-      top: '64%'
+      top: '55%'
     },
     eye2: {
       position: 'absolute',
       right: '3%',
-      top: '85%'
+      top: '80%'
     }
 });

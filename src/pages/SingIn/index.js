@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView} from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, BackHandler} from 'react-native';
 import { Input } from 'react-native-elements'; //importando componentes
 import {Ionicons} from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -7,34 +7,15 @@ import * as LocalAuthentication from 'expo-local-authentication';
 
 export default function Login({navigation}) 
 { 
-    const goCadastro = () => {
-    navigation.reset({
-        index: 0,
-        routes: [{name: "SingUp"}]
-    });
-}
   //Declarando variaveis
 
   const [errorEmail, setErrorEmail] = useState(null)
   const [errorSenha, setErrorSenha] = useState(null)
-
   const [hidePass, setHidePass] = useState(true)
-
   const [email, setEmail] = useState(null)
   const [senha, setSenha]=useState(null)
   const [login, setLogin]=useState(null);
 
-
-//verificar se o login é verdadeiro e chamar a biometria
-  useEffect(()=>{
-    verifyLogin();
-},[]);
-useEffect(()=>{
-    if(login === true){
-        biometric();
-    }
-},[login]);
-  
   //função para verificar se o login é verdadeiro
   async function verifyLogin()
 {
@@ -93,7 +74,32 @@ async function biometric()
           } 
     }
 
-  //Fazendo as constante para validação de campos.
+    //Função para o botão de voltar
+    useEffect(() => {
+      const backAction = () => {
+          Alert.alert("Alerta!", "Deseja mesmo sair do app?", [
+              {
+                  text: "Não",
+                  onPress: () => null,
+                  style: "cancel"
+              },
+              { text: "Sim", onPress: () => {
+                  BackHandler.exitApp();
+                  }
+              }
+          ]);
+          return true;
+      };
+  
+      const backHandler = BackHandler.addEventListener(
+          "hardwareBackPress",
+          backAction
+      );
+  
+      return () => backHandler.remove();
+  }, []);
+
+  //Fazendo as validações de campos.
   const validar = () =>{
     let error = false;
     setErrorEmail(null)
@@ -119,12 +125,30 @@ async function biometric()
     return !error
   } 
 
-  //Chamada para verificação das validações
+  //Chamada para verificação das validações e envio do formulario
   const salvar = () => {
     if (validar()){
       sendForm()
     }
   }
+
+  //Verificar se o login é verdadeiro e chamar a biometria
+  useEffect(()=>{
+    verifyLogin();
+    },[]);
+    useEffect(()=>{
+    if(login === true){
+        biometric();
+    }
+  },[login]);
+
+  //Ir para o cadastro
+  const goCadastro = () => {
+    navigation.reset({
+        index: 0,
+        routes: [{name: "SingUp"}]
+    });
+}
 
   return (
     <ScrollView style={styles.container}>
@@ -178,19 +202,21 @@ async function biometric()
 
               <TouchableOpacity style={styles.submitContainer} onPress={()=>salvar()}>
                 
-                  <Text style={{fontFamily:'Avenir Next', 
+                  <Text style={{fontFamily:'Roboto', 
                                 color:'#fff', 
                                 fontWeight:'600', 
-                                fontSize: 16}}>Entrar</Text>
+                                fontSize: 16
+                                }}>Entrar</Text>
                                
                 
               </TouchableOpacity>
               
-              <Text style={{fontFamily:'Avenir Next', 
-                            fontsize: 14, 
+              <Text style={{fontFamily:'Roboto', 
+                            fontSize: 14, 
                             color: '#ABB4BD', 
                             textAlign:'center', 
-                            marginTop: 24}}>
+                            marginTop: 24
+                            }}>
                                 
                                 Não tem uma conta? <TouchableOpacity style={{flex:1}} onPress={()=>goCadastro()}>
                             <Text style={styles.txtForgot}>Registre-se agora!</Text>
@@ -229,26 +255,26 @@ const styles = StyleSheet.create({
 
     },
     textR:{ //predefinicao pronta para textos
-      fontFamily:'Avenir Next',
+      fontFamily:'Roboto',
       color:'black',
       marginTop: 7
     },
     txtOr:{ // texto 'or'
       color: '#ABB4BD',
-      fontsize: 25,
+      fontSize: 25,
       textAlign:'center',
       marginVertical: 20
     },
     txtForgot:{ //esqueceu sua senha?
-      fontFamily:'Avenir Next',
+      fontFamily:'Roboto',
       color: '#FF1654',
-      fontsize: 14,
+      fontSize: 14,
       fontWeight:'500',
       marginTop:10
     },
     submitContainer:{ //button de login
       backgroundColor:'#B20000',
-      fontsize: 16,
+      fontSize: 16,
       borderRadius: 4,
       paddingVertical: 12,
       marginTop: 32,
@@ -265,7 +291,7 @@ const styles = StyleSheet.create({
       color: '#FF1654',
       fontSize: 20,
       padding:10,
-      fontFamily:'Avenir Next',
+      fontFamily:'Roboto',
       borderBottomColor:'#D8D8D8',
       borderBottomWidth:1
     },
