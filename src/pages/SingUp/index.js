@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Alert, StyleSheet, Image, TouchableOpacity, ScrollView, BackHandler } from 'react-native'; //importando componentes
 import {Input, Text} from 'react-native-elements';
 import {Ionicons} from '@expo/vector-icons';
@@ -22,17 +22,9 @@ export default function Cadastro({navigation}) { //funcao login
     const [hidePass, setHidePass] = useState(true)
     const [hidePass2, setHidePass2] = useState(true)
 
-    const validar = () =>{
-      let error = false;
-      setErrorEmail(null)
-      setErrorName(null)
-      setErrorSenha(null)
-      setErrorConfirmSenha(null)
-
-    
     async function sendForm()
     {
-        let response=await fetch('http://192.168.1.74:3000/cadastro',{
+        let response = await fetch('http://192.168.43.164:3000/cadastro',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -60,31 +52,38 @@ export default function Cadastro({navigation}) { //funcao login
             }
     }
 
-    //Função para o botão de voltar
-    useEffect(() => {
-      const backAction = () => {
-          Alert.alert("Alerta!", "Deseja voltar para a tela de login?", [
-              {
-                  text: "Não",
-                  onPress: () => null,
-                  style: "cancel"
-              },
-              { text: "Sim", onPress: () => {
-                navigation.navigate('SingIn');
+        //Função para o botão de voltar
+        useEffect(() => {
+          const backAction = () => {
+              Alert.alert("Alerta!", "Deseja voltar para a tela de login?", [
+                  {
+                      text: "Não",
+                      onPress: () => null,
+                      style: "cancel"
+                  },
+                  { text: "Sim", onPress: () => {
+                    navigation.navigate('SingIn');
+                      }
                   }
-              }
-          ]);
-          return true;
-      };
-  
-      const backHandler = BackHandler.addEventListener(
-          "hardwareBackPress",
-          backAction
-      );
-  
-      return () => backHandler.remove();
-  }, []);
+              ]);
+              return true;
+          };
+      
+          const backHandler = BackHandler.addEventListener(
+              "hardwareBackPress",
+              backAction
+          );
+      
+          return () => backHandler.remove();
+      }, []);
     
+    const validar = () =>{
+      let error = false;
+      setErrorEmail(null)
+      setErrorName(null)
+      setErrorSenha(null)
+      setErrorConfirmSenha(null)
+
     const re = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i
     const re2 = /^[A-ZÀ-Ÿ][A-zÀ-ÿ']+\s([A-zÀ-ÿ']\s?)*[A-ZÀ-Ÿ][A-zÀ-ÿ']+$/i
 
@@ -197,10 +196,10 @@ export default function Cadastro({navigation}) { //funcao login
               style={styles.input} 
               placeholder="Confirme sua senha" 
               autocorrect={false} 
-              type='senha'
               maxLength={30}
               onChangeText={value => setConfirmSenha(value) }  
               secureTextEntry={hidePass2}
+              
             
               
               errorMessage={errorConfirmSenha}
@@ -219,7 +218,7 @@ export default function Cadastro({navigation}) { //funcao login
 
             <TouchableOpacity style={styles.submitContainer}  onPress={() => salvar()} >
                 <View>
-                  <Text style={{fontFamily:'Roboto', 
+                  <Text style={{fontFamily:'Arial', 
                                 color:'#fff', 
                                 fontWeight:'600', 
                                 fontSize: 16
@@ -228,7 +227,7 @@ export default function Cadastro({navigation}) { //funcao login
                 </View>
             </TouchableOpacity>
               
-              <Text style={{fontFamily:'Roboto', 
+              <Text style={{fontFamily:'Arial', 
                             fontSize: 14, color: '#ABB4BD', 
                             textAlign:'center', 
                             marginTop: 24}}>Tem uma conta? <TouchableOpacity style={{flex:1}} onPress={()=>goLogin()}>
@@ -268,7 +267,7 @@ const styles = StyleSheet.create({
 
     },
     textR:{ //predefinicao pronta para textos
-      fontFamily:'Roboto',
+      fontFamily:'Arial',
       color:'black',
       marginTop: 7
     },
@@ -279,7 +278,7 @@ const styles = StyleSheet.create({
       marginVertical: 20
     },
     txtForgot:{ //esqueceu sua senha?
-      fontFamily:'Roboto',
+      fontFamily:'Arial',
       color: '#FF1654',
       fontSize: 14,
       fontWeight:'500',
@@ -304,7 +303,7 @@ const styles = StyleSheet.create({
       color: '#FF1654',
       fontSize: 20,
       padding:10,
-      fontFamily:'Roboto',
+      fontFamily:'Arial',
       borderBottomColor:'#D8D8D8',
       borderBottomWidth:1
     },

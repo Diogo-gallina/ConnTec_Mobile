@@ -5,10 +5,6 @@ import {
   Text, 
   View, 
 } from 'react-native';
-import Constants from 'expo-constants';
-import * as Permissions from 'expo-permissions';
-import {Notifications} from 'expo';
-import config from './config/config';
 
 import SingIn from './src/pages/SingIn';
 import SingUp from './src/pages/SingUp';
@@ -41,61 +37,61 @@ function MyStack() {
 
 export default function App(){
 
-  const [expoPushToken, setExpoPushToken] = useState(null);
+//   const [expoPushToken, setExpoPushToken] = useState(null);
 
-  //Registra o token do usuário
-async function registerForPushNotificationsAsync(){
-  if (Constants.isAparelho) {
-      const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-      let finalStatus = existingStatus;
-      if (existingStatus !== 'granted') {
-          const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-          finalStatus = status;
-      }
-      if (finalStatus !== 'granted') {
-          alert('Falha ao obter a permissão');
-          return;
-      }
-      const token = await Notifications.getExpoPushTokenAsync();
-      setExpoPushToken(token);
-  } else {
-      alert('Celular não compativel com notificações');
-  }
+//   //Registra o token do usuário
+// async function registerForPushNotificationsAsync(){
+//   if (Constants.isAparelho) {
+//       const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+//       let finalStatus = existingStatus;
+//       if (existingStatus !== 'granted') {
+//           const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+//           finalStatus = status;
+//       }
+//       if (finalStatus !== 'granted') {
+//           alert('Falha ao obter a permissão');
+//           return;
+//       }
+//       const token = await Notifications.getExpoPushTokenAsync();
+//       setExpoPushToken(token);
+//   } else {
+//       alert('Celular não compativel com notificações');
+//   }
 
-  if (Platform.OS === 'android') {
-      Notifications.createChannelAndroidAsync('default', {
-          name: 'default',
-          sound: true,
-          priority: 'max',
-          vibrate: [0, 250, 250, 250],
-      });
-  }
-}
+//   if (Platform.OS === 'android') {
+//       Notifications.createChannelAndroidAsync('default', {
+//           name: 'default',
+//           sound: true,
+//           priority: 'max',
+//           vibrate: [0, 250, 250, 250],
+//       });
+//   }
+// }
 
-//Envio do token
-async function sendToken()
-{
-    let response=await fetch(config.urlRoot+'token',{
-        method:'POST',
-        headers:{
-            Accept:'application/json',
-            'Content-Type':'application/json'
-        },
-        body: JSON.stringify({
-            token: expoPushToken
-        })
-    });
-}
+// //Envio do token
+// async function sendToken()
+// {
+//     let response=await fetch(config.urlRoot+'token',{
+//         method:'POST',
+//         headers:{
+//             Accept:'application/json',
+//             'Content-Type':'application/json'
+//         },
+//         body: JSON.stringify({
+//             token: expoPushToken
+//         })
+//     });
+// }
 
-  useEffect(()=>{
-    registerForPushNotificationsAsync();
-  },[]);
+//   useEffect(()=>{
+//     registerForPushNotificationsAsync();
+//   },[]);
 
-  useEffect(()=>{
-    if(expoPushToken != null){
-       sendToken();
-  }
-},  [expoPushToken]);
+//   useEffect(()=>{
+//     if(expoPushToken != null){
+//        sendToken();
+//   }
+// },  [expoPushToken]);
 
   return (
     <>

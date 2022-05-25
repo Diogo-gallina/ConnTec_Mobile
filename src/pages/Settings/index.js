@@ -28,7 +28,7 @@ export  function Settings({navigation}){
 
             <View style={styles.header}>
                 <Image  
-                source={require('../../../assets/connTec-logo.jpg')} 
+                source={require('../../../assets/newLogo.jpg')} 
                 style={{width:130, height:65, left:15}}
                 /> 
 
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     },
 
     texto:{
-        fontFamily:'verdana',
+        fontFamily:'Arial',
         fontSize:25,
         fontWeight:'bold',
         alignContent:'center',

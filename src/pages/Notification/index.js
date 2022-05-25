@@ -21,7 +21,7 @@ export function Notification({navigation}) {
 
             <View style={styles.header}>
                 <Image  
-                source={require('../../../assets/connTec-logo.jpg')} 
+                source={require('../../../assets/newLogo.jpg')} 
                 style={{width:130, height:65, left:15}}
                 /> 
 
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
 
     texto:{
-        fontFamily:'verdana',
+        fontFamily:'Arial',
         fontSize:14,
         fontWeight:'bold',
         alignContent:'center',
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     },
 
     date: {
-        fontFamily:'verdana',
+        fontFamily:'Arial',
         fontSize:12,
         fontWeight:'bold',
         textAlign:'right',

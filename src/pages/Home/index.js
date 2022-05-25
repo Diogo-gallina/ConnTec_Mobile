@@ -18,14 +18,14 @@ export function Home({navigation}) {
     })
 }
 
-const [usuario,setUsuario]=useState(null);
+const [email,setEmail]=useState(null);
 
     useEffect(()=>{
         async function getUsuario()
         {
             let response=await AsyncStorage.getItem('userData');
             let json=JSON.parse(response);
-            setUsuario(json.usuario);
+            setEmail(json.email);
         }
         getUsuario();
     },[]);
@@ -35,7 +35,7 @@ const [usuario,setUsuario]=useState(null);
 
       <View style={styles.header}>
         <Image  
-          source={require('../../../assets/connTec-logo.jpg')} 
+          source={require('../../../assets/newLogo.jpg')} 
           style={{width:130, height:65, left:15}}
         /> 
 
@@ -49,7 +49,7 @@ const [usuario,setUsuario]=useState(null);
       </View>
       
       <View style={{flex:1, backgroundColor: 'white'}}>
-      <Text>Seja bem vindo, {usuario}</Text> 
+      <Text>Seja bem vindo, {email}</Text> 
       </View>
 
     </SafeAreaView>

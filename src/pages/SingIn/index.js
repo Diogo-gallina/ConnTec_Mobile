@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, BackHandle
 import { Input } from 'react-native-elements'; //importando componentes
 import {Ionicons} from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as LocalAuthentication from 'expo-local-authentication';
+import * as LocalAuthentication from 'expo-local-authentication'; 
 
 export default function Login({navigation}) 
 { 
@@ -52,7 +52,7 @@ async function biometric()
   //função para enviar o formulario para o controller
   async function sendForm()
     {
-        let response=await fetch('http://192.168.1.74:3000/login',{
+        let response=await fetch('http://192.168.43.164:3000/login',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -184,17 +184,11 @@ async function biometric()
                 placeholder="Digite sua senha" 
                 autocorrect={false} 
                 onChangeText={value => setSenha(value)} 
-                secureTextEntry={hidePass}
+                secureTextEntry={true}
                 errorMessage={errorSenha}
                 />
 
-            <TouchableOpacity style={styles.eye} onPress={ () => setHidePass(!hidePass) }>
-              { hidePass ?
-               <Ionicons name="eye" color="black" size={25} />
-               :
-               <Ionicons name="eye-off" color="black" size={25} /> 
-              }
-            </TouchableOpacity>
+      
                   
             </View>
               
@@ -202,7 +196,7 @@ async function biometric()
 
               <TouchableOpacity style={styles.submitContainer} onPress={()=>salvar()}>
                 
-                  <Text style={{fontFamily:'Roboto', 
+                  <Text style={{fontFamily:'Arial', 
                                 color:'#fff', 
                                 fontWeight:'600', 
                                 fontSize: 16
@@ -211,7 +205,7 @@ async function biometric()
                 
               </TouchableOpacity>
               
-              <Text style={{fontFamily:'Roboto', 
+              <Text style={{fontFamily:'Arial', 
                             fontSize: 14, 
                             color: '#ABB4BD', 
                             textAlign:'center', 
@@ -255,7 +249,7 @@ const styles = StyleSheet.create({
 
     },
     textR:{ //predefinicao pronta para textos
-      fontFamily:'Roboto',
+      fontFamily:'Arial',
       color:'black',
       marginTop: 7
     },
@@ -266,7 +260,7 @@ const styles = StyleSheet.create({
       marginVertical: 20
     },
     txtForgot:{ //esqueceu sua senha?
-      fontFamily:'Roboto',
+      fontFamily:'Arial',
       color: '#FF1654',
       fontSize: 14,
       fontWeight:'500',
@@ -291,7 +285,7 @@ const styles = StyleSheet.create({
       color: '#FF1654',
       fontSize: 20,
       padding:10,
-      fontFamily:'Roboto',
+      fontFamily:'Arial',
       borderBottomColor:'#D8D8D8',
       borderBottomWidth:1
     },
@@ -299,10 +293,5 @@ const styles = StyleSheet.create({
       alignItems:'center',
       width:'90%',
           
-    },
-    eye:{
-      position: 'absolute',
-      right: '1.5%',
-      top: '60%'
     }
 });
