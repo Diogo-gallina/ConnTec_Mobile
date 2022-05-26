@@ -133,14 +133,14 @@ export default function Cadastro({navigation}) { //funcao login
   }
     
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
         <View style={{ marginTop:30, 
                        alignItems:'center', 
                        justifyContent:'center'}}>
             <View>
             <Image  
                     source={require('../../../assets/logoConn.png')} 
-                    style={{width:400, height:250, marginTop: 55}}
+                    style={{width:300, height:140, marginTop: 530}}
                     resizeMode="contain"
                 />
             </View>
@@ -218,7 +218,7 @@ export default function Cadastro({navigation}) { //funcao login
 
             <TouchableOpacity style={styles.submitContainer}  onPress={() => salvar()} >
                 <View>
-                  <Text style={{fontFamily:'Arial', 
+                  <Text style={{fontFamily:'Roboto', 
                                 color:'#fff', 
                                 fontWeight:'600', 
                                 fontSize: 16
@@ -227,7 +227,7 @@ export default function Cadastro({navigation}) { //funcao login
                 </View>
             </TouchableOpacity>
               
-              <Text style={{fontFamily:'Arial', 
+              <Text style={{fontFamily:'Roboto', 
                             fontSize: 14, color: '#ABB4BD', 
                             textAlign:'center', 
                             marginTop: 24}}>Tem uma conta? <TouchableOpacity style={{flex:1}} onPress={()=>goLogin()}>
@@ -236,7 +236,7 @@ export default function Cadastro({navigation}) { //funcao login
               </Text>
 
           </View>
-    </ScrollView>
+    </View>
     );
 }
 
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 30,
       borderWidth: StyleSheet.hairlineWidth,
       borderColor: 'rgba(171, 180, 189, 0.65)',
-      borderradius: 4,
+      borderRadius: 4,
       backgroundColor:'#fff',
       shadowColor: 'rgba(171, 180, 189, 0.35)',
       shadowOffset: {width: 0, height: 10},
@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
 
     },
     textR:{ //predefinicao pronta para textos
-      fontFamily:'Arial',
+      fontFamily:'Roboto',
       color:'black',
       marginTop: 7
     },
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
       marginVertical: 20
     },
     txtForgot:{ //esqueceu sua senha?
-      fontFamily:'Arial',
+      fontFamily:'Roboto',
       color: '#FF1654',
       fontSize: 14,
       fontWeight:'500',
@@ -303,7 +303,7 @@ const styles = StyleSheet.create({
       color: '#FF1654',
       fontSize: 20,
       padding:10,
-      fontFamily:'Arial',
+      fontFamily:'Roboto',
       borderBottomColor:'#D8D8D8',
       borderBottomWidth:1
     },

@@ -11,7 +11,7 @@ export default function Profile({navigation}) {
     const [image, setImage] = useState(null);
 
     useEffect(async () => { 
-        if(Platform.OS !== 'web'){
+        if(Platform.OS !== 'android'){
             const {status} = await ImagePicker.requestMediaLibraryPermissionsAsync
             if (status !== 'granted'){
                 alert('permissão negada!')
@@ -72,7 +72,7 @@ export default function Profile({navigation}) {
             {image && <Image source={{uri:image}} style={{
                 width:150,
                 height:150,
-                borderRadius:"50%",
+                borderRadius:50,
                 alignSelf: 'center',
             }} />}
 
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
         width:40,
         height:40,
         left: '65%',
-        borderRadius: "50%",
+        borderRadius: 160,
         backgroundColor: '#B20000',
         marginTop:15,
         alignItems: 'center',
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
 
     txtInputName:{
         fontSize:17,
-        fontFamily: "verdana",
+        fontFamily: "Roboto",
         color: "#696969",
         paddingLeft: 17,
         marginTop:40
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
 
     txtInput:{
         fontSize:17,
-        fontFamily: "verdana",
+        fontFamily: "Roboto",
         color: "#696969",
         paddingLeft: 17,
         marginTop:12

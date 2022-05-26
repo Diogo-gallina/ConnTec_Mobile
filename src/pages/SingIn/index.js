@@ -12,8 +12,8 @@ export default function Login({navigation})
   const [errorEmail, setErrorEmail] = useState(null)
   const [errorSenha, setErrorSenha] = useState(null)
   const [hidePass, setHidePass] = useState(true)
-  const [email, setEmail] = useState(null)
-  const [senha, setSenha]=useState(null)
+  const [email, setEmail] = useState('')
+  const [senha, setSenha]=useState('')
   const [login, setLogin]=useState(null);
 
   //função para verificar se o login é verdadeiro
@@ -70,7 +70,10 @@ async function biometric()
             await AsyncStorage.clear();
       }else{
           await AsyncStorage.setItem('userData', JSON.stringify(json));
-          navigation.navigate('Home');
+          navigation.reset({
+            index: 0,
+            routes: [{name: "AppRoutes"}]
+          });
           } 
     }
 
@@ -115,7 +118,7 @@ async function biometric()
       error = true
     }
     if(email == null){
-      setErrorSenha("Email não pode ficar vázio.")
+      setErrorEmail("Email não pode ficar vázio.")
       error = true
     }
     if(senha.length < 4){
@@ -151,16 +154,17 @@ async function biometric()
 }
 
   return (
-    <ScrollView style={styles.container}>
-        <View style={{ marginTop:30, 
-                       alignItems:'center', 
-                       justifyContent:'center'}}>
+    <View style={styles.container}>
+        <View style={{ 
+          marginTop:30, 
+          alignItems:'center', 
+          justifyContent:'center'}}>
         <View>
         <Image  
-                    source={require('../../../assets/logoConn.png')} 
-                    style={{width:400, height:250, marginTop: 55}}
-                    resizeMode="contain"
-                />
+          source={require('../../../assets/logoConn.png')} 
+          style={{width:300, height:140, marginTop: 530}}
+          resizeMode="contain"
+          />
         </View>
         
         <View style={{ marginTop: 48,
@@ -184,9 +188,17 @@ async function biometric()
                 placeholder="Digite sua senha" 
                 autocorrect={false} 
                 onChangeText={value => setSenha(value)} 
-                secureTextEntry={true}
+                secureTextEntry={hidePass}
                 errorMessage={errorSenha}
                 />
+
+          <TouchableOpacity style={styles.eye} onPress={ () => setHidePass(!hidePass) }>
+              { hidePass ?
+               <Ionicons name="eye" color="black" size={25} />
+               :
+               <Ionicons name="eye-off" color="black" size={25} /> 
+              }
+            </TouchableOpacity>
 
       
                   
@@ -196,7 +208,7 @@ async function biometric()
 
               <TouchableOpacity style={styles.submitContainer} onPress={()=>salvar()}>
                 
-                  <Text style={{fontFamily:'Arial', 
+                  <Text style={{fontFamily:'Roboto', 
                                 color:'#fff', 
                                 fontWeight:'600', 
                                 fontSize: 16
@@ -205,20 +217,22 @@ async function biometric()
                 
               </TouchableOpacity>
               
-              <Text style={{fontFamily:'Arial', 
-                            fontSize: 14, 
-                            color: '#ABB4BD', 
-                            textAlign:'center', 
-                            marginTop: 24
-                            }}>
-                                
-                                Não tem uma conta? <TouchableOpacity style={{flex:1}} onPress={()=>goCadastro()}>
-                            <Text style={styles.txtForgot}>Registre-se agora!</Text>
+              <Text style={{
+                fontFamily:'Roboto', 
+                fontSize: 14, 
+                color: '#ABB4BD', 
+                textAlign:'center', 
+                marginTop: 24
+                  }}>
+
+                                        
+                <TouchableOpacity style={{flex:1}} onPress={()=>goCadastro()}>
+                            <Text style={styles.txtForgot}>Não tem uma conta? Registre-se agora!</Text>
                         </TouchableOpacity>
                         </Text>
 
       </View>
-    </ScrollView>
+    </View>
     );
 }
 
@@ -249,7 +263,7 @@ const styles = StyleSheet.create({
 
     },
     textR:{ //predefinicao pronta para textos
-      fontFamily:'Arial',
+      fontFamily:'Roboto',
       color:'black',
       marginTop: 7
     },
@@ -260,7 +274,7 @@ const styles = StyleSheet.create({
       marginVertical: 20
     },
     txtForgot:{ //esqueceu sua senha?
-      fontFamily:'Arial',
+      fontFamily:'Roboto',
       color: '#FF1654',
       fontSize: 14,
       fontWeight:'500',
@@ -285,7 +299,7 @@ const styles = StyleSheet.create({
       color: '#FF1654',
       fontSize: 20,
       padding:10,
-      fontFamily:'Arial',
+      fontFamily:'Roboto',
       borderBottomColor:'#D8D8D8',
       borderBottomWidth:1
     },
@@ -293,5 +307,11 @@ const styles = StyleSheet.create({
       alignItems:'center',
       width:'90%',
           
+    },
+    eye: {
+      position: 'absolute',
+      right: '3%',
+      top: '55%'
+
     }
 });

@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
 
     texto:{
-        fontFamily:'Arial',
+        fontFamily:'Roboto',
         fontSize:14,
         fontWeight:'bold',
         alignContent:'center',
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     },
 
     date: {
-        fontFamily:'Arial',
+        fontFamily:'Roboto',
         fontSize:12,
         fontWeight:'bold',
         textAlign:'right',

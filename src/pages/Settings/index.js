@@ -1,7 +1,9 @@
 //importando React e componentes
 import { StyleSheet, SafeAreaView, View, Image, TouchableHighlight,Text, ScrollView } from 'react-native';
+import React, {useState,useEffect} from 'react';
 import { Feather} from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export  function Settings({navigation}){
@@ -13,13 +15,29 @@ export  function Settings({navigation}){
         })
     }
 
+    const [email,setEmail]=useState(null);
+
+    useEffect(()=>{
+        async function getUsuario()
+        {
+            let response=await AsyncStorage.getItem('userData');
+            let json=JSON.parse(response);
+            setEmail(json.email);
+        }
+        getUsuario();
+    },[]);
+
     const sairApp = () => {
     navigation.reset({
     index:0,
     routes: [{name: "SingIn"}]
-
     })
+        async() => {
+        AsyncStorage.clear('');
     }
+    }
+
+    
 
     return(
 <ScrollView>
@@ -144,7 +162,7 @@ const styles = StyleSheet.create({
     },
 
     texto:{
-        fontFamily:'Arial',
+        fontFamily:'Roboto',
         fontSize:25,
         fontWeight:'bold',
         alignContent:'center',
