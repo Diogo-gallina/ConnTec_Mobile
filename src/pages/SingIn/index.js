@@ -161,7 +161,7 @@ async function biometric()
           justifyContent:'center'}}>
         <View>
         <Image  
-          source={require('../../../assets/logoConn.png')} 
+          source={require('../../../assets/icon.png')} 
           style={{width:300, height:280, marginTop: 150}}
           resizeMode="contain"
           />
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     submitContainer:{ //button de login
       backgroundColor:'#B20000',
       fontSize: 16,
-      borderRadius: 40,
+      borderRadius: 80,
       paddingVertical: 12,
       marginTop: 32,
       alignItems:'center',

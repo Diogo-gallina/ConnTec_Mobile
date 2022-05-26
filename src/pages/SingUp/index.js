@@ -139,7 +139,7 @@ export default function Cadastro({navigation}) { //funcao login
                        justifyContent:'center'}}>
             <View>
             <Image  
-                    source={require('../../../assets/logoConn.png')} 
+                    source={require('../../../assets/icon.png')} 
                     style={{width:300, height:240, marginTop: 100}}
                     resizeMode="contain"
                 />

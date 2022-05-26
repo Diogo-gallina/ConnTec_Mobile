@@ -21,7 +21,7 @@ export default function AppRoutes() {
       screenOptions={{
 
         tabBarStyle:{
-          // borderTopColor: 'transparent',
+          borderTopColor: 'transparent',
           display: "flex"
         },
         
