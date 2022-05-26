@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Entypo, Feather } from '@expo/vector-icons';
 
@@ -22,7 +21,7 @@ export default function AppRoutes() {
       screenOptions={{
 
         tabBarStyle:{
-          borderTopColor: 'transparent',
+          // borderTopColor: 'transparent',
           display: "flex"
         },
         

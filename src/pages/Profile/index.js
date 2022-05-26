@@ -2,7 +2,6 @@ import React, { useState, useEffect }  from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image, TextInput, SafeAreaView, TouchableHighlight, Platform} from 'react-native';
 
 import * as ImagePicker from 'expo-image-picker';
-import Constants from 'expo-constants';
 
 import { MaterialIcons, Feather  } from '@expo/vector-icons'; 
 

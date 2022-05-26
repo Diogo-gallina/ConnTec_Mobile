@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Alert, StyleSheet, Image, TouchableOpacity, ScrollView, BackHandler } from 'react-native'; //importando componentes
+import {View, Alert, StyleSheet, Image, TouchableOpacity, BackHandler } from 'react-native'; //importando componentes
 import {Input, Text} from 'react-native-elements';
 import {Ionicons} from '@expo/vector-icons';
 
@@ -24,7 +24,7 @@ export default function Cadastro({navigation}) { //funcao login
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.43.164:3000/cadastro',{
+        let response = await fetch('http://192.168.1.74:3000/cadastro',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -140,7 +140,7 @@ export default function Cadastro({navigation}) { //funcao login
             <View>
             <Image  
                     source={require('../../../assets/logoConn.png')} 
-                    style={{width:300, height:140, marginTop: 530}}
+                    style={{width:300, height:240, marginTop: 100}}
                     resizeMode="contain"
                 />
             </View>
@@ -228,10 +228,13 @@ export default function Cadastro({navigation}) { //funcao login
             </TouchableOpacity>
               
               <Text style={{fontFamily:'Roboto', 
-                            fontSize: 14, color: '#ABB4BD', 
+                            color: '#ABB4BD', 
                             textAlign:'center', 
-                            marginTop: 24}}>Tem uma conta? <TouchableOpacity style={{flex:1}} onPress={()=>goLogin()}>
-                            <Text style={styles.txtForgot}>Vá para o login</Text>
+                            marginTop: 24}}> 
+                            
+                            
+                            <TouchableOpacity style={{flex:1}} onPress={()=>goLogin()}>
+                            <Text style={styles.txtForgot}>Tem uma conta? Vá para o login</Text>
                         </TouchableOpacity>
               </Text>
 
@@ -244,27 +247,6 @@ const styles = StyleSheet.create({
     container:{
       flex:1,
       backgroundColor:'#fff'
-    },
-    socialButton:{ //button login redes sociais
-      flexDirection:'row',
-      marginHorizontal: 12,
-      paddingVertical: 12,
-      paddingHorizontal: 30,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: 'rgba(171, 180, 189, 0.65)',
-      borderRadius: 4,
-      backgroundColor:'#fff',
-      shadowColor: 'rgba(171, 180, 189, 0.35)',
-      shadowOffset: {width: 0, height: 10},
-      shadowOpacity: 5,
-      shadowRadius: 10,
-      elevation: 5,
-    },
-    socialLogo:{ // icon das redes sociais
-      height: 35,
-      width: 35,
-      marginRight: 8,
-
     },
     textR:{ //predefinicao pronta para textos
       fontFamily:'Roboto',
@@ -280,7 +262,7 @@ const styles = StyleSheet.create({
     txtForgot:{ //esqueceu sua senha?
       fontFamily:'Roboto',
       color: '#FF1654',
-      fontSize: 14,
+      fontSize: 16,
       fontWeight:'500',
       marginTop: 30
     },

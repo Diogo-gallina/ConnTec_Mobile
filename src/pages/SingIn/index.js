@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, BackHandler} from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, BackHandler} from 'react-native';
 import { Input } from 'react-native-elements'; //importando componentes
 import {Ionicons} from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -9,8 +9,8 @@ export default function Login({navigation})
 { 
   //Declarando variaveis
 
-  const [errorEmail, setErrorEmail] = useState(null)
-  const [errorSenha, setErrorSenha] = useState(null)
+  const [errorEmail, setErrorEmail] = useState('')
+  const [errorSenha, setErrorSenha] = useState('')
   const [hidePass, setHidePass] = useState(true)
   const [email, setEmail] = useState('')
   const [senha, setSenha]=useState('')
@@ -42,8 +42,8 @@ async function biometric()
             if(result.success){
                 sendForm();
             }else{
-                setEmail(null);
-                setSenha(null);
+                setEmail('');
+                setSenha('');
             }
         }
     }
@@ -52,7 +52,7 @@ async function biometric()
   //função para enviar o formulario para o controller
   async function sendForm()
     {
-        let response=await fetch('http://192.168.43.164:3000/login',{
+        let response=await fetch('http://192.168.1.74:3000/login',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -114,7 +114,7 @@ async function biometric()
       error = true
     }
     if(senha == null){
-      setErrorSenha("Senha não pode ficar vázia.")
+      setErrorSenha("Senha não pode ser menor que 4 caracteres.")
       error = true
     }
     if(email == null){
@@ -162,7 +162,7 @@ async function biometric()
         <View>
         <Image  
           source={require('../../../assets/logoConn.png')} 
-          style={{width:300, height:140, marginTop: 530}}
+          style={{width:300, height:280, marginTop: 150}}
           resizeMode="contain"
           />
         </View>
@@ -211,7 +211,7 @@ async function biometric()
                   <Text style={{fontFamily:'Roboto', 
                                 color:'#fff', 
                                 fontWeight:'600', 
-                                fontSize: 16
+                                fontSize: 16,
                                 }}>Entrar</Text>
                                
                 
@@ -219,7 +219,7 @@ async function biometric()
               
               <Text style={{
                 fontFamily:'Roboto', 
-                fontSize: 14, 
+                fontSize: 20, 
                 color: '#ABB4BD', 
                 textAlign:'center', 
                 marginTop: 24
@@ -241,27 +241,6 @@ const styles = StyleSheet.create({
       flex:1,
       backgroundColor:'#fff'
     },
-    socialButton:{ //button login redes sociais
-      flexDirection:'row',
-      marginHorizontal: 12,
-      paddingVertical: 12,
-      paddingHorizontal: 30,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: 'rgba(171, 180, 189, 0.65)',
-      borderradius: 4,
-      backgroundColor:'#fff',
-      shadowColor: 'rgba(171, 180, 189, 0.35)',
-      shadowOffset: {width: 0, height: 10},
-      shadowOpacity: 5,
-      shadowRadius: 10,
-      elevation: 5,
-    },
-    socialLogo:{ // icon das redes sociais
-      height: 35,
-      width: 35,
-      marginRight: 8,
-
-    },
     textR:{ //predefinicao pronta para textos
       fontFamily:'Roboto',
       color:'black',
@@ -276,14 +255,14 @@ const styles = StyleSheet.create({
     txtForgot:{ //esqueceu sua senha?
       fontFamily:'Roboto',
       color: '#FF1654',
-      fontSize: 14,
+      fontSize: 16,
       fontWeight:'500',
       marginTop:10
     },
     submitContainer:{ //button de login
       backgroundColor:'#B20000',
       fontSize: 16,
-      borderRadius: 4,
+      borderRadius: 40,
       paddingVertical: 12,
       marginTop: 32,
       alignItems:'center',
