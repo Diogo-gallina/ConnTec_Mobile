@@ -2,12 +2,13 @@ import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Entypo, Feather } from "@expo/vector-icons";
 
-import { Home } from "../pages/Home";
+
 import { Search } from "../pages/Search/index";
 import { Add } from "../pages/Add";
 import { Notification } from "../pages/Notification";
 import { Settings } from "../pages/Settings";
 import { ButtonAdd } from "../components/ButtonAdd";
+import Home from "../pages/Home";
 
 const Tab = createBottomTabNavigator();
 

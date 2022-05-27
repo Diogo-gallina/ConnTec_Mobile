@@ -1,74 +1,122 @@
-//importando React e componentes
+import * as React from 'react';
+import { Text, View, StyleSheet, Image, ImageBackground, TextInput } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import Constants from 'expo-constants';
+import Icon from '@expo/vector-icons/MaterialCommunityIcons';
+import { Ionicons , MaterialIcons } from '@expo/vector-icons'; //importando biblioteca de icons
 
-import React, {useState,useEffect} from 'react';
-import { StyleSheet, SafeAreaView, View, Image, TouchableHighlight, Text } from 'react-native';
-
-import {  Feather } from '@expo/vector-icons';
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
-//Início função Home
-
-
-export function Home({navigation}) {
-
-  const Profile = () => {
-    navigation.reset({
-        index: 0,
-        routes: [{name: "Profile"}]
-    })
-}
-
-const [email,setEmail]=useState(null);
-
-    useEffect(()=>{
-        async function getUsuario()
-        {
-            let response=await AsyncStorage.getItem('userData');
-            let json=JSON.parse(response);
-            setEmail(json.email);
-        }
-        getUsuario();
-    },[]);
+export default function Home({navigation}){
+  
 
   return (
-    <SafeAreaView>
+  <View style={styles.container}>
+    
+    <View style={{position: 'relative'}}>
+    <Image style={{marginTop:75,
+                         height:50,
+                         width:50,
+                         alignSelf:'center'
+                         }} source={require('../../../assets/logoConn.png')}></Image>
+    </View>
+    <View style={{display: 'flex', position: 'absolute', right: 23, top: 25}}>
+      <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+        <Icon name='account-circle' size={43} color='#e5e5e5' style={{width:200, display: 'flex', justifyContent: 'right', marginTop: 50}}/> 
+      </TouchableOpacity>
+    
+    </View>
 
-      <View style={styles.header}>
-        <Image  
-          source={require('../../../assets/newLogo.jpg')} 
-          style={{width:130, height:65, left:15}}
-        /> 
+    <View style={{paddingHorizontal: 40, marginTop: 25}}>
+      <Text style={{
+        fontSize: 50,
+        color:'#B20000',
+        fontFamily:'RobotoBold'
+      }}>
+      Seja Bem vindo, 
+      </Text>
 
-          <TouchableHighlight style={styles.iconHeader} onPress={()=> Profile()}>  
-            <Feather 
-              name="user" 
-              color={'#B20000'} 
-              size={30} 
-            />
-          </TouchableHighlight>
+      <Text style={{
+        fontSize:15,
+        paddingVertical: 10,
+        paddingRight: 80,
+        lineHeight: 22,
+        fontFamily:'RobotoRegular',
+        color:'#B20000'
+      }}>Our app is currently under development..
+      </Text>
+      
+      <View>
+        <TextInput placeholder='Search...' style={{
+          backgroundColor:'#e5e5e5',
+          borderRadius:40,
+          alignItems:'center',
+          paddingVertical: 10,
+          paddingHorizontal:20,
+          marginTop: 30,
+          fontSize:24,
+          color:'#b20000'
+        }}/>
+
+        <TouchableOpacity style={{backgroundColor:'#b20000',height:52, width:50, borderBottomRightRadius: 20, borderTopRightRadius: 20, position: 'absolute', bottom: 0, right: 0, justifyContent: 'center' }}>
+            <Ionicons style={{alignSelf:'center'}} name='search' color='white' size={30}/>
+        </TouchableOpacity>
       </View>
       
-      <View style={{flex:1, backgroundColor: 'white'}}>
-      <Text>Seja bem vindo, {email}</Text> 
-      </View>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={{alignSelf:'center', marginTop:25, marginLeft:-15, height: 85}}>
 
-    </SafeAreaView>
+        <TouchableOpacity style={[styles.buttonsTab, {backgroundColor:'#ffac06', }]}  onPress={() => navigation.navigate('Search')}>
+          <Icon name='post' color='white' size={32}/>
+        </TouchableOpacity>
+        
+
+        <TouchableOpacity style={[styles.buttonsTab, {backgroundColor:'#ffa06c',}]} 
+                          onPress={() => navigation.navigate('Profile')}>
+          <Icon name='bell' color='white' size={32}/>
+          
+        </TouchableOpacity>
+        
+        
+        
+        <TouchableOpacity style={[styles.buttonsTab, {backgroundColor:'#5facdb',}]}
+                          onPress={() => navigation.navigate('Chat')}>
+          <Icon name='chat' color='white' size={32}/>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.buttonsTab, {backgroundColor:'#bb3'}]} 
+                          onPress={() => navigation.navigate('Settings')}>
+          <Ionicons name='settings' color='white' size={32}/>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.buttonsTab, {backgroundColor:'#bb32fe',}]}
+                          onPress={() => navigation.navigate('Crud')}>
+          <Icon name='dots-horizontal' color='white' size={32}/>
+
+
+        </TouchableOpacity>
+        
+        
+      </ScrollView>
+      
+      
+      </View>
+  </View>
   );
 }
 
 const styles = StyleSheet.create({
-
-  header:{
-    backgroundColor: '#F6F6F6',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row'
+  container: { //container principal
+    flex:1,
   },
-
-  iconHeader:{
-    left: 70
-  }
-
-
-})
+    buttonsTab:{ //buttons da tab-bar 
+    alignItems:'center',
+    justifyContent:'center',
+    height: 60,
+    width: 60,
+    borderRadius: 50,
+    marginLeft: 10,
+    display: 'relative'
+  },
+  
+});

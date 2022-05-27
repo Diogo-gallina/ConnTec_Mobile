@@ -1,9 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
-import SingIn from "./src/pages/SingIn";
-import SingUp from "./src/pages/SingUp";
-import AppRoutes from "./src/routes/appRoutes";
-import Profile from "./src/pages/Profile";
-import { Home } from "./src/pages/Home";
+
+
+import SingIn from './src/pages/SingIn';
+import SingUp from './src/pages/SingUp';
+import AppRoutes from './src/routes/appRoutes';
+import Profile from './src/pages/Profile'
+import Home from './src/pages/Home';
+import { Search } from "./src/pages/Search";
+import Settings from './src/pages/Settings';
+import { Notification } from './src/pages/Notification';
+
+
 import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -18,11 +25,16 @@ function MyStack() {
         headerShown: false,
       }}
     >
+      
       <Stack.Screen name="SingIn" component={SingIn} />
       <Stack.Screen name="SingUp" component={SingUp} />
       <Stack.Screen name="AppRoutes" component={AppRoutes} />
-      <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Search" component={Search} />
+      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="Profile" component={Profile} />
+      
+      
     </Stack.Navigator>
   );
 }
@@ -115,7 +127,7 @@ export default function App() {
   return (
     <>
       <NavigationContainer>
-        <MyStack />
+        <MyStack/>
       </NavigationContainer>
     </>
   );
