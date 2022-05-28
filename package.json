@@ -17,6 +17,7 @@
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
     "@react-navigation/stack": "^6.2.1",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "expo": "^45.0.4",
     "expo-constants": "~13.1.1",

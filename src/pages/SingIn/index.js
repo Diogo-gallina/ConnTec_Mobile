@@ -200,7 +200,7 @@ export default function Login({ navigation }) {
               autocorrect={false}
               onChangeText={(value) => setEmail(value)}
               errorMessage={errorEmail}
-              keyboardType="email"
+              keyboardType="email-address"
             />
 
             <Input

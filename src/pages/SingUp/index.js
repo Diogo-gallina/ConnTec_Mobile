@@ -181,7 +181,7 @@ export default function Cadastro({ navigation }) {
               placeholder="Digite seu e-mail"
               maxLength={100}
               autocorrect={false}
-              keyboardType="email"
+              keyboardType="email-address"
               autoCompleteType="email"
               onChangeText={(value) => setEmail(value)}
               errorMessage={errorEmail}
@@ -195,6 +195,7 @@ export default function Cadastro({ navigation }) {
               onChangeText={(value) => setName(value)}
               errorMessage={errorName}
               autoCompleteType="name"
+              keyboardType="email"
             />
 
             <Input

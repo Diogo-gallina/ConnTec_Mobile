@@ -3,11 +3,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Entypo, Feather } from "@expo/vector-icons";
 
 
-import { Search } from "../pages/Search/index";
 import { Add } from "../pages/Add";
 import { Notification } from "../pages/Notification";
 import { Settings } from "../pages/Settings";
 import { ButtonAdd } from "../components/ButtonAdd";
+import { Search } from "../pages/Search/";
 import Home from "../pages/Home";
 
 const Tab = createBottomTabNavigator();
