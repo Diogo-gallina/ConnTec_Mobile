@@ -16,7 +16,7 @@ export default function Settings({ navigation }) {
   <View style={styles.container}>
   
       <View>
-        <Image style={{marginTop:'10%',
+        <Image style={{marginTop:'20%',
                          height:60,
                          width:60,
                          alignSelf:'center'
@@ -37,7 +37,7 @@ export default function Settings({ navigation }) {
             <Switch
               trackColor={{ false: "white", true: "#b20000" }}
               thumbColor={isEnabled ? "white" : "white"}
-              ios_backgroundColor="white"
+              ios_backgroundColor="gray"
               onValueChange={toggleSwitch}
               value={isEnabled}
               style={styles.interruptor}/>
@@ -55,7 +55,7 @@ export default function Settings({ navigation }) {
             <Switch
               trackColor={{ false: "white", true: "#b20000" }}
               thumbColor={isEnabled ? "white" : "white"}
-              ios_backgroundColor="#3e3e3e"
+              ios_backgroundColor="gray"
               onValueChange={toggleSwitch2}
               value={isEnabled2}
               style={styles.interruptor}/>
@@ -92,22 +92,22 @@ const styles = StyleSheet.create({
     flex: 1
   },
   titleConfig:{
-    fontSize: '250%',
+    fontSize: 50,
     color:'#B20000',
     marginLeft:'5%', 
     marginTop: '10%',
     fontWeight:'100'
   },
   txtFunc:{
-    fontSize:'130%',
+    fontSize:17,
     color:'black',
     marginLeft:'17%',
-    marginTop:'1%',
+    marginTop:'5%',
     fontWeight:'400'
   },
   interruptor:{
     marginLeft:'80%',
-    bottom:'250%'
+    bottom:'179%'
   },
   containerMain:{
     backgroundColor:'#f5f5f5',
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     height:30,
     width:30,
     borderRadius:100,
-    bottom:'57%',
+    bottom:'50%',
     marginLeft:'3%'
   },
 });

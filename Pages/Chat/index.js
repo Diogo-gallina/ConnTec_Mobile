@@ -1,5 +1,5 @@
 import React from 'react';
-import { RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text } from 'react-native';
+import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -14,7 +14,7 @@ const wait = (timeout) => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView
         contentContainerStyle={styles.scrollView}
         refreshControl={
@@ -26,7 +26,7 @@ const wait = (timeout) => {
       >
         <Text>Pull down to see RefreshControl indicator</Text>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 

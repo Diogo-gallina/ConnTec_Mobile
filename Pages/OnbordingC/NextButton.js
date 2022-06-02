@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { StyleSheet,Text,View, TouchableOpacity, Animated } from 'react-native'; //importando componentes
+import { StyleSheet,View, TouchableOpacity, Animated } from 'react-native'; //importando componentes
 import Svg, { G,Circle} from 'react-native-svg'; //importando SVG- Formato usado para renderizar imagens vetoriais
 import { AntDesign } from '@expo/vector-icons'; 
 

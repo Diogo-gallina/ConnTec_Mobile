@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, RefreshControl } from 'react-native'; //importando componentes
+import {View, StyleSheet, Image, TouchableOpacity, ScrollView} from 'react-native'; //importando componentes
 import Constants from 'expo-constants';
 
 import { MaterialIcons, Fontisto, Ionicons } from '@expo/vector-icons' //importando icons
@@ -21,7 +21,7 @@ export default function Post({navigation}) {
   return (
     <View style={styles.container}>
       <View>
-        <Image style={{  marginTop:'10%',
+        <Image style={{  marginTop:'20%',
                          height:60,
                          width:60,
                          alignSelf:'center'

@@ -70,10 +70,11 @@ export default function Profile({navigation}) {
         <View style={styles.buttonMensage}>
           <Ionicons name='notifications' size={24} color='white'></Ionicons>
         </View>
-      </View>
+   
   
-      <ScrollView 
-        contentContainerStyle={styles.scrollView}
+      <ScrollView vertical
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollMensage}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
@@ -109,6 +110,7 @@ export default function Profile({navigation}) {
               <Text style={[styles.dateMensage, { marginTop:20 }]}> 24/04 </Text> 
         </TouchableOpacity>
       </ScrollView>
+    </View>
       
   </SafeAreaView>
   );
@@ -130,20 +132,19 @@ const styles = StyleSheet.create({
   },
   dm:{ //button chat
     backgroundColor: '#41444B',
-    position:'aboslute',
+    position:'absolute',
     width: 40,
     height: 40,
     borderRadius: 20,
     alignItems:'center',
     justifyContent:'center',
-    bottom:190
+    bottom:'75%'
   },
   active:{ //icon online
     backgroundColor:'#34FF89',
-    position:'absolute',
-    bottom: 70,
-    left: 10,
-    padding: 4,
+    bottom: '20%',
+    left: '5%',
+    padding: '1%',
     height: 20,
     width: 20,
     borderRadius: 10
@@ -151,9 +152,9 @@ const styles = StyleSheet.create({
   // offline:{ 
   //   backgroundColor:'red',
   //   position:'absolute',
-  //   bottom: 70,
-  //   left: 10,
-  //   padding: 4,
+  //   bottom: '20%',
+  //   left: '5%',
+  //   padding: '1%',
   //   height: 20,
   //   width: 20,
   //   borderRadius: 10
@@ -161,8 +162,8 @@ const styles = StyleSheet.create({
   add:{ //button de trocar imagem de perfil
     backgroundColor: '#41444B',
     position:'absolute',
-    bottom: 30,
-    right: 10,
+    bottom: '10%',
+    right: '1%',
     width: 60,
     height: 60,
     borderRadius: 30,
@@ -175,10 +176,8 @@ const styles = StyleSheet.create({
     bottom:'2%'
   },
   containerfunc:{ //container icon notificações
-    flexDirection:'row',
-    alignSelf:'center',
-    marginTop:20,
-    bottom:10,
+    left:'3%',
+    right:'3%'
   },
     buttonMensage:{ //button notificações
     backgroundColor: '#b20000',
@@ -188,21 +187,22 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'center',
     alignSelf:'center',
-    marginEnd:'10%',
-    marginTop:'30%'
+    marginTop:'10%',
+    
   },
   containerMensage:{ //container mensagem - individual
     backgroundColor:'#e5e5e5',
     borderRadius:40,
     height:"40%",
     width:'80%',
-    alignSelf:'center',
     marginTop:'7%',            
-    bottom:15,
+    bottom:'3%',
     shadowColor: 'rgba(171, 180, 189, 0.35)',
     shadowOffset: {width: 0, height: 10},
     shadowOpacity: 10,
     shadowRadius: 5,
+    right:'5%',
+    left:'7%'
     
   },
   iconMensage:{ //icone chat
@@ -213,25 +213,25 @@ const styles = StyleSheet.create({
     marginTop:"6%"
   },
   remententeMensage:{ //nome do rementente
-    fontSize:'150%',
+    fontSize:25,
     fontWeight:'200',
     marginTop:'5%',
     marginLeft:'5%',
     color:'#b20000'
   },
   mensage:{ //mensagem em si
-    fontWeight:'500',
+    fontWeight:'400',
     marginLeft:'5%',
     marginRight:'15%',
-    marginTop:'15%',
+    marginTop:'18%',
     position:'absolute',
-    fontSize:'100%'
+    fontSize:15
   },
   hoursMensage:{ //horario de envio
     marginTop:'10%',
     marginLeft:'80%',
     color:'gray',
-    fontSize:"120%",
+    fontSize:12,
     fontWeight:'300',
     position:'absolute'
   },
@@ -239,8 +239,11 @@ const styles = StyleSheet.create({
     marginTop:'10%',
     marginLeft:'75%',
     color:'#b20000',
-    fontSize:"120%",
+    fontSize:12,
     fontWeight:'300',
     position:'absolute'
+  },
+  scrollMensage:{
+    
   }
   });

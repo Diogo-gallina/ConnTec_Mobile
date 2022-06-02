@@ -1,0 +1,13 @@
+<h1>Notificações</h1>
+<form name='form1' id='form1' method='post' action='/notifications'>
+    Título: <input type='text' name='title' id='title'><br>
+    Destinatário:
+    <select name='recipient' id='recipient'>
+        <option value=''>Todos</option>
+        {{#users}}
+            <option value='{{token}}'>{{token}}</option>
+        {{/users}}
+    </select><br>
+    Mensagem: <textarea name='message' id='message'></textarea><br>
+    <input type='submit' value='Enviar'>
+</form>

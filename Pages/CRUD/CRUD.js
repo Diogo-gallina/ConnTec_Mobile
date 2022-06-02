@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, SafeAreaView, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
 import { Ionicons , MaterialIcons } from '@expo/vector-icons'
 
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   buttonCreateUser:{ //button criar usuarios
     backgroundColor: 'green',
-    position:'aboslute',
+    position:'absolute',
     width: 145,
     height: 40,
     borderRadius: 20,
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     width: 45,
     marginTop:70,
     marginLeft:260,
-    borderRadius: '50%',
+    borderRadius: 50,
     backgroundColor: 'green',
     fontSize:20,
     fontWeight:'300',
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     width: 45,
     marginTop:70,
     marginLeft:310,
-    borderRadius: '50%',
+    borderRadius: 50,
     backgroundColor: 'red',
     fontSize:20,
     fontWeight:'300',
