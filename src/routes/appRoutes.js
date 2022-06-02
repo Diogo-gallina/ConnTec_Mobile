@@ -8,7 +8,7 @@ import { Notification } from "../pages/Notification";
 import { Settings } from "../pages/Settings";
 import { ButtonAdd } from "../components/ButtonAdd";
 import { Search } from "../pages/Search/";
-import Home from "../pages/Home";
+import Home from "../pages/Home/";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,7 +19,7 @@ export default function AppRoutes() {
       screenOptions={{
         tabBarStyle: {
           borderTopColor: "transparent",
-          display: "flex",
+          display: "flex"
         },
 
         tabBarItemStyle: {

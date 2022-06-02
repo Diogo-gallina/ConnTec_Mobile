@@ -36,7 +36,7 @@ export default function Home({ navigation }) {
           style={{
             fontSize: 50,
             color: "#B20000",
-            fontFamily: "RobotoBold",
+            fontFamily: "Roboto",
           }}
         >
           Seja Bem vindo,
@@ -48,7 +48,7 @@ export default function Home({ navigation }) {
             paddingVertical: 10,
             paddingRight: 80,
             lineHeight: 22,
-            fontFamily: "RobotoRegular",
+            fontFamily: "Roboto",
             color: "#B20000",
           }}
         >
@@ -155,6 +155,6 @@ const styles = StyleSheet.create({
     width: 60,
     borderRadius: 50,
     marginLeft: 10,
-    display: "relative",
+    display: "flex",
   },
 });

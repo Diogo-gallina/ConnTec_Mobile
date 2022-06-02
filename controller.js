@@ -19,7 +19,7 @@ let token = models.token;
 
 //Faz a logica de login
 app.post("/login", async (req, res) => {
-  let response = await usuarios.findAndCountAll({
+  let response = await usuarios.findOne({
     where: { email: req.body.email, senha: req.body.senha },
   });
   if (response === null) {

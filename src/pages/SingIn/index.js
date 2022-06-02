@@ -176,7 +176,7 @@ export default function Login({ navigation }) {
         <View>
           <Image
             source={require("../../../assets/icon.png")}
-            style={{ width: 200, height: 200, marginTop: 580 }}
+            style={{ width: 200, height: 200, marginTop: 80 }}
             resizeMode="contain"
           />
         </View>
