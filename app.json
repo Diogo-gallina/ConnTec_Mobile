@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "Conntec_Mobile",
+    "slug": "snack-38c8e5b4-2f62-4e37-ad11-29cd7a830a5e",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/logoConn.png",
+    "splash": {
+      "image": "./assets/logoConn.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/logoConn.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/logoConn.png"
+    }
+  }
+}
