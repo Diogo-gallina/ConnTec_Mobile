@@ -1,35 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import SingIn from "./src/pages/SingIn";
-import SingUp from "./src/pages/SingUp";
-import AppRoutes from "./src/routes/appRoutes";
-import Profile from "./src/pages/Profile";
-import Home from "./src/pages/Home";
-import { Search } from "./src/pages/Search";
-import { Settings } from "./src/pages/Settings";
 import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DarkTheme,
+  useTheme,
+  DefaultTheme,
+} from "@react-navigation/native";
+import { AppearanceProvider, useColorScheme } from "react-native-appearance";
 
-const Stack = createStackNavigator();
-
-function MyStack() {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name="SingIn" component={SingIn} />
-      <Stack.Screen name="SingUp" component={SingUp} />
-      <Stack.Screen name="AppRoutes" component={AppRoutes} />
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Search" component={Search} />
-      <Stack.Screen name="Settings" component={Settings} />
-      <Stack.Screen name="Profile" component={Profile} />
-    </Stack.Navigator>
-  );
-}
+import MyStack from "./routes/routes";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -44,6 +24,7 @@ export default function App() {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
+  const scheme = useColorScheme();
 
   useEffect(() => {
     registerForPushNotificationsAsync().then((token) =>
@@ -117,10 +98,10 @@ export default function App() {
     });
   };
   return (
-    <>
-      <NavigationContainer>
+    <AppearanceProvider>
+      <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
         <MyStack />
       </NavigationContainer>
-    </>
+    </AppearanceProvider>
   );
 }
