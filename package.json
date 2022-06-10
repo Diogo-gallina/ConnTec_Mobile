@@ -39,7 +39,6 @@
     "expo-server-sdk": "^3.6.0",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
-    "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "react-native-elements": "^3.4.2",
     "react-native-input-secure-text": "^1.2.4",
