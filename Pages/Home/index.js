@@ -13,15 +13,15 @@ import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"; //importando biblioteca de icons
 
 export default function Home({ navigation }) {
-  const [email, setEmail] = useState(null);
+  const [nome, setNome] = useState(null);
 
   useEffect(() => {
-    async function getEmail() {
+    async function getNome() {
       let response = await AsyncStorage.getItem("userData");
       let json = JSON.parse(response);
-      setEmail(json.email);
+      setNome(json.nome);
     }
-    getEmail();
+    getNome();
   }, []);
 
   return (
@@ -38,20 +38,20 @@ export default function Home({ navigation }) {
         ></Image>
       </View>
 
-      <View style={{ marginTop: "20%" }}>
+      <View style={{ marginTop: "25%" }}>
         <Text
           style={{
-            fontSize: 60,
+            fontSize: 50,
             color: "#B20000",
             marginLeft: "10%",
           }}
         >
-          Olá {email}
+          Olá {nome}
         </Text>
 
         <Text
           style={{
-            fontSize: 15,
+            fontSize: 14,
             color: "#B20000",
             marginLeft: "15%",
             marginRight: "10%",
@@ -63,7 +63,7 @@ export default function Home({ navigation }) {
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          style={{ marginTop: "5%", marginLeft: "15%", marginRight: "5%" }}
+          style={{ marginTop: "40%", marginLeft: "1%", marginRight: "1%" }}
         >
           <TouchableOpacity
             style={[styles.buttonsTab, { backgroundColor: "#ffac06" }]}
