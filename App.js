@@ -76,7 +76,7 @@ export default function App() {
   }
 
   const sendMesaage = (token) => {
-    fetch("http://192.168.1.74:3000/token", {
+    fetch("https://conntec-mobile.herokuapp.com/token", {
       method: "POST",
       headers: {
         Accept: "application/json",

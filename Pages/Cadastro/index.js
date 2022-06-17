@@ -32,7 +32,7 @@ export default function Cadastro({ navigation }) {
   const [hidePass2, setHidePass2] = useState(true);
 
   async function sendForm() {
-    let response = await fetch("http://192.168.1.74:3000/cadastro", {
+    let response = await fetch("https://conntec-mobile.herokuapp.com/cadastro", {
       method: "POST",
       headers: {
         Accept: "application/json",
