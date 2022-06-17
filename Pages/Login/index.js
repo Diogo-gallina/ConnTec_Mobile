@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   BackHandler,
   KeyboardAvoidingView,
+  Alert
 } from "react-native";
 import { Input } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
@@ -23,7 +24,9 @@ export default function Login({ navigation }) {
   const [hidePass, setHidePass] = useState(true);
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [nome] = useState("");
   const [login, setLogin] = useState(null);
+  
 
   //função para verificar se o login é verdadeiro
   async function verifyLogin() {
@@ -47,9 +50,6 @@ export default function Login({ navigation }) {
         let result = await LocalAuthentication.authenticateAsync();
         if (result.success) {
           sendForm();
-        } else {
-          setEmail("");
-          setSenha("");
         }
       }
     }
@@ -66,6 +66,7 @@ export default function Login({ navigation }) {
       body: JSON.stringify({
         email: email,
         senha: senha,
+        nome: nome
       }),
     });
     let json = await response.json();
