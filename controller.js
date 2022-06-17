@@ -63,7 +63,7 @@ app.get("/", async (req, res) => {
   let response = await token.findAll({
     raw: true,
   });
-  res.render("mensagem.handlebars", { users: response });
+  res.render("mensagem", { users: response });
 });
 
 //Logica de notificações
