@@ -1,13 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
-import {
-  NavigationContainer,
-  DarkTheme,
-  useTheme,
-  DefaultTheme,
-} from "@react-navigation/native";
-import { AppearanceProvider, useColorScheme } from "react-native-appearance";
+import { NavigationContainer } from "@react-navigation/native";
 
 import MyStack from "./routes/routes";
 
@@ -24,7 +18,6 @@ export default function App() {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
-  const scheme = useColorScheme();
 
   useEffect(() => {
     registerForPushNotificationsAsync().then((token) =>
@@ -35,9 +28,7 @@ export default function App() {
         setNotification(notification);
       });
     responseListener.current =
-      Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log(response);
-      });
+      Notifications.addNotificationResponseReceivedListener((response) => {});
 
     return () => {
       Notifications.removeNotificationSubscription(
@@ -98,10 +89,10 @@ export default function App() {
     });
   };
   return (
-    <AppearanceProvider>
-      <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
+    <>
+      <NavigationContainer>
         <MyStack />
       </NavigationContainer>
-    </AppearanceProvider>
+    </>
   );
 }
