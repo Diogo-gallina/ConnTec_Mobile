@@ -26,7 +26,6 @@ app.post("/login", async (req, res) => {
     res.send(JSON.stringify("error"));
   } else {
     res.send(response);
-    console.log(response);
   }
 });
 
@@ -42,13 +41,12 @@ app.post("/cadastro", async (req, res) => {
     res.send(JSON.stringify("error"));
   } else {
     res.send(response);
-    console.log(response);
   }
 });
 
 //Grava o token no banco
 app.post("/token", async (req, res) => {
-  let response = await token.findAll({
+  let response = await token.findOne({
     where: { token: req.body.token },
   });
   if (response == null) {
@@ -73,17 +71,6 @@ app.post("/notifications", async (req, res) => {
   let messages = [];
   let somePushTokens = [];
 
-  if (req.body.recipient == null) {
-    let response = await token.findAll({
-      raw: true,
-    });
-    response.map((elem, ind, obj) => {
-      somePushTokens.push(elem.token);
-    });
-  } else {
-    somePushTokens.push(req.body.recipient);
-  }
-
   let response = await token.findAll({
     raw: true,
   });
@@ -93,7 +80,7 @@ app.post("/notifications", async (req, res) => {
 
   for (let pushToken of somePushTokens) {
     if (!Expo.isExpoPushToken(pushToken)) {
-      console.error(`Push token ${pushToken} is not a valid Expo push token`);
+      console.error(`Push token ${pushToken} não é um push valido`);
       continue;
     }
 
@@ -110,7 +97,6 @@ app.post("/notifications", async (req, res) => {
     for (let chunk of chunks) {
       try {
         let ticketChunk = await expo.sendPushNotificationsAsync(chunk);
-        console.log(ticketChunk);
         tickets.push(...ticketChunk);
       } catch (error) {
         console.error(error);
@@ -129,7 +115,6 @@ app.post("/notifications", async (req, res) => {
     for (let chunk of receiptIdChunks) {
       try {
         let receipts = await expo.getPushNotificationReceiptsAsync(chunk);
-        console.log(receipts);
 
         for (let receiptId in receipts) {
           let { status, message, details } = receipts[receiptId];
