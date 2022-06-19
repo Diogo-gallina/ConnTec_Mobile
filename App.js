@@ -3,6 +3,7 @@ import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
 import { NavigationContainer } from "@react-navigation/native";
 
+
 import MyStack from "./routes/routes";
 
 Notifications.setNotificationHandler({
@@ -76,7 +77,7 @@ export default function App() {
   }
 
   const sendMesaage = (token) => {
-    fetch("http://192.168.1.74:3000/token", {
+    fetch("http://conntec-mobile.herokuapp.com/token", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -90,9 +91,11 @@ export default function App() {
   };
   return (
     <>
+    
       <NavigationContainer>
         <MyStack />
       </NavigationContainer>
+    
     </>
   );
 }

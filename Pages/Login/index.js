@@ -57,7 +57,7 @@ export default function Login({ navigation }) {
 
   //função para enviar o formulario para o controller
   async function sendForm() {
-    let response = await fetch("http://192.168.1.74:3000/login", {
+    let response = await fetch("http://conntec-mobile.herokuapp.com/login", {
       method: "POST",
       headers: {
         Accept: "application/json",
