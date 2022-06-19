@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from '../Pages/Home/index';
@@ -8,13 +8,19 @@ import Cadastro from '../Pages/Cadastro/index';
 import Onbording from '../Pages/OnbordingC/Onbording';
 import Profile from '../Pages/Profile/index';
 import Post from '../Pages/Post/index';
-import Chat from '../Pages/Chat/index';
+
+
 import Settings from '../Pages/Settings/index';
 import Crud from '../Pages/CRUD/CRUD';
 import EditUser from '../Pages/CRUD/edituser';
 import EditName from '../Pages/CRUD/editName';
 import EditEmail from '../Pages/CRUD/editEmail';
 import NewPassword from '../Pages/CRUD/editPassword';
+import Chat from '../Pages/Chat/ChatList';
+import ChatScreen from '../Pages/Chat/ChatScreen';
+
+
+
 
 
 const Stack = createStackNavigator();
@@ -67,6 +73,18 @@ export default function MyStack() {
         options={{headerShown: false}}
         />
 
+
+        <Stack.Screen 
+          name="ChatScreen" 
+          component={ChatScreen} 
+          options={({route}) => ({
+            title: route.params.userName,
+            headerBackTitleVisible: true
+          })}
+        />   
+
+         
+
       <Stack.Screen 
         name="Settings" 
         component={Settings} 
@@ -78,6 +96,8 @@ export default function MyStack() {
         component={Crud} 
         options={{headerShown: false}}
         />
+
+       
 
       <Stack.Screen 
         name="EditUser" 

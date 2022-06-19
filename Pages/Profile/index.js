@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     marginTop:"6%"
   },
   remententeMensage:{ //nome do rementente
-    fontSize:25,
+    fontSize: 19,
     fontWeight:'200',
     marginTop:'5%',
     marginLeft:'5%',
