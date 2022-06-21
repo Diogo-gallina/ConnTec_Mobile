@@ -14,6 +14,7 @@ import EditEmail from '../Pages/CRUD/editEmail';
 import NewPassword from '../Pages/CRUD/editPassword';
 import Chat from '../Pages/Chat/ChatList';
 import ChatScreen from '../Pages/Chat/ChatScreen';
+import AddChat from '../Pages/Chat/AddChat'
 
 const Stack = createStackNavigator();
 
@@ -62,7 +63,7 @@ export default function MyStack() {
       <Stack.Screen 
         name="Chat" 
         component={Chat} 
-        options={{headerShown: false}}
+        options={{headerShown: true}}
         />
 
 
@@ -71,6 +72,12 @@ export default function MyStack() {
           component={ChatScreen} 
           options={{headerShown: true, headerBackTitleVisible: false}}
         />
+
+      <Stack.Screen 
+        name="AddChat" 
+        component={AddChat} 
+        options={{headerShown: true}}
+        />      
 
       <Stack.Screen 
         name="Settings" 

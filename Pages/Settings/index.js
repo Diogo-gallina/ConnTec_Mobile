@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   titleConfig:{
-    fontSize: 40,
+    fontSize: 30,
     color:'#B20000',
     marginLeft:'5%', 
     marginTop: '10%',
