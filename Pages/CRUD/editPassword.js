@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, SafeAreaView, Image, TouchableOpacity, TextInput } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AntDesign } from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default function NewPassword({navigation}) {
 
@@ -17,6 +18,17 @@ export default function NewPassword({navigation}) {
   }, []);
   return (
     <SafeAreaView style={styles.container}>
+
+<View style={{alignSelf:"flex-start", marginLeft:10, marginTop:15}}>
+       <Icon.Button  
+         name="angle-left"
+         size={55}
+         backgroundColor="transparent"
+         color='red'
+         borderRadius={40}             
+         onPress={() => navigation.navigate("EditUser")}>  
+       </Icon.Button>
+    </View>
         
         <View style={{alignSelf:'center'}}>   
             <View style={styles.profileImage}>

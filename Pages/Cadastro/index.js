@@ -12,6 +12,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 import { Input } from "react-native-elements";
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default function Cadastro({ navigation }) {
   const goLogin = () => {
@@ -144,7 +145,17 @@ export default function Cadastro({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView>
+
+<View style={{alignSelf:"flex-start", marginLeft:10, marginTop:15}}>
+       <Icon.Button  
+         name="angle-left"
+         size={55}
+         backgroundColor="transparent"
+         color='red'
+         borderRadius={45}             
+         onPress={() => navigation.navigate("Login")}>  
+       </Icon.Button>
       <View
         style={{
           marginTop: "10%",
@@ -260,6 +271,7 @@ export default function Cadastro({ navigation }) {
         </TouchableOpacity>
       </View>
     </View>
+    </ScrollView>
   );
 }
 

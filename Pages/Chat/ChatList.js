@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, FlatList, Image } from 'react-native';
+import { View, Text, Button, StyleSheet, FlatList, Image, } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   Container,
   Card,
@@ -12,6 +13,7 @@ import {
   MessageText,
   TextSection,
 } from './MessageStyle';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
 export default function ChatList ({navigation}){
@@ -99,7 +101,6 @@ export default function ChatList ({navigation}){
 
   return (
     <Container>
-    
       <View>
         <Image 
         style={{  

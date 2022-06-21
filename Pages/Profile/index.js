@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, SafeAreaView, ScrollView, Image, TouchableOpaci
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons , MaterialIcons } from '@expo/vector-icons' //importando icons 
 import * as ImagePicker from 'expo-image-picker'; //importando o imagePicker para a imagem de perfil
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default function Profile({navigation}) {
   
@@ -44,7 +45,20 @@ const [nome, setNome] = useState(null);
 }
   
   return (
+    <ScrollView>
     <SafeAreaView style={styles.container}>
+
+<View style={{alignSelf:"flex-start", marginLeft:10, marginTop:15}}>
+       <Icon.Button  
+         name="angle-left"
+         size={55}
+         backgroundColor="transparent"
+         color='red'
+         borderRadius={45}             
+         onPress={() => navigation.navigate("Home")}>  
+       </Icon.Button>
+       </View>
+
       <View>
         <Image style={{  marginTop:'10%',
                          height:60,
@@ -81,6 +95,7 @@ const [nome, setNome] = useState(null);
         <View style={styles.buttonMensage}>
           <Ionicons name='notifications' size={24} color='white'></Ionicons>
         </View>
+     
    
   
       <ScrollView vertical
@@ -124,6 +139,7 @@ const [nome, setNome] = useState(null);
     </View>
       
   </SafeAreaView>
+  </ScrollView>
   );
 }
 

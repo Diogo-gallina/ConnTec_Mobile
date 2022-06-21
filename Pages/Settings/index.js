@@ -3,6 +3,7 @@ import { View, Switch, StyleSheet, Image, Text, TouchableOpacity } from "react-n
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default function Settings({ navigation }) {
   
@@ -27,6 +28,18 @@ export default function Settings({ navigation }) {
   
   return (
   <View style={styles.container}>
+
+    
+<View style={{alignSelf:"flex-start", marginLeft:10, marginTop:15}}>
+       <Icon.Button  
+         name="angle-left"
+         size={55}
+         backgroundColor="transparent"
+         color='red'
+         borderRadius={40}             
+         onPress={() => navigation.navigate("Home")}>  
+       </Icon.Button>
+    </View>
   
       <View>
         <Image style={{marginTop:'20%',
