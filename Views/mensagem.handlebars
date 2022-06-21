@@ -1,8 +1,22 @@
-<h1>Notificações</h1>
-<form name="form1" id="form1" method="post" action="/notifications">
-  Título:
-  <input type="text" name="title" id="title" /><br />
-  Mensagem:
-  <textarea name="message" id="message"></textarea><br />
-  <input type="submit" value="Enviar" />
-</form>
+        <center><h1>Sistema de envio de notificações</h1></center>
+          <center><img src="../assets/imageDiogoCorreia.png/" width="500" height="600"></center>
+    
+    <div class="box">
+        <form name='form1' id='form1' method='post' action='/notifications'>
+            <fieldset>
+                <legend><b>Fórmulário para envio de notificações</b></legend>
+                <br>
+                <div class="inputBox">
+                    <input type="text" name="title" id="title" class="inputUser" required>
+                    <label for="nome" class="labelInput">Titulo da notificação</label>
+                </div>
+                <br><br>
+                <div class="inputBox">
+                    <textarea type="text" name="message" id="message" class="inputUser" required></textarea>
+                    <label for="email" class="labelInput">Mensagem da notificação</label>
+                </div>
+                <br><br>
+                <input type="submit" name="submit" id="submit" value="Enviar">
+            </fieldset>
+        </form>
+    </div>
