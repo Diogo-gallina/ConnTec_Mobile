@@ -1,10 +1,20 @@
-import * as React from 'react';
+import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, SafeAreaView, Image, TouchableOpacity, TextInput } from 'react-native';
-import Constants from 'expo-constants';
-import { Ionicons , MaterialIcons } from '@expo/vector-icons'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AntDesign } from '@expo/vector-icons';
 
 export default function NewPassword({navigation}) {
+
+  const [nome, setNome] = useState(null);
+
+  useEffect(() => {
+    async function getNome() {
+      let response = await AsyncStorage.getItem("userData");
+      let json = JSON.parse(response);
+      setNome(json.nome);
+    }
+    getNome();
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
         
@@ -15,7 +25,7 @@ export default function NewPassword({navigation}) {
         </View>
 
         <View style={styles.containerInfo}>
-          <Text style={[styles.text, { fontWeight:'200', fontSize: 46}]}> Erik Alves</Text>
+          <Text style={[styles.text, { fontWeight:'200', fontSize: 46}]}> {nome}</Text>
           <Text style={[styles.text, {fontSize: 14, color:'#AEB5BC'}]}> Desenvolvimento de sistemas </Text>
         </View>
         
@@ -81,13 +91,15 @@ const styles = StyleSheet.create({
   },
   image:{ //flex image profile
     flex: 1,
-    height: undefined,
-    width: undefined
+    height: 132,
+    width: 132,
+    marginBottom: -60,
+    display: 'flex',
+    alignSelf: "center"
   },
   profileImage:{ //imagem de perfil
     width: 200,
     height: 200,
-    borderRadius: 100,
     overflow: 'hidden'
   },
 });

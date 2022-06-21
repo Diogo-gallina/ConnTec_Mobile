@@ -8,20 +8,12 @@ import Cadastro from '../Pages/Cadastro/index';
 import Onbording from '../Pages/OnbordingC/Onbording';
 import Profile from '../Pages/Profile/index';
 import Post from '../Pages/Post/index';
-
-
 import Settings from '../Pages/Settings/index';
-import Crud from '../Pages/CRUD/CRUD';
 import EditUser from '../Pages/CRUD/edituser';
-import EditName from '../Pages/CRUD/editName';
 import EditEmail from '../Pages/CRUD/editEmail';
 import NewPassword from '../Pages/CRUD/editPassword';
 import Chat from '../Pages/Chat/ChatList';
 import ChatScreen from '../Pages/Chat/ChatScreen';
-
-
-
-
 
 const Stack = createStackNavigator();
 
@@ -74,40 +66,21 @@ export default function MyStack() {
         />
 
 
-        <Stack.Screen 
+      <Stack.Screen 
           name="ChatScreen" 
           component={ChatScreen} 
-          options={({route}) => ({
-            title: route.params.userName,
-            headerBackTitleVisible: true
-          })}
-        />   
-
-         
+          options={{headerShown: true, headerBackTitleVisible: false}}
+        />
 
       <Stack.Screen 
         name="Settings" 
         component={Settings} 
         options={{headerShown: false}}
-        />
-
-      <Stack.Screen 
-        name="Crud" 
-        component={Crud} 
-        options={{headerShown: false}}
-        />
-
-       
+        />       
 
       <Stack.Screen 
         name="EditUser" 
         component={EditUser} 
-        options={{headerShown: false}}
-        />
-
-      <Stack.Screen 
-        name="EditName" 
-        component={EditName} 
         options={{headerShown: false}}
         />
 

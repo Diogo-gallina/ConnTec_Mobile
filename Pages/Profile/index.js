@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, SafeAreaView, ScrollView, Image, TouchableOpacity, RefreshControl } from 'react-native'; //importando componentes
-import Constants from 'expo-constants';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons , MaterialIcons } from '@expo/vector-icons' //importando icons 
 import * as ImagePicker from 'expo-image-picker'; //importando o imagePicker para a imagem de perfil
 
@@ -16,6 +16,17 @@ export default function Profile({navigation}) {
   const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
+
+const [nome, setNome] = useState(null);
+
+  useEffect(() => {
+    async function getNome() {
+      let response = await AsyncStorage.getItem("userData");
+      let json = JSON.parse(response);
+      setNome(json.nome);
+    }
+    getNome();
+  }, []);
   
    
   const [image, setImage] = React.useState(null);
@@ -62,7 +73,7 @@ export default function Profile({navigation}) {
       </View>
 
       <View style={styles.containerInfo}>
-        <Text style={[styles.text, { fontWeight:'200', fontSize: 36}]}> Erik Alves </Text>
+        <Text style={[styles.text, { fontWeight:'200', fontSize: 36}]}> {nome} </Text>
         <Text style={[styles.text, {fontSize: 14, color:'#AEB5BC'}]}> Desenvolvimento de sistemas </Text>
       </View>
 

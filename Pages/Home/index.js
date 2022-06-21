@@ -102,7 +102,7 @@ export default function Home({ navigation }) {
 
           <TouchableOpacity
             style={[styles.buttonsTab, { backgroundColor: "#bb32fe" }]}
-            onPress={() => navigation.navigate("Crud")}
+            onPress={() => navigation.navigate("EditUser")}
           >
             <Icon name="dots-horizontal" color="white" size={32} />
           </TouchableOpacity>

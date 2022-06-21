@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Switch, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
-import Constants from 'expo-constants';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons'; 
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
+import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Settings({ navigation }) {
   
@@ -11,6 +10,20 @@ export default function Settings({ navigation }) {
   const [isEnabled2, setIsEnabled2] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
+  const [nome, setNome] = useState(null);
+
+  useEffect(() => {
+    async function getNome() {
+      let response = await AsyncStorage.getItem("userData");
+      let json = JSON.parse(response);
+      setNome(json.nome);
+    }
+    getNome();
+  }, []);
+
+  const sair = () => {
+    AsyncStorage.clear();
+    navigation.navigate("Login")};
   
   return (
   <View style={styles.container}>
@@ -73,11 +86,11 @@ export default function Settings({ navigation }) {
       
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.containerFunc, {marginTop:'5%'}]}>
-          <Text style={styles.txtFunc}>Avaliable App</Text>
+        <TouchableOpacity  onPress={() => sair()} style={[styles.containerFunc, {marginTop:'5%'}]}>
+          <Text style={styles.txtFunc}>Sair</Text>
 
           <View style={[styles.icons, {backgroundColor:'#b20000'}]}>
-            <MaterialCommunityIcons style={{alignSelf:'center', marginTop:'10%'}}name="star" size={20} color="white" />
+            <Ionicons style={{alignSelf:'center', marginTop:'10%'}}name="exit" size={20} color="white" />
           </View>
         </TouchableOpacity>
       
@@ -92,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   titleConfig:{
-    fontSize: 50,
+    fontSize: 40,
     color:'#B20000',
     marginLeft:'5%', 
     marginTop: '10%',
@@ -126,10 +139,10 @@ const styles = StyleSheet.create({
     borderRadius:20
     },
   icons:{
-    height:30,
+    height:'60%',
     width:30,
     borderRadius:100,
-    bottom:'50%',
+    bottom:'70%',
     marginLeft:'3%'
   },
 });
