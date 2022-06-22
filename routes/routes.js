@@ -76,7 +76,7 @@ export default function MyStack() {
       <Stack.Screen 
         name="AddChat" 
         component={AddChat} 
-        options={{headerShown: true}}
+        options={{headerShown: true, headerBackTitleVisible: false}}
         />      
 
       <Stack.Screen 

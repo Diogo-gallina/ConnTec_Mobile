@@ -63,7 +63,7 @@ export default function Home({ navigation }) {
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          style={{ marginTop: "40%", marginLeft: "1%", marginRight: "1%" }}
+          style={{ marginTop: '10%', marginLeft: "10%", marginRight: "1%" }}
         >
           <TouchableOpacity
             style={[styles.buttonsTab, { backgroundColor: "#ffac06" }]}

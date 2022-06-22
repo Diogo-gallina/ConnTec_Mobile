@@ -1,10 +1,11 @@
 import React, {useLayoutEffect, useEffect, useState} from 'react';
-import { View, Image, StyleSheet, ScrollView, SafeAreaView, Text } from 'react-native';
+import { View, Image, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity, Text } from 'react-native';
+import { Ionicons , MaterialIcons } from '@expo/vector-icons' //importando icons 
 
 import {db} from '../../firebase'
 import CustomListItem from './CustomListItem';
 
-import { IoIosCreate } from 'react-icons/io';
+
 
 import {Container} from './MessageStyle';
 
@@ -17,6 +18,22 @@ export default function ChatList ({navigation}){
     navigation.setOptions({
         title: "Chat",
         headerBackTitle: "Chats",
+        headerTitle: () => (
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}
+          >
+      
+          <View style={styles.containerBtn}>
+            <TouchableOpacity style={styles.add} onPress={() => navigation.navigate('AddChat')} >
+              <Ionicons name='ios-add' size={20} color='white' style={{ marginLeft: 2}}></Ionicons>
+            </TouchableOpacity>
+          </View>
+              
+          </View>
+        )
     });
   }, [navigation]);
 
@@ -69,6 +86,26 @@ export default function ChatList ({navigation}){
 const styles = StyleSheet.create({
   container: {
     height: '100%'
+  },
+
+  add:{
+    backgroundColor: '#b20000',
+    position:'absolute',
+    bottom: '10%',
+    right: '1%',
+    width: 32,
+    height: 32,
+    borderRadius: 30,
+    alignItems:'center',
+    justifyContent:'center',
+    flexDirection: 'row'
+  },
+
+  containerBtn:{
+    display: 'flex',
+    right: -45,
+    top: 13
+
   }
 })
 

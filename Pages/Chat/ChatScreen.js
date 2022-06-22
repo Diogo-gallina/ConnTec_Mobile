@@ -76,7 +76,7 @@ export default function ChatScreen ({navigation, route}){
     setMessages([
       {
         _id: 1,
-        text: 'Ola Estudante',
+        text: 'Olá Estudante',
         createdAt: new Date(),
         user: {
           _id: 2,
@@ -86,7 +86,7 @@ export default function ChatScreen ({navigation, route}){
       },
       {
         _id: 2,
-        text: 'Ola.',
+        text: 'Olá.',
         createdAt: new Date(),
         user: {
           _id: 1,

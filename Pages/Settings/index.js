@@ -109,7 +109,8 @@ const styles = StyleSheet.create({
     color:'#B20000',
     marginLeft:'5%', 
     marginTop: '10%',
-    fontWeight:'100'
+    fontWeight:'100',
+    alignSelf:"center"
   },
   txtFunc:{
     fontSize:17,

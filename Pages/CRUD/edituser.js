@@ -33,10 +33,6 @@ export default function EditUser({navigation}) {
 
         <View style={{marginTop:10, flexDirection:'row', alignSelf:'center'}}>
 
-          <TouchableOpacity style={styles.buttonEdit} onPress={() => navigation.navigate('EditEmail')}>
-            <Text style={styles.txtButtonEdits} >E-mail</Text>
-          </TouchableOpacity>
-
           <TouchableOpacity style={styles.buttonEdit} onPress={() => navigation.navigate('NewPassword')}>
             <Text style={styles.txtButtonEdits} >Senha</Text>
           </TouchableOpacity>

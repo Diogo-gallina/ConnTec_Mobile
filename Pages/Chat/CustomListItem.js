@@ -45,7 +45,7 @@ const CustomListItem = ({id, chatName, enterChat}) => {
                   <UserName>{chatName}</UserName>
                   <PostTime>14:33</PostTime>
                 </UserInfoText>
-                <MessageText>teste</MessageText>
+                <MessageText>Olá Estudante</MessageText>
               </TextSection>
             </UserInfo>
           </Card>

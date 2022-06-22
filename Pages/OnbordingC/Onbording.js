@@ -50,9 +50,6 @@ export default function Onbording({ navigation}){ // funcao Onbording
               ref={slidesRef}
           />
       </View>
-
-      
-          <Paginator data={slides} scrollX={scrollX} />
           <NextButton scrollTo={scrollTo} percentage={(currentIndex + 1) * (100 / slides.length)} /> 
       </View>
   );

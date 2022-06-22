@@ -35,7 +35,12 @@ const AddChat = ({navigation}) => {
                 onSubmitEditing={createChat}
                 style={styles.input}
             />
-            <Button onPress={createChat} title='Create new Chat'/>
+            <Button 
+            onPress={createChat} 
+            title='Create new Chat'
+            />
+
+            
         </View>
     );
 };
