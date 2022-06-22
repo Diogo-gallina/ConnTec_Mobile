@@ -36,6 +36,7 @@ const AddChat = ({navigation}) => {
                 style={styles.input}
             />
             <Button 
+            disabled={!input}
             onPress={createChat} 
             title='Create new Chat'
             />

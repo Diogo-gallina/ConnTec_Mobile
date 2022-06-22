@@ -17,6 +17,7 @@ export default function ChatScreen ({navigation, route}){
 
   const [messages, setMessages] = useState([]);
   const [nome, setNome] = useState(null);
+  const [id, setId] = useState(null);
   const [email, setEmail] = useState(null);
 
   useEffect(() => {
@@ -25,6 +26,7 @@ export default function ChatScreen ({navigation, route}){
       let json = JSON.parse(response);
       setEmail(json.email);
       setNome(json.nome);
+      setId(json.id);
     }
     getNome();
   }, []);
@@ -149,7 +151,7 @@ export default function ChatScreen ({navigation, route}){
         onSend={(messages) => onSend(messages)}
         onChangeText={(text) => setInput(text)}
         user={{
-          _id: 1,
+          _id: id,
           name: nome
         }}
         renderBubble={renderBubble}
