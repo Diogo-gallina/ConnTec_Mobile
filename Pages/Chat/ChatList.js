@@ -103,8 +103,8 @@ const styles = StyleSheet.create({
 
   containerBtn:{
     display: 'flex',
-    right: -45,
-    top: 13
+    alignItems:'center',
+    top: 16,
 
   }
 })

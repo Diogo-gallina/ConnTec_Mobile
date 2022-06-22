@@ -12,7 +12,9 @@ import {
     TextSection,
   } from './MessageStyle';
 
-import {ListItem} from 'react-native-elements'
+
+
+
 
 import {db} from '../../firebase'
 
@@ -20,18 +22,22 @@ import {db} from '../../firebase'
 
 const CustomListItem = ({id, chatName, enterChat}) => {
 
-    const Messages = [
-        
-        {
-        id: id,
-        userName: chatName,
-        userImg: require('../../assets/imageDiogo.png'),
-        messageTime: '4 minutos',
-        messageText:
-            'Hey there, this is my test for a post of my social app in React Native.',
-        },
-        
-    ];
+  const [chatMessages, setChatMessages] = useState([]);
+
+  useEffect(() => {
+    const unsubscribe = db
+        .collection("chats")
+        .doc(id)
+        .collection("messages")
+        .orderBy("createdAt", "desc")
+        .onSnapshot((snapshot) => 
+          setChatMessages(snapshot.docs.map((doc) => doc.data()))
+        );
+
+        return unsubscribe;
+  })
+
+    
 
     return (
           <Card onPress={() => enterChat(id, chatName)} key={id} bottomDivider>
@@ -45,7 +51,7 @@ const CustomListItem = ({id, chatName, enterChat}) => {
                   <UserName>{chatName}</UserName>
                   <PostTime>14:33</PostTime>
                 </UserInfoText>
-                <MessageText>Olá Estudante</MessageText>
+                <MessageText>{chatMessages?.[0]?.user?.name}: {chatMessages?.[0]?.text}</MessageText>
               </TextSection>
             </UserInfo>
           </Card>

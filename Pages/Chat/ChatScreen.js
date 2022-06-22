@@ -16,7 +16,6 @@ import {db} from '../../firebase'
 export default function ChatScreen ({navigation, route}){
 
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
   const [nome, setNome] = useState(null);
   const [email, setEmail] = useState(null);
 
@@ -58,58 +57,49 @@ export default function ChatScreen ({navigation, route}){
     });
   }, [navigation]);
 
+
   const sendMessage = () => {
-    Keyboard.dismiss();
-
-    db.collection('chats').doc(route.params.id).collection('messages').add({
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      message: input,
-      displayName: nome,
-      email: email,
-      photoURL: '',
-    })
-
-    setInput('')
-  };
-
+    displayName: nome
+  }
+ 
   useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: 'Olá Estudante',
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any',
-        },
-      },
-      {
-        _id: 2,
-        text: 'Olá.',
-        createdAt: new Date(),
-        user: {
-          _id: 1,
-          name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any',
-          
-        },
-      },
-    ]);
-  }, []);
+    const unsubscribe = db
+    .collection('chats')
+    .doc(route.params.id)
+    .collection('messages')
+    .orderBy('createdAt', 'desc')
+    .onSnapshot((snapshot) => setMessages(
+      snapshot.docs.map(doc => ({
+        _id: doc.id,
+        createdAt: doc.data().createdAt.toDate(),
+        text: doc.data().text,
+        user: doc.data().user
+        
+      }))
+    ))
+      return unsubscribe;
+  }, [route]);
 
 
   const onSend = useCallback((messages = []) => {
     setMessages((previousMessages) =>
       GiftedChat.append(previousMessages, messages),
     );
-
+    
+    const { _id, createdAt, text, user} = messages[0];
+    db.collection('chats').doc(route.params.id).collection('messages').add({
+      _id,
+      createdAt,
+      text,
+      user
+    })
+    
   }, []);
 
   const renderSend = (props) => {
     return (
       <TouchableOpacity
-        onPress={sendMessage}
+        
       >
         <Send {...props} >
             <View>
@@ -157,9 +147,10 @@ export default function ChatScreen ({navigation, route}){
       <GiftedChat
         messages={messages}
         onSend={(messages) => onSend(messages)}
-        onChangeText={(messages) => setInput(messages)}
+        onChangeText={(text) => setInput(text)}
         user={{
           _id: 1,
+          name: nome
         }}
         renderBubble={renderBubble}
         alwaysShowSend
