@@ -3,8 +3,6 @@ import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
 import { NavigationContainer } from "@react-navigation/native";
 
-
-
 import MyStack from "./routes/routes";
 
 Notifications.setNotificationHandler({
@@ -39,8 +37,6 @@ export default function App() {
       Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, []);
-
-  
 
   useEffect(() => {
     if (expoPushToken != null) {

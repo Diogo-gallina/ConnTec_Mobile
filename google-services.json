@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "674856657150",
+    "firebase_url": "https://conntec-fa9f4-default-rtdb.firebaseio.com",
+    "project_id": "conntec-fa9f4",
+    "storage_bucket": "conntec-fa9f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674856657150:android:795c8607ccef321da845af",
+        "android_client_info": {
+          "package_name": "com.conntec.conntec"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674856657150-okoopg7nc5ivfg21qetsa9f80t04trfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlRtreS6x36eE7VHm22-S4yYoP8lP9TIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674856657150-okoopg7nc5ivfg21qetsa9f80t04trfj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

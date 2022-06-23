@@ -46,19 +46,10 @@ export default function Home({ navigation }) {
             marginLeft: "10%",
           }}
         >
-          Olá {nome}
+          Olá {nome}!
         </Text>
 
-        <Text
-          style={{
-            fontSize: 14,
-            color: "#B20000",
-            marginLeft: "15%",
-            marginRight: "10%",
-          }}
-        >
-          Nosso app está em desenvolvimento!
-        </Text>
+        
 
         <ScrollView
           horizontal
@@ -73,24 +64,10 @@ export default function Home({ navigation }) {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.buttonsTab, { backgroundColor: "#ffa06c" }]}
-            onPress={() => navigation.navigate("Profile")}
-          >
-            <Icon name="bell" color="white" size={32} />
-          </TouchableOpacity>
-
-          <TouchableOpacity
             style={[styles.buttonsTab, { backgroundColor: "#5facdb" }]}
             onPress={() => navigation.navigate("Chat")}
           >
             <Icon name="chat" color="white" size={32} />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[styles.buttonsTab, { backgroundColor: "#bb3" }]}
-            onPress={() => navigation.navigate("Settings")}
-          >
-            <Ionicons name="settings" color="white" size={32} />
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -101,6 +78,13 @@ export default function Home({ navigation }) {
           </TouchableOpacity>
 
           <TouchableOpacity
+            style={[styles.buttonsTab, { backgroundColor: "#bb3" }]}
+            onPress={() => navigation.navigate("Settings")}
+          >
+            <Ionicons name="settings" color="white" size={32} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
             style={[styles.buttonsTab, { backgroundColor: "#bb32fe" }]}
             onPress={() => navigation.navigate("EditUser")}
           >
@@ -108,6 +92,17 @@ export default function Home({ navigation }) {
           </TouchableOpacity>
         </ScrollView>
       </View>
+      <Text
+          style={{
+            fontSize: 14,
+            color: "#B20000",
+            alignSelf: 'center',
+            marginTop: "60%"
+
+          }}
+        >
+          Nosso app está em desenvolvimento!
+        </Text>
     </View>
   );
 }
@@ -123,7 +118,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: 60,
     width: 60,
-    borderRadius: 50,
-    marginLeft: 10,
+    borderRadius: 30,
+    marginLeft: 7,
+    marginTop: "10%"
   },
 });
