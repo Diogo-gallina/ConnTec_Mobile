@@ -45,13 +45,13 @@ export default function ChatList ({navigation}){
       })))
     ))
     return unsubscribe;
-  }, [])
+  }, [navigation])
 
 
   const enterChat = (id, chatName) => {
     navigation.navigate("ChatScreen", {
       id,
-      chatName,
+      chatName
     })
   }
 

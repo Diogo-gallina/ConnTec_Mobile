@@ -17,8 +17,8 @@ export default function ChatScreen ({navigation, route}){
 
   const [messages, setMessages] = useState([]);
   const [nome, setNome] = useState(null);
-  const [id, setId] = useState(null);
-  const [email, setEmail] = useState(null);
+  const [id, setID] = useState(null);
+  
 
   useEffect(() => {
     async function getNome() {
@@ -26,7 +26,7 @@ export default function ChatScreen ({navigation, route}){
       let json = JSON.parse(response);
       setEmail(json.email);
       setNome(json.nome);
-      setId(json.id);
+      setID(json.idUsuario);
     }
     getNome();
   }, []);
@@ -59,10 +59,6 @@ export default function ChatScreen ({navigation, route}){
     });
   }, [navigation]);
 
-
-  const sendMessage = () => {
-    displayName: nome
-  }
  
   useEffect(() => {
     const unsubscribe = db
@@ -75,12 +71,14 @@ export default function ChatScreen ({navigation, route}){
         _id: doc.id,
         createdAt: doc.data().createdAt.toDate(),
         text: doc.data().text,
-        user: doc.data().user
+        user: doc.data().user 
         
       }))
+      
     ))
       return unsubscribe;
-  }, [route]);
+      
+  }, [10]);
 
 
   const onSend = useCallback((messages = []) => {
@@ -95,6 +93,7 @@ export default function ChatScreen ({navigation, route}){
       text,
       user
     })
+    
     
   }, []);
 
@@ -149,7 +148,6 @@ export default function ChatScreen ({navigation, route}){
       <GiftedChat
         messages={messages}
         onSend={(messages) => onSend(messages)}
-        onChangeText={(text) => setInput(text)}
         user={{
           _id: id,
           name: nome
