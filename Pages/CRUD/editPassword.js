@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, SafeAreaView, Image, TouchableOpacity, TextInput } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons";
 
-export default function NewPassword({navigation}) {
-
+export default function NewPassword({ navigation }) {
   const [nome, setNome] = useState(null);
 
   useEffect(() => {
@@ -17,92 +24,116 @@ export default function NewPassword({navigation}) {
   }, []);
   return (
     <SafeAreaView style={styles.container}>
-        
-        <View style={{alignSelf:'center'}}>   
-            <View style={styles.profileImage}>
-              <Image source={require('../../assets/logoConn.png')} style={styles.image} resizeMode='center'></Image>
-            </View>
+      <View style={{ alignSelf: "center" }}>
+        <View style={styles.profileImage}>
+          <Image
+            source={require("../../assets/logoConn.png")}
+            style={styles.image}
+            resizeMode="center"
+          ></Image>
         </View>
+      </View>
 
-        <View style={styles.containerInfo}>
-          <Text style={[styles.text, { fontWeight:'200', fontSize: 46}]}> {nome}</Text>
-          <Text style={[styles.text, {fontSize: 14, color:'#AEB5BC'}]}> Desenvolvimento de sistemas </Text>
-        </View>
-        
-        <Text style={[styles.text, {fontSize: 20, color:'#b20000', marginStart:20, marginTop:30, fontWeight:'300'}]}>Edite sua senha:</Text>
+      <View style={styles.containerInfo}>
+        <Text style={[styles.text, { fontWeight: "200", fontSize: 46 }]}>
+          {" "}
+          {nome}
+        </Text>
+        <Text style={[styles.text, { fontSize: 14, color: "#AEB5BC" }]}>
+          {" "}
+          Desenvolvimento de sistemas{" "}
+        </Text>
+      </View>
 
-        <View>
+      <Text
+        style={[
+          styles.text,
+          {
+            fontSize: 20,
+            color: "#b20000",
+            marginStart: 20,
+            marginTop: 30,
+            fontWeight: "300",
+          },
+        ]}
+      >
+        Edite sua senha:
+      </Text>
 
-          <TextInput 
-            style={styles.input} 
-            placeholder="Digite sua senha" 
-            autocorrect={false} 
-            onChangeText={()=>{}}
-          />
+      <View>
+        <TextInput
+          style={styles.input}
+          placeholder="Digite sua senha"
+          autocorrect={false}
+          onChangeText={() => {}}
+        />
 
-          <TextInput 
-            style={styles.input} 
-            placeholder="Confirme sua senha" 
-            autocorrect={false} 
-            onChangeText={()=>{}}
-          />      
-                  
-        </View>
+        <TextInput
+          style={styles.input}
+          placeholder="Confirme sua senha"
+          autocorrect={false}
+          onChangeText={() => {}}
+        />
+      </View>
 
-
-        <TouchableOpacity style={styles.buttonEdit}>
-            <AntDesign name='arrowright' size={32} color='#fff' />
-        </TouchableOpacity>
-
+      <TouchableOpacity style={styles.buttonEdit}>
+        <AntDesign name="arrowright" size={32} color="#fff" />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { //flex principal perfil
-    flex:1
+  container: {
+    //flex principal perfil
+    flex: 1,
   },
-  text:{ //predefinicao de texto pronta
-    color:'#52575D',
+  text: {
+    //predefinicao de texto pronta
+    color: "#52575D",
   },
-  containerInfo:{ //container das informações - nome/curso
-    alignItems:'center',
-    alignSelf:'center',
-    bottom:20,
-    marginTop: 50
+  containerInfo: {
+    //container das informações - nome/curso
+    alignItems: "center",
+    alignSelf: "center",
+    bottom: 20,
+    marginTop: 50,
   },
-  buttonEdit:{ //button arrow editar
-    backgroundColor: '#b20000',
+  buttonEdit: {
+    //button arrow editar
+    backgroundColor: "#b20000",
     width: 90,
     height: 90,
     borderRadius: 100,
-    alignItems:'center',
-    justifyContent:'center',
-    bottom:2,
-    alignSelf:'center',
-    marginEnd:10,
-    marginTop:20
-  },
-  input:{ 
-    width: 300,
-    color: '#b20000',
-    fontSize: 20,
-    borderBottomColor:'#D8D8D8',
-    borderBottomWidth:1,
+    alignItems: "center",
+    justifyContent: "center",
+    bottom: 2,
+    alignSelf: "center",
+    marginEnd: 10,
     marginTop: 20,
-    alignSelf:'center'
   },
-  image:{ //flex image profile
+  input: {
+    width: 300,
+    color: "#b20000",
+    fontSize: 20,
+    borderBottomColor: "#D8D8D8",
+    borderBottomWidth: 1,
+    marginTop: 20,
+    alignSelf: "center",
+  },
+  image: {
+    //flex image profile
     flex: 1,
     height: 132,
     width: 132,
     marginBottom: -60,
-    display: 'flex',
-    alignSelf: "center"
+    display: "flex",
+    alignSelf: "center",
   },
-  profileImage:{ //imagem de perfil
+  profileImage: {
+    //imagem de perfil
     width: 200,
     height: 200,
-    overflow: 'hidden'
+    overflow: "hidden",
   },
 });

@@ -1,111 +1,124 @@
-import React, {useLayoutEffect, useEffect, useState} from 'react';
-import { View, Image, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity, Text } from 'react-native';
-import { Ionicons , MaterialIcons } from '@expo/vector-icons' //importando icons 
+import React, { useLayoutEffect, useEffect, useState } from "react";
+import {
+  View,
+  Image,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity,
+  Text,
+} from "react-native";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons"; //importando icons
 
-import {db} from '../../firebase'
-import CustomListItem from './CustomListItem';
+import { db } from "../../firebase";
+import CustomListItem from "./CustomListItem";
+
+import { Container } from "./MessageStyle";
 
 
 
-import {Container} from './MessageStyle';
-
-export default function ChatList ({navigation}){
+export default function ChatList({ navigation }) {
   const [chats, setChats] = useState([]);
-  
 
-
-  useLayoutEffect(() =>{
+  useLayoutEffect(() => {
     navigation.setOptions({
-        title: "Chat",
-        headerBackTitle: "Chats",
-        headerTitle: () => (
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}
-          >
-      
+      title: "Chat",
+      headerBackTitle: "Chats",
+      headerTitle: () => (
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
           <View style={styles.containerBtn}>
-            <TouchableOpacity style={styles.add} onPress={() => navigation.navigate('AddChat')} >
-              <Ionicons name='ios-add' size={20} color='white' style={{ marginLeft: 2}}></Ionicons>
+            <TouchableOpacity
+              style={styles.add}
+              onPress={() => navigation.navigate("AddChat")}
+            >
+              <Ionicons
+                name="ios-add"
+                size={20}
+                color="white"
+                style={{ marginLeft: 2 }}
+              ></Ionicons>
             </TouchableOpacity>
           </View>
-              
-          </View>
-        )
+        </View>
+      ),
     });
   }, [navigation]);
 
   useEffect(() => {
-    const unsubscribe = db.collection('chats').onSnapshot(snapshot => (
-      setChats(snapshot.docs.map(doc =>({
-        id: doc.id,
-        data: doc.data()
-      })))
-    ))
+    const unsubscribe = db.collection("chats").onSnapshot((snapshot) =>
+      setChats(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      )
+    );
     return unsubscribe;
-  }, [navigation])
-
+  }, [navigation]);
 
   const enterChat = (id, chatName) => {
     navigation.navigate("ChatScreen", {
       id,
-      chatName
-    })
-  }
+      chatName,
+    });
+  };
 
   return (
-    
-      <Container>
-      
-        <View>
-          <Image 
-          style={{  
-            marginTop:45,
-            height:50,
-            width:50,
-            alignSelf:'center',
-            justifyContent:'center'
-            }} 
-            source={require('../../assets/logoConn.png')}>
-          </Image>
-        </View>
-        <SafeAreaView>
-          <ScrollView style={styles.container}>
-            {chats.map(({id, data: { chatName }}) => (
-              <CustomListItem key={id} id={id} chatName={chatName} enterChat={enterChat}/>
-            ))}
-          </ScrollView>
-          </SafeAreaView>
-      </Container>
-    
+    <Container>
+      <View>
+        <Image
+          style={{
+            marginTop: 45,
+            height: 50,
+            width: 50,
+            alignSelf: "center",
+            justifyContent: "center",
+          }}
+          source={require("../../assets/logoConn.png")}
+        ></Image>
+      </View>
+      <SafeAreaView>
+        <ScrollView style={styles.container}>
+          {chats.map(({ id, data: { chatName } }) => (
+            <CustomListItem
+              key={id}
+              id={id}
+              chatName={chatName}
+              enterChat={enterChat}
+            />
+          ))}
+        </ScrollView>
+      </SafeAreaView>
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%'
+    height: "100%",
   },
 
-  add:{
-    backgroundColor: '#b20000',
-    position:'absolute',
-    bottom: '10%',
-    right: '1%',
+  add: {
+    backgroundColor: "#b20000",
+    position: "absolute",
+    bottom: "10%",
+    right: "1%",
     width: 32,
     height: 32,
     borderRadius: 30,
-    alignItems:'center',
-    justifyContent:'center',
-    flexDirection: 'row'
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
   },
 
-  containerBtn:{
-    display: 'flex',
-    alignItems:'center',
+  containerBtn: {
+    display: "flex",
+    alignItems: "center",
     top: 16,
-
-  }
-})
-
+  },
+});

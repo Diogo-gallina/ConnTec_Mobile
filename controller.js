@@ -16,6 +16,7 @@ app.set("view engine", "handlebars");
 
 let usuarios = models.usuarios;
 let token = models.token;
+let verificacao = models.verificacao
 
 //Faz a logica de login
 app.post("/login", async (req, res) => {

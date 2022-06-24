@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.View`
   flex: 1;
@@ -48,13 +48,11 @@ export const UserInfoText = styled.View`
 export const UserName = styled.Text`
   font-size: 14px;
   font-weight: bold;
-
 `;
 
 export const PostTime = styled.Text`
   font-size: 12px;
   color: #666;
-  
 `;
 
 export const MessageText = styled.Text`

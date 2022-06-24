@@ -41,12 +41,12 @@ export default function Home({ navigation }) {
       <View style={{ marginTop: "25%" }}>
         <Text
           style={{
-            fontSize: 50,
+            fontSize: 47,
             color: "#B20000",
             marginLeft: "10%",
           }}
         >
-          Olá {nome}!
+          Olá, {nome}!
         </Text>
 
         
@@ -120,6 +120,6 @@ const styles = StyleSheet.create({
     width: 60,
     borderRadius: 30,
     marginLeft: 7,
-    marginTop: "10%"
+    marginTop: "40%"
   },
 });

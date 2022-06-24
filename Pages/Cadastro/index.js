@@ -14,16 +14,10 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Input } from "react-native-elements";
 
 export default function Cadastro({ navigation }) {
-  const goLogin = () => {
-    navigation.reset({
-      index: 0,
-      routes: [{ name: "SingIn" }],
-    });
-  };
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [senha, setSenha] = useState('');
-  const [confirmSenha, setConfirmSenha] = useState('');
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmSenha, setConfirmSenha] = useState("");
   const [errorEmail, setErrorEmail] = useState(null);
   const [errorName, setErrorName] = useState(null);
   const [errorSenha, setErrorSenha] = useState(null);
@@ -32,18 +26,21 @@ export default function Cadastro({ navigation }) {
   const [hidePass2, setHidePass2] = useState(true);
 
   async function sendForm() {
-    let response = await fetch("https://conntec-mobile.herokuapp.com/cadastro", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        name: name,
-        senha: senha,
-      }),
-    });
+    let response = await fetch(
+      "https://conntec-mobile.herokuapp.com/cadastro",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          name: name,
+          senha: senha,
+        }),
+      }
+    );
     let json = await response.json();
     if (json === "error") {
       setErrorEmail("Email já cadastrado!!");

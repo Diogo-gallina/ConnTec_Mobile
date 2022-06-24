@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-import { StyleSheet,View, TouchableOpacity, Animated } from 'react-native'; //importando componentes
-import Svg, { G,Circle} from 'react-native-svg'; //importando SVG- Formato usado para renderizar imagens vetoriais
-import { AntDesign } from '@expo/vector-icons'; 
+import React, { useEffect, useRef } from "react";
+import { StyleSheet, View, TouchableOpacity, Animated } from "react-native"; //importando componentes
+import Svg, { G, Circle } from "react-native-svg"; //importando SVG- Formato usado para renderizar imagens vetoriais
+import { AntDesign } from "@expo/vector-icons";
 
-export default function NextButton( { percentage, scrollTo }){ //funcao do button da onbording
-  
+export default function NextButton({ percentage, scrollTo }) {
+  //funcao do button da onbording
+
   const size = 128;
   const strokeWidth = 2;
   const center = size / 2;
@@ -15,11 +16,11 @@ export default function NextButton( { percentage, scrollTo }){ //funcao do butto
   const progressRef = useRef(null);
 
   const animation = (toValue) => {
-      return Animated.timing(progressAnimation,{
-          toValue,
-          duration:250,
-          useNativeDriver: true
-      }).start();
+    return Animated.timing(progressAnimation, {
+      toValue,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
   };
 
   useEffect(() => {
@@ -27,63 +28,71 @@ export default function NextButton( { percentage, scrollTo }){ //funcao do butto
   }, [percentage]);
 
   useEffect(() => {
-    progressAnimation.addListener((value) => {
-      const strokeDashoffset = circumference - (circumference * value.value) / 100;
+    progressAnimation.addListener(
+      (value) => {
+        const strokeDashoffset =
+          circumference - (circumference * value.value) / 100;
 
-      if (progressRef?.current) {
-        progressRef.current.setNativeProps({
-            strokeDashoffset
-        });
+        if (progressRef?.current) {
+          progressRef.current.setNativeProps({
+            strokeDashoffset,
+          });
+        }
+      },
 
-      }
-
-    },
-    
-    [percentage]); 
-  
+      [percentage]
+    );
 
     return () => {
-        progressAnimation.removeAllListeners();
+      progressAnimation.removeAllListeners();
     };
-  },[]);
+  }, []);
 
-
-  return(
-      
+  return (
     <View style={styles.container}>
       <Svg width={size} height={size}>
-        <G rotation="-90" origin={center}/>
-          <Circle stroke='#B0C4DE' cx={center} cy={center} r={radius} strokeWidth={strokeWidth}/>
-        
-          <Circle
-            ref={progressRef}
-            stroke='#B20000'
-            cx={center}
-            cy={center}
-            r={radius}
-            strokeWidth={strokeWidth}
-            strokeDasharray={circumference}
-            />
+        <G rotation="-90" origin={center} />
+        <Circle
+          stroke="#B0C4DE"
+          cx={center}
+          cy={center}
+          r={radius}
+          strokeWidth={strokeWidth}
+        />
+
+        <Circle
+          ref={progressRef}
+          stroke="#B20000"
+          cx={center}
+          cy={center}
+          r={radius}
+          strokeWidth={strokeWidth}
+          strokeDasharray={circumference}
+        />
       </Svg>
 
-      <TouchableOpacity onPress={scrollTo} style={styles.button} active activeOpacity={0.6}>
-        <AntDesign name='arrowright' size={32} color='#fff' />
+      <TouchableOpacity
+        onPress={scrollTo}
+        style={styles.button}
+        active
+        activeOpacity={0.6}
+      >
+        <AntDesign name="arrowright" size={32} color="#fff" />
       </TouchableOpacity>
-      
-      </View>
- ); 
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    justifyContent:'center'
+  container: {
+    flex: 1,
+    justifyContent: "center",
   },
-  button:{
-    position:'absolute',
-    backgroundColor:'#B20000',
-    borderRadius:100,
-    padding:20,
-    alignSelf:'center'
-  }
+  button: {
+    position: "absolute",
+    backgroundColor: "#B20000",
+    borderRadius: 100,
+    padding: 20,
+    alignSelf: "center",
+  },
 });
