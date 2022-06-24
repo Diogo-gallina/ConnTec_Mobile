@@ -6,10 +6,7 @@ import React, {
 } from "react";
 import {
   View,
-  ScrollView,
   Text,
-  Button,
-  StyleSheet,
   TouchableOpacity,
 } from "react-native";
 import { Bubble, GiftedChat, Send } from "react-native-gifted-chat";
@@ -19,7 +16,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 
-import firebase from "firebase";
 import { db } from "../../firebase";
 
 
@@ -65,7 +61,7 @@ export default function ChatScreen({ navigation, route }) {
         </View>
       ),
     });
-  }, [navigation]);
+  }, []);
 
   useEffect(() => {
     const unsubscribe = db
@@ -83,8 +79,8 @@ export default function ChatScreen({ navigation, route }) {
           }))
         )
       );
-    return unsubscribe;
-  }, [10]);
+      return unsubscribe;
+  }, []);
 
   const onSend = useCallback((messages = []) => {
     setMessages((previousMessages) =>
