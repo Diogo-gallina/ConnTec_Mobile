@@ -14,6 +14,7 @@ import NewPassword from "../Pages/CRUD/editPassword";
 import Chat from "../Pages/Chat/ChatList";
 import ChatScreen from "../Pages/Chat/ChatScreen";
 import AddChat from "../Pages/Chat/AddChat";
+import News from "../Pages/News";
 
 const Stack = createStackNavigator();
 
@@ -89,6 +90,12 @@ export default function MyStack() {
       <Stack.Screen
         name="NewPassword"
         component={NewPassword}
+        options={{ headerShown: false }}
+      />
+
+    <Stack.Screen
+        name="News"
+        component={News}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

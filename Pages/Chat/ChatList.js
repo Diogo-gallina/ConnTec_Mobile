@@ -22,7 +22,7 @@ export default function ChatList({ navigation }) {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "Chat",
-      headerBackTitle: "Chats",
+      
       headerTitle: () => (
         <View
           style={{
@@ -119,5 +119,6 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     top: 16,
+    left: 60
   },
 });

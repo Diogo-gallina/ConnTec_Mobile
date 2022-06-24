@@ -167,7 +167,7 @@ export default function Login({ navigation }) {
       >
         <View>
           <Image
-            style={{ marginTop: "10%", height: 200, width: 200 }}
+            style={{ marginTop: "8%", height: 200, width: 200 }}
             source={require("../../assets/logoConn.png")}
           ></Image>
         </View>
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#B20000",
     fontSize: 10,
     borderRadius: 50,
-    height: "10%",
+    height: "8%",
     marginTop: "5%",
     alignItems: "center",
     justifyContent: "center",
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     padding: "5%",
     borderBottomColor: "#D8D8D8",
-    borderBottomWidth: 1,
+    borderBottomWidth: 1
   },
   containerInput: {
     alignItems: "center",

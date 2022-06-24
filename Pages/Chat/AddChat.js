@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Button, Input } from "react-native-elements";
 
 import { db } from "../../firebase";
@@ -35,7 +35,14 @@ const AddChat = ({ navigation }) => {
         onSubmitEditing={createChat}
         style={styles.input}
       />
-      <Button disabled={!input} onPress={createChat} title="Criar" />
+
+      <TouchableOpacity 
+        style={styles.createBtn} 
+        disabled={!input}
+        onPress={createChat}
+      >
+        <Text style={styles.createTxt}>Criar</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -48,5 +55,25 @@ const styles = StyleSheet.create({
   },
   input: {
     marginTop: 120,
+    marginLeft:20,
+    marginRight:50
   },
+
+  createBtn:{
+    backgroundColor: "#b20000",
+    width: 300,
+    height: 50,
+    borderRadius: 25,
+    alignItems: "center",
+    justifyContent: "center",
+    bottom: 2,
+    alignSelf: "center",
+    marginEnd: 10,
+    marginTop: 30,
+  },
+
+  createTxt:{
+    fontSize: 17,
+    color: "#FFF",
+  }
 });

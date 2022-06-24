@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     bottom: 2,
     alignSelf: "center",
     marginEnd: 10,
-    marginTop: 20,
+    marginTop: 30,
   },
   input: {
     width: 300,

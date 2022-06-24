@@ -38,7 +38,7 @@ export default function Home({ navigation }) {
         ></Image>
       </View>
 
-      <View style={{ marginTop: "25%" }}>
+      <View style={{ marginTop: "23%" }}>
         <Text
           style={{
             fontSize: 47,
@@ -54,7 +54,7 @@ export default function Home({ navigation }) {
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          style={{ marginTop: '10%', marginLeft: "10%", marginRight: "1%" }}
+          style={{ bottom: 75, marginLeft: "10%", marginRight: "1%" }}
         >
           <TouchableOpacity
             style={[styles.buttonsTab, { backgroundColor: "#ffac06" }]}

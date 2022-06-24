@@ -92,15 +92,15 @@ const styles = StyleSheet.create({
   buttonEdit: {
     //buttons editar - name/E-mail/password
     backgroundColor: "#b20000",
-    width: 90,
-    height: 90,
-    borderRadius: 100,
+    width: 120,
+    height: 50,
+    borderRadius: 25,
     alignItems: "center",
     justifyContent: "center",
     bottom: 2,
     alignSelf: "center",
     marginEnd: 10,
-    marginTop: 20,
+    marginTop: 30,
   },
   txtButtonEdits: {
     //texto dos buttons editar - name/E-mail/password
