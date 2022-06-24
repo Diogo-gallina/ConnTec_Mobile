@@ -13,8 +13,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons"; //importando icons
 import * as ImagePicker from "expo-image-picker"; //importando o imagePicker para a imagem de perfil
 
+
+import { storage} from '../../firebase'
+
 export default function Profile({ navigation }) {
   const [refreshing, setRefreshing] = React.useState(false);
+  const [nome, setNome] = useState(null);
+  const [image, setImage] = React.useState(null);
+  const [img, setImg] = useState("");
+
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -25,7 +32,7 @@ export default function Profile({ navigation }) {
     return new Promise((resolve) => setTimeout(resolve, timeout));
   };
 
-  const [nome, setNome] = useState(null);
+  
 
   useEffect(() => {
     async function getNome() {
@@ -36,7 +43,7 @@ export default function Profile({ navigation }) {
     getNome();
   }, []);
 
-  const [image, setImage] = React.useState(null);
+  
 
   async function escolherImagem() {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -49,6 +56,10 @@ export default function Profile({ navigation }) {
       setImage(result.uri);
     }
   }
+
+  
+
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -69,6 +80,7 @@ export default function Profile({ navigation }) {
           {image && (
             <Image
               source={{ uri: image }}
+              onChange={(e) => setImg(e.target.files[0])}
               style={{
                 width: 200,
                 height: 200,

@@ -27,7 +27,7 @@ const CustomListItem = ({ id, chatName, enterChat }) => {
       );
 
     return unsubscribe;
-  });
+  }, []);
 
   return (
     <Card onPress={() => enterChat(id, chatName)} key={id} bottomDivider>

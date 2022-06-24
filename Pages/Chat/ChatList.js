@@ -6,9 +6,8 @@ import {
   ScrollView,
   SafeAreaView,
   TouchableOpacity,
-  Text,
 } from "react-native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons"; //importando icons
+import { Ionicons } from "@expo/vector-icons"; //importando icons
 
 import { db } from "../../firebase";
 import CustomListItem from "./CustomListItem";
@@ -50,21 +49,21 @@ export default function ChatList({ navigation }) {
   }, [navigation]);
 
   useEffect(() => {
-    const unsubscribe = db.collection("chats").onSnapshot((snapshot) =>
-      setChats(
-        snapshot.docs.map((doc) => ({
+     const unsubscribe =  db.collection("chats").onSnapshot((snapshot) =>
+      setChats( () =>
+         snapshot.docs.map((doc) => ({
           id: doc.id,
-          data: doc.data(),
+          data: doc.data()
         }))
       )
     );
     return unsubscribe;
-  }, [navigation]);
+  }, []);
 
   const enterChat = (id, chatName) => {
     navigation.navigate("ChatScreen", {
       id,
-      chatName,
+      chatName
     });
   };
 
@@ -84,14 +83,14 @@ export default function ChatList({ navigation }) {
       </View>
       <SafeAreaView>
         <ScrollView style={styles.container}>
-          {chats.map(({ id, data: { chatName } }) => (
+           {chats.map(({ id, data: { chatName } }) => (
             <CustomListItem
               key={id}
               id={id}
               chatName={chatName}
               enterChat={enterChat}
             />
-          ))}
+          ))} 
         </ScrollView>
       </SafeAreaView>
     </Container>
