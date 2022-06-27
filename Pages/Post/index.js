@@ -42,7 +42,7 @@ export default function Post({ navigation }) {
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            style={{ marginTop: "5%", marginLeft: "10%", marginRight: "5%" }}
+            style={{ marginTop: "5%", marginLeft: "1%", marginRight: "5%" }}
           >
             <TouchableOpacity
               style={[styles.buttonsTab, { backgroundColor: "#ffac06" }]}
@@ -74,7 +74,7 @@ export default function Post({ navigation }) {
 
             <TouchableOpacity
               style={[styles.buttonsTab, { backgroundColor: "#bb32fe" }]}
-              onPress={() => navigation.navigate("Crud")}
+              onPress={() => navigation.navigate("edituser")}
             >
               <Icon name="dots-horizontal" color="white" size={32} />
             </TouchableOpacity>
