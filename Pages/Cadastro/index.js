@@ -151,7 +151,7 @@ export default function Cadastro({ navigation }) {
       >
         <View>
           <Image
-            style={{ marginTop: "10%", height: 200, width: 200 }}
+            style={{ marginTop: "5%", height: 200, width: 200 }}
             source={require("../../assets/logoConn.png")}
           ></Image>
         </View>
@@ -302,11 +302,11 @@ const styles = StyleSheet.create({
   eye: {
     position: "absolute",
     right: "3%",
-    top: "59%",
+    top: "54%",
   },
   eye2: {
     position: "absolute",
     right: "3%",
-    top: "85%",
+    top: "80%",
   },
 });

@@ -135,9 +135,7 @@ export default function Login({ navigation }) {
     }
     return !error;
   };
-
-  //Chamada para verificação das validações e envio do formulario
-
+//Chamada para verificação das validações e envio do formulario
   //Verificar se o login é verdadeiro e chamar a biometria
   useEffect(() => {
     verifyLogin();
@@ -151,7 +149,8 @@ export default function Login({ navigation }) {
   const salvar = () => {
     if (validar()) {
       biometric();
-    } else {
+    } 
+    else if(validar()) {
       sendForm();
     }
   };
