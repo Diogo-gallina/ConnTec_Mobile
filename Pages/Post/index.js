@@ -28,7 +28,7 @@ export default function Post({ navigation }) {
       <View>
         <Image
           style={{
-            marginTop: "13%",
+            marginTop: "11%",
             bottom:10,
             height: 60,
             width: 60,
@@ -86,7 +86,7 @@ export default function Post({ navigation }) {
             
           <View style={styles.feedContainer}>
 
-            <TouchableOpacity onPress={() => navigation.navigate("News")}>
+            <TouchableOpacity onPress={() => navigation.navigate("News1")}>
 
               <View style={styles.imgContainer}>
                 <Image
@@ -109,6 +109,29 @@ export default function Post({ navigation }) {
 
             </TouchableOpacity>  
 
+            <TouchableOpacity onPress={() => navigation.navigate("News2")}>
+
+              <View style={styles.imgContainer}>
+                <Image
+                  style={styles.post}
+                  source={require("../../assets/post3.jpg")}
+                />
+              </View>
+
+              <View style={styles.containerTitlePost}>  
+                  <Text style={styles.txtTitle}>
+                    Palestras: Ingressando no mercado de trabalho
+                  </Text>
+              </View>
+
+              <View style={styles.description}>
+                  <Text style={styles.txtDescription}>
+                    Quinta-feira dia 30/06 receberemos na Etec Taboão da Serra um convidado especial que vem com a proposta de direcionar o futuro de nossos alunos.
+                  </Text>
+              </View>
+
+            </TouchableOpacity>
+
             <TouchableOpacity>
 
               <View style={styles.imgContainer}>
@@ -120,40 +143,19 @@ export default function Post({ navigation }) {
 
               <View style={styles.containerTitlePost}>  
                   <Text style={styles.txtTitle}>
-                    Sábado letivo: Projeto Gamer
+                    Apresentação de TCC dos alunos do 3º modular
                   </Text>
               </View>
 
               <View style={styles.description}>
                   <Text style={styles.txtDescription}>
-                  Sábado letivo do dia 25/06 reúniremos os alunos para um evento gamer, integrando os alunos do etim e modular com diversos jogos!
+                  Terça-feira dia 28/06 os alunos do 3º modular irão fazer as apresentações de seus TCCs para publico aberto. 
                   </Text>
               </View>
 
             </TouchableOpacity>
 
-            <TouchableOpacity>
-
-              <View style={styles.imgContainer}>
-                <Image
-                  style={styles.post}
-                  source={require("../../assets/post3.jpg")}
-                />
-              </View>
-
-              <View style={styles.containerTitlePost}>  
-                  <Text style={styles.txtTitle}>
-                    Monitoria: Criando formulário com Mysql e php  
-                  </Text>
-              </View>
-
-              <View style={styles.description}>
-                  <Text style={styles.txtDescription}>
-                    Aprenda a fazer um formulário em html e php com os integrantes da monitoria, dia 28/ as 18:00 horas.
-                  </Text>
-              </View>
-
-            </TouchableOpacity>
+            
           </View>    
         
 
@@ -188,11 +190,12 @@ const styles = StyleSheet.create({
   },
 
   containerTitlePost: {
-    width: 300,
+    width: 330,
     height: 60,
     borderRadius: 100,
     marginTop: 10,
-    marginLeft: 45,
+    marginLeft: 50,
+    marginRight:20
     
   },
 
@@ -227,9 +230,7 @@ const styles = StyleSheet.create({
 
   description: {
     // container descrição do post
-    marginLeft: 100,
-    marginRight: 40,
-    marginLeft: 65,
+    marginLeft: 45,
     marginRight: 55,
     bottom: 3
   },

@@ -31,7 +31,7 @@ export default function PoliticaDeSeguranca({ navigation }) {
 
                 <View style={styles.containerTitle}>  
                     <Text style={styles.txtTitulo}>
-                    Política de Segurança – ConnTec
+                    Política de Segurança 
                     </Text>
                 </View>  
 
@@ -407,7 +407,9 @@ const styles = StyleSheet.create({
 
   containerTitle:{
     alignItems:"center",
-    marginTop:65
+    alignSelf:"center",
+    marginTop:55,
+    width: '90%'
   },
 
   txtTitulo:{
@@ -420,8 +422,8 @@ const styles = StyleSheet.create({
   containerTxt:{
     alignSelf:"center",
     alignItems:"center",
-    marginTop:45,
-    width:350
+    marginTop:30,
+    width:'90%'
   },
 
   txt:{
@@ -435,7 +437,7 @@ const styles = StyleSheet.create({
     alignItems:"center",
     alignSelf:"center",
     marginTop:30,
-    width:370,
+    width:"90%",
     
   },
 

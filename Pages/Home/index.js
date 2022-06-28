@@ -41,7 +41,7 @@ export default function Home({ navigation }) {
       <View style={{ marginTop: "25%" }}>
         <Text
           style={{
-            fontSize: 44 ,
+            fontSize: 40 ,
             color: "#B20000",
             marginLeft: "10%",
           }}

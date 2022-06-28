@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   },
   interruptor: {
     marginLeft: "80%",
-    bottom: "160%",
+    bottom: "190%",
   },
   containerMain: {
     backgroundColor: "#f5f5f5",

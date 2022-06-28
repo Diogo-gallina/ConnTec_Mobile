@@ -14,7 +14,8 @@ import NewPassword from "../Pages/CRUD/editPassword";
 import Chat from "../Pages/Chat/ChatList";
 import ChatScreen from "../Pages/Chat/ChatScreen";
 import AddChat from "../Pages/Chat/AddChat";
-import News from "../Pages/News";
+import News1 from "../Pages/News/news1";
+import News2 from "../Pages/News/news2";
 import RecoverPassword from "../Pages/RecoverPassword";
 import PoliticaDeSeguranca from "../Pages/PoliticaDeSeguranca";
 
@@ -96,8 +97,14 @@ export default function MyStack() {
       />
 
       <Stack.Screen
-        name="News"
-        component={News}
+        name="News1"
+        component={News1}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="News2"
+        component={News2}
         options={{ headerShown: false }}
       />
 

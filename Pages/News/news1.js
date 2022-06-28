@@ -10,10 +10,7 @@ import {
   FlatList
 } from "react-native"; //importando componentes
 
-import { Ionicons } from "@expo/vector-icons"; //importando icons
-import Icon from "@expo/vector-icons/MaterialCommunityIcons";
-
-export default function News({ navigation }) {
+export default function News1() {
 
   return (
     <View style={styles.container}>
