@@ -34,5 +34,7 @@
     "web": {
       "favicon": "./assets/logoConn.png"
     }
-  }
+  },
+  "owner": "conntec-mobile",
+  "slug": "conntec-mobile"
 }
