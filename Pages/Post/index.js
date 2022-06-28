@@ -74,7 +74,7 @@ export default function Post({ navigation }) {
 
             <TouchableOpacity
               style={[styles.buttonsTab, { backgroundColor: "#bb32fe" }]}
-              onPress={() => navigation.navigate("edituser")}
+              onPress={() => navigation.navigate("EditUser")}
             >
               <Icon name="dots-horizontal" color="white" size={32} />
             </TouchableOpacity>
