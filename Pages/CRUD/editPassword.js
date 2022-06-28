@@ -25,7 +25,7 @@ export default function NewPassword({ navigation }) {
   }, []);
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ alignSelf: "center" }}>
+      <View style={{ alignSelf: "center", }}>
         <View style={styles.profileImage}>
           <Image
             source={require("../../assets/logoConn.png")}
@@ -62,9 +62,17 @@ export default function NewPassword({ navigation }) {
       </Text>
 
       <View style={styles.containerInput}>
+
         <Input
           style={styles.input}
-          placeholder="Digite sua senha"
+          placeholder="Digite sua antiga senha"
+          autocorrect={false}
+          onChangeText={() => {}}
+        />
+
+        <Input
+          style={styles.input}
+          placeholder="Digite sua nova senha"
           autocorrect={false}
           onChangeText={() => {}}
         />
@@ -111,7 +119,7 @@ const styles = StyleSheet.create({
     bottom: 2,
     alignSelf: "center",
     marginEnd: 10,
-    marginTop: 20,
+    marginTop: 1,
   },
 
   containerInput:{
@@ -124,15 +132,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     borderBottomColor: "#D8D8D8",
     borderBottomWidth: 1,
-    marginTop: 20,
+    marginTop: 15,
     alignSelf: "center",
     marginLeft:20
   },
   image: {
     //flex image profile
     flex: 1,
-    height: 132,
-    width: 132,
+    height: 122,
+    width: 122,
     marginBottom: -60,
     display: "flex",
     alignSelf: "center",

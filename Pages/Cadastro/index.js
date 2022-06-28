@@ -93,7 +93,7 @@ export default function Cadastro({ navigation }) {
     setErrorSenha(null);
     setErrorConfirmSenha(null);
 
-    const re = /^[a-z0-9.]([@])etec.sp.gov.br$/i;
+    const re = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}etec.sp.gov.br$/i;
     const re2 = /^([a-z]+[,.]?[ ]?|[a-z]+['-]?)+$/i;
 
     if (!re.test(String(email).toLowerCase())) {

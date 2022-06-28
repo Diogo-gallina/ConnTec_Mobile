@@ -9,7 +9,7 @@ export default [
 
   {
     id: "2",
-    title: " Postagem & Noticias",
+    title: "Noticias",
     description: "Esteja ligado as novidades da escola.",
     image: require("../../assets/iconNews.png"),
   },

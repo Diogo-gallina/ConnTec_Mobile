@@ -116,7 +116,7 @@ export default function Login({ navigation }) {
     setErrorSenha(null);
 
 
-    const re = /^[a-z0-9.]([@])etec.sp.gov.br$/i;
+    const re = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}etec.sp.gov.br$/i;
 
     if (!re.test(String(email).toLowerCase())) {
       setErrorEmail("Preencha seu E-mail corretamente!");
