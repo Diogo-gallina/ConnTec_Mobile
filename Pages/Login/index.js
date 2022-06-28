@@ -115,7 +115,9 @@ export default function Login({ navigation }) {
     setErrorEmail(null);
     setErrorSenha(null);
 
-    const re = /^([a-z]){1,}([a-z0-9._-]){1,}([@])etec.sp.gov.br$/i;
+
+    const re = /^[a-z0-9.]([@])etec.sp.gov.br$/i;
+
     if (!re.test(String(email).toLowerCase())) {
       setErrorEmail("Preencha seu E-mail corretamente!");
       error = true;
@@ -207,7 +209,7 @@ export default function Login({ navigation }) {
           </ScrollView>
         </KeyboardAvoidingView>
 
-        <TouchableOpacity onPress={() => navigation.navigate("")}>
+        <TouchableOpacity onPress={() => navigation.navigate("RecoverPassword")}>
           <Text style={styles.txtForgot}>Esqueceu sua Senha?</Text>
         </TouchableOpacity>
 
@@ -234,7 +236,7 @@ export default function Login({ navigation }) {
               fontSize: 20,
               color: "#ABB4BD",
               textAlign: "center",
-              marginTop: "10%",
+              marginTop: "8%",
             }}
           >
             Não tem uma conta? <Text style={styles.txtForgot}>Registre-se</Text>
@@ -261,8 +263,8 @@ const styles = StyleSheet.create({
     //button de login
     backgroundColor: "#B20000",
     fontSize: 10,
-    borderRadius: 50,
-    height: "10%",
+    borderRadius: 40,
+    height: "8%",
     marginTop: "5%",
     alignItems: "center",
     justifyContent: "center",

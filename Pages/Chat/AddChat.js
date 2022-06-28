@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { Button, Input } from "react-native-elements";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 import { db } from "../../firebase";
 
@@ -9,8 +10,8 @@ const AddChat = ({ navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: "Adicione um novo chat",
-      headerBackTitle: "Chats",
+      title: "Crie um grupo",
+      headerBackTitle: false,
     });
   }, [navigation]);
 
@@ -35,7 +36,12 @@ const AddChat = ({ navigation }) => {
         onSubmitEditing={createChat}
         style={styles.input}
       />
-      <Button disabled={!input} onPress={createChat} title="Criar" />
+
+      <TouchableOpacity disabled={!input} onPress={createChat} style={styles.btnCreate}>
+
+        <Text style={{color:"#fff"}}>Criar</Text>
+
+      </TouchableOpacity>
     </View>
   );
 };
@@ -47,6 +53,23 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   input: {
-    marginTop: 120,
+    width:50,
+    alignSelf:"center",
+    display:'flex',
+    left:20,
+    marginTop:"25%",
+    marginLeft:"3%"
   },
+  btnCreate:{
+    backgroundColor: "#b20000",
+    fontSize: 10,
+    borderRadius: 40,
+    height: "25%",
+    width:"90%",
+    marginTop: "5%",
+    alignSelf: "center",
+    alignItems:"center",
+    justifyContent: "center",
+
+  }
 });
