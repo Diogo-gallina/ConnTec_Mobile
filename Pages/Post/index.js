@@ -28,7 +28,8 @@ export default function Post({ navigation }) {
       <View>
         <Image
           style={{
-            marginTop: "20%",
+            marginTop: "13%",
+            bottom:10,
             height: 60,
             width: 60,
             alignSelf: "center",
@@ -42,7 +43,7 @@ export default function Post({ navigation }) {
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            style={{ marginTop: "5%", marginLeft: "1%", marginRight: "5%" }}
+            style={{ marginTop: "5%", marginLeft: "7%", marginRight: "5%" }}
           >
             <TouchableOpacity
               style={[styles.buttonsTab, { backgroundColor: "#ffac06" }]}
@@ -74,103 +75,88 @@ export default function Post({ navigation }) {
 
             <TouchableOpacity
               style={[styles.buttonsTab, { backgroundColor: "#bb32fe" }]}
-              onPress={() => navigation.navigate("edituser")}
+              onPress={() => navigation.navigate("EditUser")}
             >
               <Icon name="dots-horizontal" color="white" size={32} />
             </TouchableOpacity>
           </ScrollView>
 
-          <View>
-            <View>
-              <Image
-                style={styles.post}
-                source={require("../../assets/post1.jpg")}
-              />
-            </View>
+          
 
-            <View style={styles.containerTitlePost}>
-              <Image
-                source={require("../../assets/icon.jpg")}
-                style={styles.imageUser}
-                resizeMode="center"
-              ></Image>
-              <Text style={[styles.txt, { marginLeft: 60, bottom: 30 }]}>
-                Gisele@
-              </Text>
-              <Text
-                style={[
-                  styles.txt,
-                  {
-                    marginLeft: 70,
-                    fontWeight: "600",
-                    color: "green",
-                    bottom: 30,
-                  },
-                ]}
-              >
-                {" "}
-                Xbox Favorite!!{" "}
-              </Text>
-            </View>
+            
+          <View style={styles.feedContainer}>
 
-            <View>
-              <Text style={styles.user}>Gisele@:</Text>
+            <TouchableOpacity onPress={() => navigation.navigate("News")}>
+
+              <View style={styles.imgContainer}>
+                <Image
+                  style={styles.post}
+                  source={require("../../assets/post1.jpg")}
+                />
+              </View>
+
+              <View style={styles.containerTitlePost}>  
+                  <Text style={styles.txtTitle}>
+                    Monitoria: Criando formulário com Mysql e php  
+                  </Text>
+              </View>
 
               <View style={styles.description}>
-                <Text style={styles.txt}>
-                  Bottom line: Xbox Series X is Microsoft's best Xbox console
-                  yet, sporting powerful and bold hardware that won't
-                  disappoint.
-                </Text>
+                  <Text style={styles.txtDescription}>
+                    Aprenda a fazer um formulário em html e php com os integrantes da monitoria, dia 28/ as 18:00 horas.
+                  </Text>
               </View>
-            </View>
-          </View>
 
-          <View style={{ bottom: 100 }}>
-            <View>
-              <Image
-                style={styles.post}
-                source={require("../../assets/post2.jpg")}
-              />
-            </View>
+            </TouchableOpacity>  
 
-            <View style={styles.containerTitlePost}>
-              <Image
-                source={require("../../assets/icon2.jpg")}
-                style={styles.imageUser}
-                resizeMode="center"
-              ></Image>
-              <Text style={[styles.txt, { marginLeft: 60, bottom: 30 }]}>
-                CesarAa
-              </Text>
-              <Text
-                style={[
-                  styles.txt,
-                  {
-                    marginLeft: 70,
-                    fontWeight: "600",
-                    color: "green",
-                    bottom: 30,
-                  },
-                ]}
-              >
-                {" "}
-                Xbox Favorite!!{" "}
-              </Text>
-            </View>
+            <TouchableOpacity>
 
-            <View>
-              <Text style={styles.user}>Gisele@:</Text>
+              <View style={styles.imgContainer}>
+                <Image
+                  style={styles.post}
+                  source={require("../../assets/post2.jpg")}
+                />
+              </View>
+
+              <View style={styles.containerTitlePost}>  
+                  <Text style={styles.txtTitle}>
+                    Sábado letivo: Projeto Gamer
+                  </Text>
+              </View>
 
               <View style={styles.description}>
-                <Text style={styles.txt}>
-                  Bottom line: Xbox Series X is Microsoft's best Xbox console
-                  yet, sporting powerful and bold hardware that won't
-                  disappoint.
-                </Text>
+                  <Text style={styles.txtDescription}>
+                  Sábado letivo do dia 25/06 reúniremos os alunos para um evento gamer, integrando os alunos do etim e modular com diversos jogos!
+                  </Text>
               </View>
-            </View>
-          </View>
+
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+
+              <View style={styles.imgContainer}>
+                <Image
+                  style={styles.post}
+                  source={require("../../assets/post3.jpg")}
+                />
+              </View>
+
+              <View style={styles.containerTitlePost}>  
+                  <Text style={styles.txtTitle}>
+                    Monitoria: Criando formulário com Mysql e php  
+                  </Text>
+              </View>
+
+              <View style={styles.description}>
+                  <Text style={styles.txtDescription}>
+                    Aprenda a fazer um formulário em html e php com os integrantes da monitoria, dia 28/ as 18:00 horas.
+                  </Text>
+              </View>
+
+            </TouchableOpacity>
+          </View>    
+        
+
         </ScrollView>
       </View>
     </View>
@@ -182,6 +168,7 @@ const styles = StyleSheet.create({
     //container principal
     flex: 1,
   },
+
   buttonsTab: {
     //buttons da tab-bar do header
     alignItems: "center",
@@ -192,13 +179,29 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 
+  feedContainer:{
+    alignItems:'center'
+  },
+
+  imgContainer:{
+    alignItems:'center'
+  },
+
   containerTitlePost: {
-    backgroundColor: "white",
-    width: 260,
+    width: 300,
     height: 60,
-    marginLeft: 85,
-    bottom: 70,
     borderRadius: 100,
+    marginTop: 10,
+    marginLeft: 45,
+    
+  },
+
+  txtTitle: {
+    
+    fontFamily: "HelveticaNeue",
+    color: "#b20000",
+    fontSize:21, 
+    fontWeight:"bold"
   },
 
   post: {
@@ -206,8 +209,9 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     height: 400,
     width: 290,
-    marginLeft: 70,
-    marginTop: 70,
+    height: 335,
+    width: 340,
+    marginTop: 40,
     borderRadius: 20,
   },
 
@@ -220,21 +224,18 @@ const styles = StyleSheet.create({
     marginTop: 13,
     marginLeft: 20,
   },
-  txt: {
-    //predefinição de text
-    fontFamily: "HelveticaNeue",
-    color: "gray",
-  },
-  user: {
-    //nome do postador
-    bottom: 57,
-    marginLeft: 100,
-    fontWeight: "500",
-  },
+
   description: {
     // container descrição do post
     marginLeft: 100,
     marginRight: 40,
-    bottom: 55,
+    marginLeft: 65,
+    marginRight: 55,
+    bottom: 3
+  },
+
+  txtDescription:{
+    fontFamily: "HelveticaNeue",
+    color: "gray",
   },
 });

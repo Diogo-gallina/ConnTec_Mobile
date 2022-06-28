@@ -151,7 +151,7 @@ export default function Cadastro({ navigation }) {
       >
         <View>
           <Image
-            style={{ marginTop: "5%", height: 200, width: 200 }}
+            style={{ marginTop: "4%", height: 200, width: 200 }}
             source={require("../../assets/logoConn.png")}
           ></Image>
         </View>
@@ -235,7 +235,7 @@ export default function Cadastro({ navigation }) {
               style={{
                 color: "#fff",
                 fontWeight: "600",
-                fontSize: 20,
+                fontSize: 19,
               }}
             >
               Registrar-se
@@ -249,10 +249,10 @@ export default function Cadastro({ navigation }) {
               fontSize: 20,
               color: "#ABB4BD",
               textAlign: "center",
-              marginTop: "10%",
+              marginTop: "5%",
             }}
           >
-            Tem uma conta? <Text style={styles.txtForgot}>Entre Agora!</Text>
+            Já tem uma conta? <Text style={styles.txtForgot}>Entre Agora!</Text>
           </Text>
         </TouchableOpacity>
       </View>
@@ -276,8 +276,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#B20000",
     fontSize: 20,
     borderRadius: 50,
-    height: "10%",
-    marginTop: "5%",
+    height: "8%",
+    marginTop: "4%",
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "rgba(255, 22, 84, 0.24)",
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
   containerInput: {
     alignItems: "center",
     width: "90%",
-    marginTop: "10%",
+    marginTop: "2%",
   },
   eye: {
     position: "absolute",

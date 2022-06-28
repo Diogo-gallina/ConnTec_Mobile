@@ -127,7 +127,7 @@ export default function Profile({ navigation }) {
           <Ionicons name="notifications" size={24} color="white"></Ionicons>
         </View>
 
-        <ScrollView
+        <ScrollView 
           vertical
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollMensage}
@@ -328,5 +328,7 @@ const styles = StyleSheet.create({
     fontWeight: "300",
     position: "absolute",
   },
-  scrollMensage: {},
+  scrollMensage: {
+    
+  },
 });

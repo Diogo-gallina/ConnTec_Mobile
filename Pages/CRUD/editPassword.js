@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AntDesign } from "@expo/vector-icons";
+import { Input } from "react-native-elements";
 
 export default function NewPassword({ navigation }) {
   const [nome, setNome] = useState(null);
@@ -60,15 +61,15 @@ export default function NewPassword({ navigation }) {
         Edite sua senha:
       </Text>
 
-      <View>
-        <TextInput
+      <View style={styles.containerInput}>
+        <Input
           style={styles.input}
           placeholder="Digite sua senha"
           autocorrect={false}
           onChangeText={() => {}}
         />
 
-        <TextInput
+        <Input
           style={styles.input}
           placeholder="Confirme sua senha"
           autocorrect={false}
@@ -112,6 +113,11 @@ const styles = StyleSheet.create({
     marginEnd: 10,
     marginTop: 20,
   },
+
+  containerInput:{
+    width:350,
+    alignSelf:"center"
+  },
   input: {
     width: 300,
     color: "#b20000",
@@ -120,6 +126,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginTop: 20,
     alignSelf: "center",
+    marginLeft:20
   },
   image: {
     //flex image profile

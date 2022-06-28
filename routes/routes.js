@@ -14,6 +14,9 @@ import NewPassword from "../Pages/CRUD/editPassword";
 import Chat from "../Pages/Chat/ChatList";
 import ChatScreen from "../Pages/Chat/ChatScreen";
 import AddChat from "../Pages/Chat/AddChat";
+import News from "../Pages/News";
+import RecoverPassword from "../Pages/RecoverPassword";
+import PoliticaDeSeguranca from "../Pages/PoliticaDeSeguranca";
 
 const Stack = createStackNavigator();
 
@@ -91,6 +94,24 @@ export default function MyStack() {
         component={NewPassword}
         options={{ headerShown: false }}
       />
+
+      <Stack.Screen
+        name="News"
+        component={News}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="RecoverPassword"
+        component={RecoverPassword}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="PoliticaDeSeguranca"
+        component={PoliticaDeSeguranca}
+        options={{ headerShown: false }}
+      />      
     </Stack.Navigator>
   );
 }

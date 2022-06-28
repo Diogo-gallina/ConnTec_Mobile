@@ -22,7 +22,7 @@ export default function ChatList({ navigation }) {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "Chat",
-      headerBackTitle: "Chats",
+      headerBackTitle: false,
       headerTitle: () => (
         <View
           style={{
@@ -39,7 +39,7 @@ export default function ChatList({ navigation }) {
                 name="ios-add"
                 size={20}
                 color="white"
-                style={{ marginLeft: 2 }}
+                style={{ marginLeft:2  }}
               ></Ionicons>
             </TouchableOpacity>
           </View>
@@ -113,6 +113,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
+    display:"flex",
+    right:-50
   },
 
   containerBtn: {
