@@ -47,7 +47,7 @@ export default function Cadastro({ navigation }) {
     } else {
       Alert.alert(
         "Seu usuario foi cadastrado com sucesso!",
-        "Logue com ele agora! ;D",
+        "Logue com ele agora!",
         [
           {
             text: "Ir para o login",
@@ -93,9 +93,8 @@ export default function Cadastro({ navigation }) {
     setErrorSenha(null);
     setErrorConfirmSenha(null);
 
-    const re =
-      /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i;
-    const re2 = /^[A-ZÀ-Ÿ][A-zÀ-ÿ']+\s([A-zÀ-ÿ']\s?)*[A-ZÀ-Ÿ][A-zÀ-ÿ']+$/i;
+    const re = /^([a-z]){1,}([a-z0-9._-]){1,}([@])etec.sp.gov.br$/i;
+    const re2 = /^([a-z]+[,.]?[ ]?|[a-z]+['-]?)+$/i;
 
     if (!re.test(String(email).toLowerCase())) {
       setErrorEmail("Preencha seu E-mail corretamente.");
@@ -151,7 +150,7 @@ export default function Cadastro({ navigation }) {
       >
         <View>
           <Image
-            style={{ marginTop: "5%", height: 200, width: 200 }}
+            style={{ marginTop: "3%", height: 200, width: 200 }}
             source={require("../../assets/logoConn.png")}
           ></Image>
         </View>
@@ -287,17 +286,17 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   input: {
-    width: "95%",
+    width: "30%",
     color: "#b20000",
     fontSize: 20,
-    padding: "5%",
+    padding: "1%",
     borderBottomColor: "#D8D8D8",
     borderBottomWidth: 1,
   },
   containerInput: {
     alignItems: "center",
     width: "90%",
-    marginTop: "10%",
+    marginTop: "1%",
   },
   eye: {
     position: "absolute",

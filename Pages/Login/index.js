@@ -115,8 +115,7 @@ export default function Login({ navigation }) {
     setErrorEmail(null);
     setErrorSenha(null);
 
-    const re =
-      /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i;
+    const re = /^([a-z]){1,}([a-z0-9._-]){1,}([@])etec.sp.gov.br$/i;
     if (!re.test(String(email).toLowerCase())) {
       setErrorEmail("Preencha seu E-mail corretamente!");
       error = true;
@@ -135,7 +134,7 @@ export default function Login({ navigation }) {
     }
     return !error;
   };
-//Chamada para verificação das validações e envio do formulario
+  //Chamada para verificação das validações e envio do formulario
   //Verificar se o login é verdadeiro e chamar a biometria
   useEffect(() => {
     verifyLogin();
@@ -149,8 +148,7 @@ export default function Login({ navigation }) {
   const salvar = () => {
     if (validar()) {
       biometric();
-    } 
-    else if(validar()) {
+    } else if (validar()) {
       sendForm();
     }
   };
@@ -179,6 +177,8 @@ export default function Login({ navigation }) {
             <Input
               style={styles.input}
               placeholder="Digite seu e-mail"
+              autoCompleteType="email"
+              maxLength={100}
               autocorrect={false}
               onChangeText={(value) => setEmail(value)}
               errorMessage={errorEmail}
@@ -189,6 +189,7 @@ export default function Login({ navigation }) {
               style={styles.input}
               placeholder="Digite sua senha"
               autocorrect={false}
+              maxLength={30}
               onChangeText={(value) => setSenha(value)}
               secureTextEntry={hidePass}
               errorMessage={errorSenha}
